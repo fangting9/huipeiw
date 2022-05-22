@@ -22,17 +22,49 @@ const routes = [
                 component:()=>import('../components/HomeUpload'),
             },
             {
-                path:'/subjectUpload',
-                name:'subjectUpload',
-                component:()=>import('../components/SubjectUpload'),
+                path:'/subjectList',
+                name:'subjectList',
+                component:()=>import('../components/SubjectList'),
+            },
+            {
+                path:'/courseList',
+                name:'courseList',
+                component:()=>import('../components/CourseList'),
+            },
+            {
+                path:'/educationImprove',
+                name:'educationImprove',
+                component:()=>import('../components/subject/EducationImprove'),
+            },
+            {
+                path:'/accountingTraining',
+                name:'accountingTraining',
+                component:()=>import('../components/subject/AccountingTraining'),
+            },
+            {
+                path:'/constructionEngineerTraining',
+                name:'constructionEngineerTraining',
+                component:()=>import('../components/subject/ConstructionEngineerTraining'),
+            },
+            {
+                path:'/textualCriticism',
+                name:'textualCriticism',
+                component:()=>import('../components/subject/TextualCriticism'),
+            },
+            {
+                path:'/graduate',
+                name:'graduate',
+                component:()=>import('../components/subject/Postgraduate'),
             },
             {
                 path:'/courseUpload',
                 name:'courseUpload',
-                component:()=>import('../components/CourseUpload'),
+                component:()=>import('../components/courseDetail/CourseUpload'),
             },
         ]
     },
+
+
 
 ];
 

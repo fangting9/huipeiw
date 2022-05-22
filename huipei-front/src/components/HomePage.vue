@@ -15,11 +15,11 @@
                         <el-icon><upload-filled /></el-icon>
                         <span>首页区域上传</span>
                     </el-menu-item>
-                    <el-menu-item index="/subjectUpload">
+                    <el-menu-item index="/subjectList">
                         <el-icon><expand /></el-icon>
                         <span>专题页区域上传</span>
                     </el-menu-item>
-                    <el-menu-item index="/courseUpload">
+                    <el-menu-item index="/courseList">
                         <el-icon><reading /></el-icon>
                         <span>详情页区域上传</span>
                     </el-menu-item>
@@ -34,14 +34,14 @@
                         </span>
                                 <template #dropdown>
                                     <el-dropdown-menu>
-                                        <el-dropdown-item >退出</el-dropdown-item>
+                                        <el-dropdown-item @click="loginOut">退出</el-dropdown-item>
 
                                     </el-dropdown-menu>
                                 </template>
                             </el-dropdown>
                         </div>
                 </el-header>
-                <el-main>
+                <el-main class="el-main-div">
                     <router-view />
                 </el-main>
             </el-container>
@@ -50,9 +50,9 @@
 </template>
 
 <script>
-    import router from "@/router";
+    //import router from "@/router";
     import Fingerprint2 from 'fingerprintjs2'
-    //import { ArrowDown } from '@element-plus/icons-vue'
+    import { ElMessage, } from 'element-plus'
     export default {
         name: "HomePage",
         data() {
@@ -63,7 +63,7 @@
         created(){
             this.createFingerprint();
             if (window.sessionStorage.getItem('token') != window.sessionStorage.getItem("murmur")){
-                router.push("/login")
+                //router.push("/login")
             }
         },
         activated(){
@@ -84,6 +84,10 @@
                 });
                 console.info("2222" + window.sessionStorage.getItem("murmur"))
             },
+
+            loginOut(){
+                ElMessage.info("退出成功")
+            }
         }
 
     }
@@ -106,7 +110,11 @@
     .el-aside{
         background-color: rgba(253, 253, 254, 0);
     }
-    .el-main{
-        background-color: rgba(247, 248, 250, 0.18);
+
+</style>
+
+<style>
+    .el-main-div{
+        background-color: rgba(230, 230, 230, 0.23);
     }
 </style>

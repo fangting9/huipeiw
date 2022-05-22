@@ -1,8 +1,10 @@
 <template>
-    <div>
+    <div class="el-main-div">
+        <h3>首页上传</h3>
+        <el-card class="box-card" shadow="never">
         <el-form>
         <el-row :gutter="20" class="el-row-box">
-            <el-col :span="4">滚动页</el-col>
+            <el-col :span="3">滚动页</el-col>
             <el-col :span="18">
                 <el-upload
                         :action="uploadUrl"
@@ -16,7 +18,7 @@
         </el-row>
 
         <el-row :gutter="20" class="el-row-box">
-            <el-col :span="4">金刚区</el-col>
+            <el-col :span="3">金刚区</el-col>
             <el-col :span="18">
                 <div v-for="(item, index) in form.brandIntroductionPicUrl" :key="index">
                     <el-row>
@@ -36,6 +38,18 @@
                                 <el-input v-model="item.name" placeholder="请输入标题" ></el-input>
                             </el-form-item>
                         </el-col>
+                        <el-col :span="6" style="margin-top: 70px">
+                            <el-form-item >
+                                <el-select v-model="item.code" placeholder="请选择对应的专题">
+                                    <el-option
+                                            v-for="i in specialSubject"
+                                            :key="i.code"
+                                            :label="i.name"
+                                            :value="i.code"
+                                    />
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
                         <el-col :span="4" style="margin-left:10px; margin-top: 70px">
                             <el-button circle @click="addList(form.brandIntroductionPicUrl)" v-if="index ===0">
                                 <el-icon><Plus /></el-icon>
@@ -50,7 +64,7 @@
             </el-col>
         </el-row>
         <el-row :gutter="20" class="el-row-box">
-            <el-col :span="4">热门课程</el-col>
+            <el-col :span="3">热门课程</el-col>
             <el-col :span="18">
                 <el-row :gutter="20">
                 <el-form-item>
@@ -95,7 +109,7 @@
             </el-col>
         </el-row>
         <el-row :gutter="20" class="el-row-box">
-            <el-col :span="4">考试大赛</el-col>
+            <el-col :span="3">考试大赛</el-col>
             <el-col :span="18">
                 <el-row :gutter="20">
                 <el-form-item>
@@ -141,7 +155,7 @@
             </el-col>
         </el-row>
         <el-row :gutter="20" class="el-row-box">
-            <el-col :span="4">校区照片</el-col>
+            <el-col :span="3">校区照片</el-col>
             <el-col :span="18">
                 <el-row :gutter="20">
                     <el-form-item>
@@ -161,7 +175,7 @@
             </el-col>
         </el-row>
         <el-row :gutter="20" class="el-row-box">
-            <el-col :span="4">品牌优势</el-col>
+            <el-col :span="3">品牌优势</el-col>
             <el-col :span="18">
                 <el-row :gutter="20">
                     <el-form-item>
@@ -181,7 +195,7 @@
             </el-col>
         </el-row>
         <el-row :gutter="20" class="el-row-box">
-            <el-col :span="4">关于我们</el-col>
+            <el-col :span="3">关于我们</el-col>
             <el-col :span="18">
                 <el-row :gutter="20">
                     <el-form-item>
@@ -201,7 +215,7 @@
             </el-col>
         </el-row>
         <el-row :gutter="20" class="el-row-box">
-            <el-col :span="4">联系我们</el-col>
+            <el-col :span="3">联系我们</el-col>
             <el-col :span="18">
                 <el-row :gutter="20">
                     <el-col :span="8">
@@ -240,6 +254,7 @@
             <img  :src="dialogImageUrl" class="dialog-img" alt="Preview Image" />
         </el-dialog>
         </el-form>
+        </el-card>
     </div>
 
 </template>
@@ -251,6 +266,7 @@
     import { ElMessage, } from 'element-plus'
     import UploadProps from 'element-plus'
     import axios from "axios"
+    import commonData from "@/data/commonData";
 
     //import { UploadUserFile } from 'element-plus'
 
@@ -261,20 +277,9 @@
                 dialogImageUrl:'',
                 dialogVisible:false,
                 uploadUrl:"/api/upload/image",
-
-                fileList:[
-                    {
-                        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
-                    },
-                    {
-                        url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100',
-                    },
-
-                ],
-
+                specialSubject:commonData.specialSubject,
                 form: {
                     rollingPicUrl: [],
-
                     brandIntroductionPicUrl: [
                         {picUrl: '', name: '', code: ''},
                     ],
@@ -327,11 +332,6 @@
                     ElMessage.error("上传失败");
                 })
             },
-            handleRemove() {
-                UploadProps['onRemove'] = (uploadFile, uploadFiles) => {
-                    console.log(uploadFile.url, uploadFiles)
-                }
-            },
             handlePictureCardPreview(uploadFile) {
                 this.dialogImageUrl= uploadFile.url
                 this.dialogVisible = true
@@ -369,9 +369,8 @@
 
             detailHomePage(){
                 axios.get("/admin/home/detail").then((response) => {
-                    if (response.data.data){
-                        console.info(response.data.data)
-                        this.form = response.data.data
+                    if (response.data){
+                        this.form = response.data
                     }
 
                 }).catch(()=>{
@@ -385,7 +384,6 @@
                 request.brandAdvantage.picUrls = this.transferPicUrl(this.form.brandAdvantage.picUrls, request.brandAdvantage.picUrls);
                 request.aboutUs.picUrls = this.transferPicUrl(this.form.aboutUs.picUrls, request.aboutUs.picUrls);
                 request.contact.picUrls = this.transferPicUrl(this.form.contact.picUrls, request.contact.picUrls);
-                console.info(request)
                 axios.post("/admin/home/save",request).then(() => {
                     ElMessage.success("保存成功");
                 }).catch(()=>{

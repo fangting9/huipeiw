@@ -2,7 +2,7 @@
 module.exports = {
   devServer: {
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
     },
     host: "localhost",
     open: true,
@@ -12,6 +12,9 @@ module.exports = {
         target: 'http://127.0.0.1:8081',
         changeOrigin: true,
         secure: false,
+        /*headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
+        },*/
         pathRewrite: {
         }
       },
