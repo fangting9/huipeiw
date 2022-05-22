@@ -1,6 +1,7 @@
 
 import { createRouter, createWebHashHistory } from 'vue-router';
 
+
 const routes = [
     {
         path: '/login',
@@ -63,7 +64,11 @@ const routes = [
             },
         ]
     },
-
+    {
+        path:'/home',
+        name:'home',
+        component:()=>import('../components/customer/HomeClient'),
+    },
 
 
 ];

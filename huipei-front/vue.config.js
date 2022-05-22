@@ -4,7 +4,7 @@ module.exports = {
     headers: {
       'Access-Control-Allow-Origin': '*',
     },
-    host: "localhost",
+    host: "0.0.0.0",
     open: true,
     port: 8080,
     proxy: {
@@ -12,9 +12,6 @@ module.exports = {
         target: 'http://127.0.0.1:8081',
         changeOrigin: true,
         secure: false,
-        /*headers: {
-          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'
-        },*/
         pathRewrite: {
         }
       },
