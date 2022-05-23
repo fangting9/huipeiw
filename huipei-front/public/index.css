@@ -39,12 +39,14 @@
     height: 1px;
     margin-top: 2px;
     margin-bottom: 2px;
+    border-block-color: rgba(0, 0, 0, 0.05);
 }
 .divider2{
     height: 1px;
     border-width: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+    border-block-color: rgba(0, 0, 0, 0.02);
 }
 .text_right{
 text-align: right;
@@ -54,4 +56,29 @@ text-align: left;
 }
 .red{
     color: red;
+}
+.dialogs{
+    width: 80%;
+    -webkit-border-radius: 8px;
+
+}
+.dialogs .el-dialog__header{
+    background-image: url("../static/header.jpg");
+    height: 50px;
+    width: 87%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+
+}
+
+.dialog-form{
+    width: 90%;
+    margin-left: 5%;
+}
+
+.dialog-form >>>.el-input__inner {
+    border: none;
+}
+.imgPhone{
+    width: 100%;
 }

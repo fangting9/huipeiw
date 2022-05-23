@@ -4,7 +4,9 @@
         <el-row :gutter="20">
             <swiper style="width: 100%;">
                 <swiper-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
+                    <a :href="item.url">
                    <img :src="item.url" alt="">
+                    </a>
                 </swiper-item>
             </swiper>
         </el-row>
@@ -25,7 +27,7 @@
                         <p>{{this.form.hotTopic.title}}</p>
                     </el-col>
                     <el-col :span="16">
-                        <p class="text_right more">了解更多<el-icon><ArrowRight /></el-icon></p>
+                        <p class="text_right more" @click="toEducationImprove">了解更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.hotTopic.detail" :key="i">
@@ -42,7 +44,7 @@
                             </el-row>
                             <el-row :gutter="10">
                                 <span class="courseNum">{{item.applyNum}}人报名</span>
-                                <el-button class="signUpButton" round>报名</el-button>
+                                <el-button @click="signUp" class="signUpButton" round>报名</el-button>
                             </el-row>
                         </el-col>
                     </el-row>
@@ -83,21 +85,75 @@
                 </div>
             </div>
         </el-row>
+        <el-divider class="divider2"/>
         <el-row :gutter="20">
-
+            <div style="width: 100%;">
+                <el-row :gutter="10">
+                    <el-col :span="6" :offset="1">
+                        <p>{{this.form.campusEnvironment.title}}</p>
+                    </el-col>
+                    <el-col :span="16">
+                        <p class="text_right more">立即预约<el-icon><ArrowRight /></el-icon></p>
+                    </el-col>
+                </el-row>
+                <div v-for="(item,i) in this.form.campusEnvironment.picUrls" :key="i">
+                        <el-col :span="12">
+                            <img :src="item.url">
+                        </el-col>
+                </div>
+            </div>
         </el-row>
+        <el-divider class="divider2"/>
         <el-row :gutter="20">
-
+            <div style="width: 100%;">
+                <el-row :gutter="10">
+                    <el-col :span="6" :offset="1">
+                        <p>{{this.form.brandAdvantage.title}}</p>
+                    </el-col>
+                </el-row>
+                <div v-for="(item,i) in this.form.brandAdvantage.picUrls" :key="i">
+                    <el-col :span="12">
+                        <img style="width: 90%" :src="item.url">
+                    </el-col>
+                </div>
+            </div>
         </el-row>
+        <el-divider class="divider2"/>
         <el-row :gutter="20">
-
+            <div style="width: 100%;">
+                <el-row :gutter="10">
+                    <el-col :span="6" :offset="1">
+                        <p>{{this.form.aboutUs.title}}</p>
+                    </el-col>
+                </el-row>
+                <div v-for="(item,i) in this.form.aboutUs.picUrls" :key="i">
+                    <el-col :span="12">
+                        <img style="width: 90%" :src="item.url">
+                    </el-col>
+                </div>
+            </div>
         </el-row>
+        <el-divider class="divider2"/>
         <el-row :gutter="20">
-
+            <div style="width: 100%;">
+                <div v-for="(item,i) in this.form.contact.picUrls" :key="i">
+                    <img @click="contactCopy" class="imgPhone" :src="item.url">
+                </div>
+            </div>
         </el-row>
 
-        <el-dialog title="考试报名" v-model="signUpDialogVisible">
-
+        <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
+            <el-form class="dialog-form">
+                <el-form-item label="姓名">
+                    <el-input v-model="signUpInfo.name" placeholder="请输入姓名"></el-input>
+                </el-form-item>
+                <el-form-item label="电话">
+                    <el-input v-model="signUpInfo.phone" placeholder="请输入手机号"></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" style="width: 100%;height:40px;color: white" round>立即报名</el-button>
+                </el-form-item>
+            </el-form>
         </el-dialog>
     </div>
 </template>
@@ -107,6 +163,7 @@
     import { ElMessage, } from 'element-plus'
     import Swiper from "../../components/util/Swiper"
     import SwiperItem from "../../components/util/SwiperItem"
+    //import Clipboard from "clipboard";
         export default {
         name: "HomeClient",
         components:{
@@ -174,6 +231,23 @@
                 }).catch(()=>{
                     ElMessage.error("请重新加载");
                 })
+            },
+            signUp(){
+                this.signUpDialogVisible = true;
+                this.signUpInfo.name='';
+                this.signUpInfo.phone='';
+            },
+            toEducationImprove(){
+
+            },
+            contactCopy(){
+                /*var clipboard = new Clipboard('.imgPhone')
+                clipboard.on('success', () => {
+                    console.log('电话复制成功')
+                    // 释放内存
+                    clipboard.destroy()
+                });*/
+
             }
 
         }
