@@ -419,10 +419,7 @@
         height: 100px;
         text-align: center;
     }
-    .dialog-img{
-        width: 100%;
-        height: 100%;
-    }
+
     .div-dotted{
         border:1px dashed rgba(169, 169, 169, 0.1);
         height:0;

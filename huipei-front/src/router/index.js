@@ -69,6 +69,12 @@ const routes = [
         name:'home',
         component:()=>import('../components/customer/HomeClient'),
     },
+    {
+        path:'/ceducation',
+        name:'ceducation',
+        component:()=>import('../components/customer/EducationImproveClient'),
+
+    }
 
 
 ];
