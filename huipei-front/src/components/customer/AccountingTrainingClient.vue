@@ -1,6 +1,16 @@
 <template>
     <div>
-        <h3 style="text-align: center">汇培网</h3>
+        <div style="width: 100%; height: 60px;text-align: right">
+            <el-row :gutter="10">
+                <el-col :span="9" :offset="8">
+                    <h3 style="text-align: center">汇培网</h3>
+                </el-col>
+                <el-col :span="7" >
+                    <img @click="goHome" style="width: 100%;margin-top: 10%;" src="../../../static/mini-logo.jpg">
+                </el-col>
+            </el-row>
+        </div>
+
         <el-row :gutter="20">
             <swiper style="width: 100%; text-align: center">
                 <swiper-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
@@ -208,6 +218,7 @@
 <script>
     import axios from "axios"
     import { ElMessage, } from 'element-plus'
+    import router from "@/router";
     export default {
         name: "AccountingTrainingClient",
         data() {
@@ -279,6 +290,9 @@
             handlePictureCardPreview(url) {
                 this.dialogImageUrl= url
                 this.dialogVisible = true
+            },
+            goHome(){
+                router.push("/home")
             },
         }
     }

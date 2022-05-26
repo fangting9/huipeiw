@@ -1,7 +1,14 @@
 <template>
     <div>
-        <el-header style="width: 100%">
-            <h3 style="text-align: center">首页</h3>
+        <el-header style="width: 100%; height: 60px;text-align: right">
+            <el-row :gutter="10">
+                <el-col :span="9" :offset="8">
+                    <h3 style="text-align: center">汇培网</h3>
+                </el-col>
+                <el-col :span="7" >
+                    <img style="width: 100%;margin-top: 10%;" src="../../../static/mini-logo.jpg">
+                </el-col>
+            </el-row>
         </el-header>
         <el-row :gutter="20">
             <swiper style="width: 100%;">
