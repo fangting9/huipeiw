@@ -277,13 +277,12 @@
                         </el-row>
                         <el-row :gutter="20">
                             <el-upload
-                                    class="avatar-uploader"
                                     :action="uploadUrl"
-                                    :show-file-list="false"
-                                    :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,form.hotActivity.banner)}"
+                                    list-type="picture-card"
+                                    :on-preview="handlePictureCardPreview"
+                                    :file-list="form.hotActivity.picUrls"
                             >
-                                <img v-if="form.hotActivity.banner.url" :src="form.hotActivity.banner.url" class="middle-avatar" />
-                                <el-icon v-else class="min-avatar-uploader-icon"><Plus/></el-icon>
+                                <el-icon><Plus /></el-icon>
                             </el-upload>
                         </el-row>
                     </el-col>
@@ -395,7 +394,7 @@
                     advisoryService:{url:''},
                     hotActivity:{
                         title:'',
-                        banner:{url:''}
+                        picUrls: [],
                     },
                     bottom:{
                         columnList:[{title:''},],
@@ -455,6 +454,7 @@
                 request.financeLaboratory.picUrls = this.transferPicUrl(this.form.financeLaboratory.picUrls, request.financeLaboratory.picUrls);
                 request.professionalTeacher.picUrls = this.transferPicUrl(this.form.professionalTeacher.picUrls, request.professionalTeacher.picUrls);
                 request.specialTeaching.picUrls = this.transferPicUrl(this.form.specialTeaching.picUrls, request.specialTeaching.picUrls);
+                request.hotActivity.picUrls = this.transferPicUrl(this.form.hotActivity.picUrls, request.hotActivity.picUrls);
 
                 axios.post("/admin/accountant/save",request).then(() => {
                     ElMessage.success("保存成功");

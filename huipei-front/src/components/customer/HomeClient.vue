@@ -7,25 +7,25 @@
             <swiper style="width: 100%;">
                 <swiper-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                     <a :href="item.url">
-                   <img :src="item.url" alt="">
+                   <img :src="item.url" alt="" class="rollingPic">
                     </a>
                 </swiper-item>
             </swiper>
         </el-row>
         <el-row :gutter="10">
-            <div style="width: 100%; margin-inline-start: 15px;">
+            <div style="width: 100%; margin-inline-start: 15px;text-align: center;">
                 <div v-for="(item,i) in this.form.brandIntroductionPicUrl" :key="i">
                     <el-col :span="14" style="margin-left: 10px">
-                        <img class="image50" :src="item.picUrl" alt="" @click="toEducationImprove">
+                        <img class="image50" :src="item.picUrl" alt="" @click="toGo(item.code)">
                         <p class="text-small">{{item.name}}</p>
                     </el-col>
                 </div>
             </div>
         </el-row>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%;text-align: center;">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="6">
                         <p>{{this.form.hotTopic.title}}</p>
                     </el-col>
                     <el-col :span="16">
@@ -56,9 +56,9 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%; text-align: center;">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="6">
                         <p>{{this.form.examContest.title}}</p>
                     </el-col>
                     <el-col :span="16">
@@ -89,9 +89,9 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%; text-align: center;">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="6">
                         <p>{{this.form.campusEnvironment.title}}</p>
                     </el-col>
                     <el-col :span="16">
@@ -107,9 +107,9 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%; text-align: center;">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="6">
                         <p>{{this.form.brandAdvantage.title}}</p>
                     </el-col>
                 </el-row>
@@ -122,9 +122,9 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%;text-align: center;">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="6">
                         <p>{{this.form.aboutUs.title}}</p>
                     </el-col>
                 </el-row>
@@ -137,7 +137,7 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%; text-align: center;">
                 <div v-for="(item,i) in this.form.contact.picUrls" :key="i">
                     <img @click="contactCopy" class="imgPhone" :src="item.url">
                 </div>
@@ -264,8 +264,19 @@
                 this.yyDialogVisible = false;
                 ElMessage(str)
             },
-            toEducationImprove(){
-                router.push("/ceducation")
+            toGo(code){
+                if (code === '1'){
+                    router.push('/ceducation');
+                }else if (code === '2'){
+                    router.push('/caccount');
+                }else if (code === '3'){
+                    router.push('/ceducation');
+                }else if (code === '4'){
+                    router.push('/ceducation');
+                }else if (code === '5'){
+                    router.push('/ceducation');
+                }
+
             },
             contactCopy(){
                 let cInput = document.createElement("input");

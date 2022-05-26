@@ -73,7 +73,11 @@ const routes = [
         path:'/ceducation',
         name:'ceducation',
         component:()=>import('../components/customer/EducationImproveClient'),
-
+    },
+    {
+        path:'/caccount',
+        name:'caccount',
+        component:()=>import('../components/customer/AccountingTrainingClient'),
     }
 
 
