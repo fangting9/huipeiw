@@ -11,7 +11,7 @@
             </el-row>
         </el-header>
         <el-row :gutter="20">
-            <swiper style="width: 100%;">
+            <swiper style="width: 100%; text-align: center">
                 <swiper-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                     <a :href="item.url">
                    <img :src="item.url" alt="" class="rollingPic">
@@ -277,7 +277,7 @@
                 }else if (code === '2'){
                     router.push('/caccount');
                 }else if (code === '3'){
-                    router.push('/ceducation');
+                    router.push('/cgraduate');
                 }else if (code === '4'){
                     router.push('/ceducation');
                 }else if (code === '5'){

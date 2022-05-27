@@ -24,7 +24,7 @@
                     </el-col>
                 </el-row>
                 <el-row :gutter="20" class="el-row-box">
-                    <el-col :span="4">考研辅导</el-col>
+                    <el-col :span="3">考研辅导</el-col>
                     <el-col :span="18">
                         <el-row :gutter="20">
                             <el-form-item>
@@ -82,7 +82,7 @@
                                 :show-file-list="false"
                                 :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,form.bannerFirst)}"
                         >
-                            <img v-if="form.banner.url" :src="form.bannerFirst.url" class="middle-avatar" />
+                            <img v-if="form.bannerFirst.url" :src="form.bannerFirst.url" class="middle-avatar" />
                             <el-icon v-else class="min-avatar-uploader-icon"><Plus/></el-icon>
                         </el-upload>
                     </el-col>
@@ -183,7 +183,7 @@
                     <el-col :span="18">
                         <el-row :gutter="20">
                             <el-form-item>
-                                <el-input v-model="form.signUpProcess.title" placeholder="请输入标题"></el-input>
+                                <el-input v-model="form.signUp.title" placeholder="请输入标题"></el-input>
                             </el-form-item>
                         </el-row>
                         <el-row :gutter="20">
@@ -255,7 +255,7 @@
                 </el-row>
 
                 <el-row :gutter="20">
-                    <el-col :span="4" :offset="20">
+                    <el-col :span="3" :offset="20">
                         <el-button type="primary" round @click="saveData">确认上传</el-button>
                     </el-col>
                 </el-row>
