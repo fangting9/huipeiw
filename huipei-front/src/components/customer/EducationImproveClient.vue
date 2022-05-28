@@ -77,7 +77,7 @@
                             </el-row>
                             <el-row :gutter="20" >
                                 <span style="width: 80px" class="majorType">{{item.majorType}}</span>
-                                <el-button class="consultButton marginTop30" type="primary" round>考试科目咨询</el-button>
+                                <el-button class="consultButton marginTop30" @click="chatVisible=true" type="primary" round>考试科目咨询</el-button>
                             </el-row>
                         </el-col>
                     </el-row>
@@ -93,7 +93,7 @@
                     <el-input :suffix-icon="Iphone" placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
+                    <el-button style="width: 60%;background-color: #456ced;color: white;" @click="chatVisible=true">点击咨询</el-button>
                 </div>
             </div>
         </el-row>
@@ -131,6 +131,12 @@
             </div>
         </el-row>
 
+        <div class="drawer-div">
+            <el-drawer v-model="chatVisible" direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat></Chat>
+            </el-drawer>
+        </div>
+
         <el-dialog v-model="dialogVisible" >
             <img  :src="dialogImageUrl" class="dialog-img"/>
         </el-dialog>
@@ -143,15 +149,18 @@
     import Swiper from "../../components/util/Swiper"
     import SwiperItem from "../../components/util/SwiperItem"
     import router from "@/router";
+    import Chat from './CustomerChat'
 
     export default {
         name: "HomeClient",
         components:{
             Swiper,
             SwiperItem,
+            Chat
         },
         data() {
             return {
+                chatVisible: false,
                 dialogImageUrl: '',
                 dialogVisible: false,
                 form: {
@@ -209,9 +218,15 @@
 </script>
 
 <style scoped>
-    hitConsultButton{
+    .hitConsultButton{
         width: 245px;
         background-color: #456ced;
         color: white;
     }
+
+    /deep/.el-drawer{
+        --el-drawer-bg-color: white;
+        --el-drawer-padding-primary:white;
+    }
+
 </style>

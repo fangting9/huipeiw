@@ -31,8 +31,8 @@
                     <img style="width: 90%" :src="item.url">
                 </div>
                 <div style="width: 100%; text-align: center">
-                    <el-button round style="width: 35%;border-color: #ffa900;background-color: #ffa900;color: white;">科学诊断测试</el-button>
-                    <el-button round style="width: 35%;border-color: #ffa900;background-color: #ffa900;color: white;">1对1课程详情</el-button>
+                    <el-button @click="chatVisible=true" round style="width: 35%;border-color: #ffa900;background-color: #ffa900;color: white;">科学诊断测试</el-button>
+                    <el-button @click="chatVisible=true" round style="width: 35%;border-color: #ffa900;background-color: #ffa900;color: white;">1对1课程详情</el-button>
                 </div>
             </div>
         </el-row>
@@ -60,7 +60,7 @@
                     </el-col>
                 </div>
                 <div style="width: 100%; text-align: center">
-                    <el-button style="width: 60%;border-color: #ffa900;background-color: #ffa900;color: white;">定制我的复习方案</el-button>
+                    <el-button @click="chatVisible=true" style="width: 60%;border-color: #ffa900;background-color: #ffa900;color: white;">定制我的复习方案</el-button>
                 </div>
             </div>
         </el-row>
@@ -77,13 +77,13 @@
                     <el-input placeholder="请输入手机号我们将严格保障您的信息安全"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button style="width: 60%;background-color: #456ced;color: white;">立即获取</el-button>
+                    <el-button style="width: 60%;background-color: #456ced;color: white;" @click="chatVisible=true">立即获取</el-button>
                 </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <div style="width: 100%;text-align: center">
-            <img style="width: 95%"  :src="form.bannerSecond.url">
+            <img style="width: 95%"  :src="form.bannerSecond.url" >
         </div>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
@@ -94,13 +94,13 @@
                     </el-col>
                 </el-row>
                 <div style="width: 100%">
-                    <img style="width: 95%" :src="form.coursePurchase.banner.url">
+                    <img style="width: 95%" :src="form.coursePurchase.banner.url" >
                 </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <div style="width: 100%;text-align: center">
-            <img style="width: 95%"  :src="form.courseBook.url">
+            <img style="width: 95%"  :src="form.courseBook.url" @click="yyDialogVisible=true">
         </div>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
@@ -114,7 +114,7 @@
                     <img style="width: 90%" :src="form.signUp.banner.url">
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button style="width: 60%;border-color: #ffa900;background-color: #ffa900;color: white;">马上报名学习</el-button>
+                    <el-button style="width: 60%;border-color: #ffa900;background-color: #ffa900;color: white;" @click="signUpDialogVisible=true">马上报名学习</el-button>
                 </div>
             </div>
         </el-row>
@@ -126,7 +126,7 @@
                     <el-input :suffix-icon="Iphone" placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
+                    <el-button style="width: 60%;background-color: #456ced;color: white;" @click="chatVisible=true">点击咨询</el-button>
                 </div>
             </div>
         </el-row>
@@ -149,6 +149,18 @@
         <el-dialog v-model="dialogVisible" >
             <img  :src="dialogImageUrl" class="dialog-img"/>
         </el-dialog>
+
+        <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
+            <SignUp :origin="'3'" @change="colseSignUp"></SignUp>
+        </el-dialog>
+        <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">
+            <Appointment :origin="'3'" @change="colseYy"></Appointment>
+        </el-dialog>
+        <div class="drawer-div">
+            <el-drawer v-model="chatVisible" direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat></Chat>
+            </el-drawer>
+        </div>
     </div>
 </template>
 
@@ -156,10 +168,25 @@
     import axios from "axios"
     import { ElMessage, } from 'element-plus'
     import router from "@/router";
+    import Swiper from "../../components/util/Swiper"
+    import SwiperItem from "../../components/util/SwiperItem"
+    import SignUp from './SignUp'
+    import Appointment from './Appointment'
+    import Chat from './CustomerChat'
     export default {
         name: "PostGraduateClient.vue",
+        components:{
+            Swiper,
+            SwiperItem,
+            Chat,
+            SignUp,
+            Appointment
+        },
         data() {
             return {
+                signUpDialogVisible:false,
+                yyDialogVisible:false,
+                chatVisible:false,
                 dialogImageUrl: '',
                 dialogVisible: false,
                 form: {
@@ -219,10 +246,19 @@
             goHome(){
                 router.push("/home")
             },
+            colseSignUp(value){
+                this.signUpDialogVisible = value;
+            },
+            colseYy(value){
+                this.yyDialogVisible = value
+            }
         }
     }
 </script>
 
 <style scoped>
-
+    /deep/.el-drawer{
+        --el-drawer-bg-color: white;
+        --el-drawer-padding-primary:white;
+    }
 </style>

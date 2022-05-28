@@ -84,6 +84,11 @@ const routes = [
         name:'cgraduate',
         component:()=>import('../components/customer/PostGraduateClient'),
     },
+    {
+        path:'/CustomerChat',
+        name:'CustomerChat',
+        component:()=>import('../components/customer/CustomerChat'),
+    },
 
 
 ];

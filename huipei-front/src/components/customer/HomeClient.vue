@@ -53,7 +53,7 @@
                             </el-row>
                             <el-row :gutter="10">
                                 <span class="courseNum">{{item.applyNum}}人报名</span>
-                                <el-button @click="signUp" class="signUpButton" round>报名</el-button>
+                                <el-button @click="signUpDialogVisible=true" class="signUpButton" round>报名</el-button>
                             </el-row>
                         </el-col>
                     </el-row>
@@ -86,7 +86,7 @@
                             </el-row>
                             <el-row :gutter="10">
                                 <span class="courseNum">{{item.status}}</span>
-                                <el-button @click="yySignUp" class="signUpButton" round>预约</el-button>
+                                <el-button @click="yyDialogVisible=true" class="signUpButton" round>预约</el-button>
                             </el-row>
                         </el-col>
                     </el-row>
@@ -102,7 +102,7 @@
                         <p>{{this.form.campusEnvironment.title}}</p>
                     </el-col>
                     <el-col :span="16">
-                        <p @click="yySignUp" class="text_right more">立即预约<el-icon><ArrowRight /></el-icon></p>
+                        <p @click="yyDialogVisible=true" class="text_right more">立即预约<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.campusEnvironment.picUrls" :key="i">
@@ -152,31 +152,16 @@
         </el-row>
 
         <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
-            <el-form class="dialog-form">
-                <el-form-item label="姓名">
-                    <el-input v-model="signUpInfo.name" placeholder="请输入姓名"></el-input>
-                </el-form-item>
-                <el-form-item label="电话">
-                    <el-input v-model="signUpInfo.phone" placeholder="请输入手机号"></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="signUpSave('报名成功')" style="width: 100%;height:40px;color: white" round>立即报名</el-button>
-                </el-form-item>
-            </el-form>
+            <SignUp :origin="'3'" @change="colseSignUp"></SignUp>
         </el-dialog>
         <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">
-            <el-form class="dialog-form">
-                <el-form-item label="姓名">
-                    <el-input v-model="signUpInfo.name" placeholder="请输入姓名"></el-input>
-                </el-form-item>
-                <el-form-item label="电话">
-                    <el-input v-model="signUpInfo.phone" placeholder="请输入手机号"></el-input>
-                </el-form-item>
-                <el-form-item>
-                    <el-button type="primary" @click="signUpSave('预约成功')" style="width: 100%;height:40px;color: white" round>立即预约</el-button>
-                </el-form-item>
-            </el-form>
+            <Appointment :origin="'3'" @change="colseYy"></Appointment>
         </el-dialog>
+        <div class="drawer-div">
+            <el-drawer v-model="chatVisible" direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat></Chat>
+            </el-drawer>
+        </div>
     </div>
 </template>
 
@@ -186,17 +171,24 @@
     import Swiper from "../../components/util/Swiper"
     import SwiperItem from "../../components/util/SwiperItem"
     import router from "@/router";
+    import SignUp from './SignUp'
+    import Appointment from './Appointment'
+    import Chat from './CustomerChat'
     //import Clipboard from "clipboard";
         export default {
         name: "HomeClient",
         components:{
             Swiper,
             SwiperItem,
+            Chat,
+            SignUp,
+            Appointment
         },
         data() {
             return {
                 signUpDialogVisible:false,
                 yyDialogVisible:false,
+                chatVisible:false,
                 signUpInfo:{
                     phone: '',
                     name:'',
@@ -256,7 +248,7 @@
                     ElMessage.error("请重新加载");
                 })
             },
-            signUp(){
+           /* signUp(){
                 this.signUpDialogVisible = true;
                 this.signUpInfo.name='';
                 this.signUpInfo.phone='';
@@ -270,7 +262,7 @@
                 this.signUpDialogVisible = false;
                 this.yyDialogVisible = false;
                 ElMessage(str)
-            },
+            },*/
             toGo(code){
                 if (code === '1'){
                     router.push('/ceducation');
@@ -294,6 +286,12 @@
                 ElMessage("电话号复制成功");
                 // 复制成功后再将构造的标签 移除
                 document.body.removeChild(cInput);
+            },
+            colseSignUp(value){
+                this.signUpDialogVisible = value;
+            },
+            colseYy(value){
+                this.yyDialogVisible = value
             }
 
 
@@ -316,6 +314,10 @@
         text-align: center;
         width: 45px;
         height: 45px;
+    }
+    /deep/.el-drawer{
+        --el-drawer-bg-color: white;
+        --el-drawer-padding-primary:white;
     }
 
 </style>

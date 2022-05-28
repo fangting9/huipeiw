@@ -10,6 +10,7 @@ import commonData from "@/data/commonData";
 import Swiper from './components/util/Swiper'
 import SwiperItem from './components/util/SwiperItem'
 import '../public/index.css'
+import Chat from './components/customer/CustomerChat'
 
 var app = createApp(App);
 app.use(router);
@@ -25,6 +26,6 @@ axios.defaults.baseURL = "/api";
 app.config.globalProperties.$axios = axios;
 
 export {
-    Swiper, SwiperItem
+    Swiper, SwiperItem, Chat
 }
 

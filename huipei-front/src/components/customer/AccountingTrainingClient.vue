@@ -107,7 +107,7 @@
 
                     </el-col>
                     <el-col :span="8" :offset="1">
-                        <el-button class="consultButton" style="color: white;margin-top: 15px;" round>立即订阅</el-button>
+                        <el-button @click="yyDialogVisible=true" class="consultButton" style="color: white;margin-top: 15px;" round>立即订阅</el-button>
                     </el-col>
 
                 </div>
@@ -143,10 +143,10 @@
                     </el-col>
                 </el-row>
                 <div style="width: 100%">
-                    <img style="width: 100%" :src="form.careerProgression.banner.url">
+                    <img  style="width: 100%" :src="form.careerProgression.banner.url">
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button style="width: 60%;background-color: #456ced;color: white;">立即规划</el-button>
+                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">立即规划</el-button>
                 </div>
             </div>
         </el-row>
@@ -172,7 +172,7 @@
                     <el-input :suffix-icon="Iphone" placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
+                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
                 </div>
             </div>
         </el-row>
@@ -186,11 +186,11 @@
                 </el-row>
                 <div v-for="(item,i) in form.hotActivity.picUrls" :key="i">
                     <el-row :gutter="10">
-                        <img style="width: 90%; margin-left: 6%;" :src="item.url">
+                        <img @click="signUpDialogVisible=true" style="width: 90%; margin-left: 6%;" :src="item.url">
                     </el-row>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button style="width: 60%;background-color: #456ced;color: white;">立即规划</el-button>
+                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">咨询更多优惠</el-button>
                 </div>
             </div>
         </el-row>
@@ -212,6 +212,17 @@
         <el-dialog v-model="dialogVisible" >
             <img  :src="dialogImageUrl" class="dialog-img"/>
         </el-dialog>
+        <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
+            <SignUp :origin="'1'" @change="colseSignUp"></SignUp>
+        </el-dialog>
+        <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">
+            <Appointment :origin="'1'" @change="colseYy"></Appointment>
+        </el-dialog>
+        <div class="drawer-div">
+            <el-drawer v-model="chatVisible" direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat></Chat>
+            </el-drawer>
+        </div>
     </div>
 </template>
 
@@ -219,12 +230,27 @@
     import axios from "axios"
     import { ElMessage, } from 'element-plus'
     import router from "@/router";
+    import Swiper from "../../components/util/Swiper"
+    import SwiperItem from "../../components/util/SwiperItem"
+    import SignUp from './SignUp'
+    import Appointment from './Appointment'
+    import Chat from './CustomerChat'
     export default {
         name: "AccountingTrainingClient",
+        components:{
+            Swiper,
+            SwiperItem,
+            Chat,
+            SignUp,
+            Appointment
+        },
         data() {
             return {
                 dialogImageUrl: '',
                 dialogVisible: false,
+                signUpDialogVisible:false,
+                yyDialogVisible:false,
+                chatVisible:false,
                 form: {
                     rollingPicUrl: [],
                     introductionPicUrl:[],
@@ -294,10 +320,19 @@
             goHome(){
                 router.push("/home")
             },
+            colseSignUp(value){
+                this.signUpDialogVisible = value;
+            },
+            colseYy(value){
+                this.yyDialogVisible = value
+            }
         }
     }
 </script>
 
 <style scoped>
-
+    /deep/.el-drawer{
+        --el-drawer-bg-color: white;
+        --el-drawer-padding-primary:white;
+    }
 </style>
