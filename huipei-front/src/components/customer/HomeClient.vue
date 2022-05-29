@@ -11,20 +11,20 @@
             </el-row>
         </el-header>
         <el-row :gutter="20">
-            <swiper style="width: 100%; text-align: center">
-                <swiper-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
-                    <a :href="item.url">
-                   <img :src="item.url" alt="" class="rollingPic">
-                    </a>
-                </swiper-item>
-            </swiper>
+            <div class="block text-center" style="width: 100%;height: 180px">
+                <el-carousel>
+                    <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
+                            <img :src="item.url" alt="" class="rollingPic">
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
         </el-row>
         <el-row :gutter="10">
-            <div style="width: 100%; margin-inline-start: 15px;text-align: center;">
+            <div style="width: 100%; margin-inline-start: 15px;margin-top:10px;text-align: center;">
                 <div v-for="(item,i) in this.form.brandIntroductionPicUrl" :key="i">
                     <el-col :span="14" style="margin-left: 10px">
                         <img class="image50" :src="item.picUrl" alt="" @click="toGo(item.code)">
-                        <p class="text-small">{{item.name}}</p>
+                        <p class="text-small" @click="toGo(item.code)">{{item.name}}</p>
                     </el-col>
                 </div>
             </div>
@@ -168,8 +168,6 @@
 <script>
     import axios from "axios"
     import { ElMessage, } from 'element-plus'
-    import Swiper from "../../components/util/Swiper"
-    import SwiperItem from "../../components/util/SwiperItem"
     import router from "@/router";
     import SignUp from './SignUp'
     import Appointment from './Appointment'
@@ -178,8 +176,6 @@
         export default {
         name: "HomeClient",
         components:{
-            Swiper,
-            SwiperItem,
             Chat,
             SignUp,
             Appointment
@@ -319,5 +315,6 @@
         --el-drawer-bg-color: white;
         --el-drawer-padding-primary:white;
     }
+
 
 </style>

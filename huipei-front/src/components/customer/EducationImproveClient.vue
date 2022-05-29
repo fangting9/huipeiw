@@ -12,13 +12,13 @@
 
         </div>
         <el-row :gutter="20">
-            <swiper style="width: 100%;text-align: center;">
-                <swiper-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
-                    <a :href="item.url">
+            <div class="block text-center" style="width: 100%;height: 180px;">
+                <el-carousel>
+                    <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                         <img :src="item.url" alt="" class="rollingPic">
-                    </a>
-                </swiper-item>
-            </swiper>
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
             <div style="width: 100%;text-align: center;">
                 <div v-for="(item,i) in this.form.introductionPicUrl" :key="i">
                     <img class="imgPhone" :src="item.url">
@@ -146,16 +146,12 @@
 <script>
     import axios from "axios"
     import { ElMessage, } from 'element-plus'
-    import Swiper from "../../components/util/Swiper"
-    import SwiperItem from "../../components/util/SwiperItem"
     import router from "@/router";
     import Chat from './CustomerChat'
 
     export default {
         name: "HomeClient",
         components:{
-            Swiper,
-            SwiperItem,
             Chat
         },
         data() {

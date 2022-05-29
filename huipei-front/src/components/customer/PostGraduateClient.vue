@@ -11,13 +11,13 @@
             </el-row>
         </div>
         <el-row :gutter="20">
-            <swiper style="width: 100%; text-align: center">
-                <swiper-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
-                    <a :href="item.url">
+            <div class="block text-center" style="width: 100%;height: 180px;">
+                <el-carousel>
+                    <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                         <img :src="item.url" alt="" class="rollingPic">
-                    </a>
-                </swiper-item>
-            </swiper>
+                    </el-carousel-item>
+                </el-carousel>
+            </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
@@ -168,16 +168,12 @@
     import axios from "axios"
     import { ElMessage, } from 'element-plus'
     import router from "@/router";
-    import Swiper from "../../components/util/Swiper"
-    import SwiperItem from "../../components/util/SwiperItem"
     import SignUp from './SignUp'
     import Appointment from './Appointment'
     import Chat from './CustomerChat'
     export default {
         name: "PostGraduateClient.vue",
         components:{
-            Swiper,
-            SwiperItem,
             Chat,
             SignUp,
             Appointment

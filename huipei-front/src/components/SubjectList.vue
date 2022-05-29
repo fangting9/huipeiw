@@ -29,7 +29,7 @@
                             class="left10"
                             v-model="scope.row.enable"
                             inline-prompt
-                            active-text="启动"
+                            active-text="启用"
                             inactive-text="禁用"
                             @click="handleChange(scope.row)"
                     />
