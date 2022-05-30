@@ -12,7 +12,7 @@
         </el-header>
         <el-row :gutter="20">
             <div class="block text-center" style="width: 100%;height: 180px">
-                <el-carousel>
+                <el-carousel style="height:100%">
                     <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                             <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
@@ -315,6 +315,8 @@
         --el-drawer-bg-color: white;
         --el-drawer-padding-primary:white;
     }
-
+    /deep/.el-carousel__container{
+        height: 100%;
+    }
 
 </style>
