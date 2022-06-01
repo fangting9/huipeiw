@@ -74,7 +74,7 @@
                 </el-row>
                 <img style="width: 100%" :src="form.courseConsult.banner.url">
                 <div style="width: 90%; margin-left: 5%">
-                    <el-input placeholder="请输入手机号我们将严格保障您的信息安全"></el-input>
+                    <el-input v-model="chatPhone" placeholder="请输入手机号我们将严格保障您的信息安全"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button style="width: 60%;background-color: #456ced;color: white;" @click="chatVisible=true">立即获取</el-button>
@@ -151,13 +151,13 @@
         </el-dialog>
 
         <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
-            <SignUp :origin="'3'" @change="colseSignUp"></SignUp>
+            <SignUp :subjectCode="'3'" @change="colseSignUp"></SignUp>
         </el-dialog>
         <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">
-            <Appointment :origin="'3'" @change="colseYy"></Appointment>
+            <Appointment :subjectCode="'3'" @change="colseYy"></Appointment>
         </el-dialog>
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" direction="btt" size="55%" :show-close="false" :with-header="false">
+            <el-drawer v-model="chatVisible" :subjectCode="'3'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
                 <Chat></Chat>
             </el-drawer>
         </div>
@@ -185,6 +185,7 @@
                 chatVisible:false,
                 dialogImageUrl: '',
                 dialogVisible: false,
+                chatPhone:'',
                 form: {
                     rollingPicUrl: [],
                     tutorial:{

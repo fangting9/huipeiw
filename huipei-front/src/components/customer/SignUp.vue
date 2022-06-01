@@ -8,7 +8,7 @@
                 <el-input v-model="signUpInfo.phone" placeholder="请输入手机号"></el-input>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="signUpSave('报名成功')" style="width: 100%;height:40px;color: white" round>立即报名</el-button>
+                <el-button type="primary" @click="signUpSave()" style="width: 100%;height:40px;color: white" round>立即报名</el-button>
             </el-form-item>
         </el-form>
     </div>
@@ -16,11 +16,11 @@
 
 <script>
     import { ElMessage } from 'element-plus'
+    import commonData from "@/data/commonData";
     export default {
         name: "SignUp",
         data(){
             return{
-
                 signUpInfo:{
                     phone: '',
                     name:'',
@@ -29,14 +29,22 @@
             }
         },
         props:{
-            origin:String,
+            subjectCode:String,
+            courseId:Number
         },
         methods:{
-            signUpSave(str){
-                console.info(this.origin)
-
+            signUpSave(){
+                if (!this.signUpInfo.name){
+                    ElMessage.warn("请输入姓名");
+                    return
+                }
+                if (!this.signUpInfo.phone){
+                    ElMessage.warn("请输入手机号")
+                }
+                let req = {phone: this.phone, subjectCode: this.subjectCode, courseId: this.courseId, type:1, createSid:false};
+                commonData.getSid(req);
                 this.$emit('change', false)
-                ElMessage(str)
+                ElMessage.success("报名成功")
             },
         }
     }

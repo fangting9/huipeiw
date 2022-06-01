@@ -12,12 +12,14 @@ import SwiperItem from './components/util/SwiperItem'
 import '../public/index.css'
 import Chat from './components/customer/CustomerChat'
 
+
 var app = createApp(App);
 app.use(router);
 app.use(VueAxios,axios);
 app.use(ElementPlus);
 app.mount('#app');
 app.use(commonData);
+
 
 Object.keys(ElIconModules).forEach(function (key) {
     app.component(ElIconModules[key].name, ElIconModules[key])

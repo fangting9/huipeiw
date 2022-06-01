@@ -67,7 +67,7 @@
             }
         },
         activated(){
-            this.createFingerprint();
+            //this.createFingerprint();
         },
         methods:{
             createFingerprint() {

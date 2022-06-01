@@ -152,10 +152,10 @@
         </el-row>
 
         <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
-            <SignUp :origin="'3'" @change="colseSignUp"></SignUp>
+            <SignUp  @change="colseSignUp"></SignUp>
         </el-dialog>
         <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">
-            <Appointment :origin="'3'" @change="colseYy"></Appointment>
+            <Appointment @change="colseYy"></Appointment>
         </el-dialog>
         <div class="drawer-div">
             <el-drawer v-model="chatVisible" direction="btt" size="55%" :show-close="false" :with-header="false">
@@ -284,6 +284,7 @@
                 document.body.removeChild(cInput);
             },
             colseSignUp(value){
+                console.info(value)
                 this.signUpDialogVisible = value;
             },
             colseYy(value){

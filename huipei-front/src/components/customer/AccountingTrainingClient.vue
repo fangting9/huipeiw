@@ -213,13 +213,13 @@
             <img  :src="dialogImageUrl" class="dialog-img"/>
         </el-dialog>
         <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
-            <SignUp :origin="'1'" @change="colseSignUp"></SignUp>
+            <SignUp :subjectCode="'2'" @change="colseSignUp"></SignUp>
         </el-dialog>
         <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">
-            <Appointment :origin="'1'" @change="colseYy"></Appointment>
+            <Appointment :subjectCode="'2'"  @change="colseYy"></Appointment>
         </el-dialog>
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" direction="btt" size="55%" :show-close="false" :with-header="false">
+            <el-drawer v-model="chatVisible" :subjectCode="'2'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
                 <Chat></Chat>
             </el-drawer>
         </div>
@@ -247,6 +247,7 @@
                 signUpDialogVisible:false,
                 yyDialogVisible:false,
                 chatVisible:false,
+                chatPhone:'',
                 form: {
                     rollingPicUrl: [],
                     introductionPicUrl:[],
