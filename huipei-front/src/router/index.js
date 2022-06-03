@@ -89,6 +89,11 @@ const routes = [
         name:'CustomerChat',
         component:()=>import('../components/customer/CustomerChat'),
     },
+    {
+        path:'/construction',
+        name:'construction',
+        component:()=>import('../components/customer/Construction'),
+    },
 
 
 ];
