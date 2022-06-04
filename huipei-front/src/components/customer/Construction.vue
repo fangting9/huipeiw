@@ -19,20 +19,35 @@
                     </el-carousel-item>
                 </el-carousel>
             </div>
-            <div style="width: 100%;text-align: center;">
+        </el-row>
+        <el-row :gutter="20">
+            <div style="width: 100%; text-align: center;">
+                <el-row :gutter="10">
+                    <el-col :span="6">
+                        <p>{{this.form.constructionEngineerTraining.title}}</p>
+                    </el-col>
+                </el-row>
                 <div v-for="(item,i) in this.form.constructionEngineerTraining.picUrls" :key="i">
                     <el-col :span="12">
-                    <img class="imgPhone" :src="item.url">
+                        <img style="width: 90%" :src="item.url">
                     </el-col>
                 </div>
             </div>
-        </el-row>
-        <el-row :gutter="20">
-            <div style="width: 70%;text-align: center;">
-               <img  style="width: 100%" :src="form.constructionEngineerTraining.banner.url" @click="chatVisible=true">
-            </div>
-            <div style="width: 30%; text-align: center">
-                <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">立即咨询</el-button>
+            <el-divider class="divider1" border-style="dashed" />
+            <div style="width: 100%;text-align: center;">
+                <el-col :span="10">
+                    <img style="width: 60px;height: 60px" :src="form.constructionEngineerTraining.banner.url"/>
+                </el-col>
+                <el-col :span="10">
+                    <div style="text-align: center">
+                        <span style="color: dodgerblue; font-size: small">工作年限不够，专业不符能否报考二建</span>
+                    </div>
+
+                </el-col>
+                <el-col :span="8" :offset="1">
+                    <el-button @click="yyDialogVisible=true" class="consultButton" style="color: white;margin-top: 15px;" round>立即咨询</el-button>
+                </el-col>
+
             </div>
         </el-row>
         <el-divider class="divider2"/>
@@ -49,9 +64,9 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%;text-align: center;">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="6">
                         <p>{{this.form.titleAppraisal.title}}</p>
                     </el-col>
                     <el-col :span="16">
@@ -81,6 +96,7 @@
                 </div>
             </div>
         </el-row>
+        <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center;">
                 <img style="width: 100%" @click="handlePictureCardPreview(form.discussGroup.groupQR.url)" :src="form.discussGroup.displayImage.url">
@@ -95,31 +111,33 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="9">
                         <p>{{this.form.operator.title}}</p>
                     </el-col>
                 </el-row>
+
                 <div v-for="(item,i) in form.operator.picUrls" :key="i">
                     <el-col :span="12">
                         <img style="width: 90%" :src="item.url">
                     </el-col>
                 </div>
-                <el-row :gutter="10">
-                    <el-col :span="6">
-                        <p>考试提醒: 错过本次报考, 将延误一年考证</p>
-                    </el-col>
-                </el-row>
             </div>
         </el-row>
+        <el-row :gutter="10">
+            <el-col :span="20">
+                <p style="color: red; font-size: x-small">考试提醒: 错过本次报考, 将延误一年考证</p>
+            </el-col>
+        </el-row>
+
         <el-row :gutter="20">
             <div style="width: 100%; text-align: center;">
-                <img style="width: 100%" :src="form.appointmentCourse.url">
+                <img style="width: 99%" :src="form.appointmentCourse.url">
             </div>
         </el-row>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="9">
                         <p>{{this.form.examinationConditions.title}}</p>
                     </el-col>
                 </el-row>
@@ -131,7 +149,7 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="7">
                         <p>{{this.form.fireEngineer.title}}</p>
                     </el-col>
                 </el-row>
@@ -143,7 +161,7 @@
         <el-row :gutter="20">
             <div style="width: 100%;">
                 <div style="width: 90%; margin-left: 5%">
-                    <el-input :suffix-icon="Iphone" placeholder="请输入手机号"></el-input>
+                    <el-input v-model="chatPhone" placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>

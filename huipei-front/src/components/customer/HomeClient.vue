@@ -269,7 +269,7 @@
                 }else if (code === '4'){
                     router.push('/construction');
                 }else if (code === '5'){
-                    router.push('/ceducation');
+                    router.push('/textual');
                 }
 
             },

@@ -43,10 +43,12 @@
                                 </template>
                             </el-dropdown>
                             <div style="float: right">
+
                                 <el-badge is-dot class="item" v-if="unread > 0">
                                     <el-icon @click="toConsultList()" color="black"><BellFilled /></el-icon>
                                 </el-badge>
-                                <el-icon v-if="unread===undefined || unread === 0" @click="toConsultList()" color="black"><BellFilled /></el-icon> &#12288;
+                                <el-icon v-else @click="toConsultList()" color="black"><BellFilled /></el-icon>
+                                 &#12288;
                             </div>
 
                         </div>
@@ -82,8 +84,8 @@
         },
         watch:{
             "$store.state.unread": {
+                // eslint-disable-next-line no-unused-vars
                 handler: function (newVal, oldVal) {
-                    console.log(newVal, oldVal);
                     this.unread = newVal
                 }
             }
@@ -91,6 +93,7 @@
         },
         methods:{
             getAdminSid(){
+                console.info(this.unread)
                 if (!this.$store.state.sid){
                     if (!this.$store.state.sid){
                         axios.get("/admin/consult/sid").then((response) => {

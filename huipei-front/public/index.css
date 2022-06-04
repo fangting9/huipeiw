@@ -53,6 +53,14 @@
     margin-bottom: 2px;
     border-block-color: rgba(0, 0, 0, 0.05);
 }
+.divider1{
+    width: 90%;
+    margin-left: 5%;
+    height: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-block-color: rgba(0, 0, 0, 0.09);
+}
 .divider2{
     height: 1px;
     border-width: 10px;

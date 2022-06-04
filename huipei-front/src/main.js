@@ -38,8 +38,6 @@ app.config.globalProperties.$adminSocked = adminSocked;
 
 //钩子函数，访问路由前调用
 router.beforeEach((to, from, next) => {
-    console.info("认证==")
-    console.info(to.meta.requireAuth)
         //路由需要认证
         if (to.meta.requireAuth) {
             //判断store里是否有token

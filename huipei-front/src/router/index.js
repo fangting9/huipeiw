@@ -99,11 +99,6 @@ const routes = [
         component:()=>import('../components/customer/PostGraduateClient'),
     },
     {
-        path:'/CustomerChat',
-        name:'CustomerChat',
-        component:()=>import('../components/customer/CustomerChat'),
-    },
-    {
         path:'/construction',
         name:'construction',
         component:()=>import('../components/customer/Construction'),

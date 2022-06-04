@@ -80,7 +80,7 @@
         <el-row :gutter="20">
             <div style="width: 100%;">
                 <div style="width: 90%; margin-left: 5%">
-                    <el-input :suffix-icon="Iphone" placeholder="请输入手机号"></el-input>
+                    <el-input placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
@@ -144,7 +144,7 @@
             <div style="width: 100%;">
                 <img style="width: 100%" :src="form.advisoryService.url">
                 <div style="width: 90%; margin-left: 5%">
-                    <el-input :suffix-icon="Iphone" placeholder="请输入手机号"></el-input>
+                    <el-input placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>

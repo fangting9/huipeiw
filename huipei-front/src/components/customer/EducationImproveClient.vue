@@ -90,7 +90,7 @@
             <div style="width: 100%; text-align: center;">
                 <img style="width: 100%" :src="form.advisoryService.url">
                 <div style="width: 90%; margin-left: 5%">
-                    <el-input :suffix-icon="Iphone" v-model="chatPhone" placeholder="请输入手机号"></el-input>
+                    <el-input v-model="chatPhone" placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button style="width: 60%;background-color: #456ced;color: white;" @click="chatVisible=true">点击咨询</el-button>

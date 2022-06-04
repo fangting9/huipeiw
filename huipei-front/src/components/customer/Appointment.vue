@@ -37,11 +37,11 @@
         methods:{
             signUpSave(){
                 if (!this.signUpInfo.name){
-                    ElMessage.warn("请输入姓名");
+                    ElMessage("请输入姓名");
                     return
                 }
                 if (!this.signUpInfo.phone){
-                    ElMessage.warn("请输入手机号")
+                    ElMessage("请输入手机号")
                 }
                 let req = {phone: this.signUpInfo.phone, subjectCode: this.subjectCode, courseId: this.courseId, type:0, createSid:false};
                 commonData.getSid(req);
