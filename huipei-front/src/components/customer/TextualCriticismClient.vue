@@ -19,20 +19,21 @@
                     </el-carousel-item>
                 </el-carousel>
             </div>
-            <div style="width: 100%;text-align: center;">
-                <div v-for="(item,i) in this.form.constructionEngineerTraining.picUrls" :key="i">
-                    <el-col :span="12">
-                    <img class="imgPhone" :src="item.url">
-                    </el-col>
-                </div>
-            </div>
         </el-row>
         <el-row :gutter="20">
-            <div style="width: 70%;text-align: center;">
-               <img  style="width: 100%" :src="form.constructionEngineerTraining.banner.url" @click="chatVisible=true">
-            </div>
-            <div style="width: 30%; text-align: center">
-                <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">立即咨询</el-button>
+            <div style="width: 100%;text-align: center">
+                <el-row :gutter="10">
+                    <el-col :span="6">
+                        <p>{{this.form.teacherCertification.title}}</p>
+                    </el-col>
+                </el-row>
+                <div style="width: 100%">
+                    <img style="width: 100%" :src="form.teacherCertification.banner.url">
+                </div>
+                <div style="width: 100%; text-align: center;margin-top: 10px;">
+                    <el-button @click="signUpDialogVisible=true" style="width: 60%;background-color: #456ced;color: white;">非师范生报名</el-button>
+                    <el-button @click="signUpDialogVisible=true" style="width: 60%;background-color: #456ced;color: white;">报名条件查询</el-button>
+                </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
@@ -49,99 +50,99 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%;text-align: center;">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
-                        <p>{{this.form.titleAppraisal.title}}</p>
-                    </el-col>
-                    <el-col :span="16">
-                        <p class="text_right more">查看更多<el-icon><ArrowRight /></el-icon></p>
+                    <el-col :span="6">
+                        <p>{{this.form.psychologists.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in this.form.titleAppraisal.detail" :key="i">
-                    <el-divider class="divider"/>
-                    <el-row :gutter="10">
-                        <el-col :span="8" :offset="1">
-                            <img class="hotImage" :src="item.picUrl">
-                        </el-col>
-                        <el-col :span="14">
-                            <el-row :gutter="20">
-                                <span class="majorName">{{item.titleName}}</span>
-                            </el-row>
-                            <el-row :gutter="20">
-                                <span class="majorDesc">{{item.titleDesc}}</span>
-                            </el-row>
-                            <el-row :gutter="20" >
-                                <span style="width: 80px" class="majorType"></span>
-                                <el-button class="consultButton marginTop30" type="primary" round>查看详情</el-button>
-                            </el-row>
-                        </el-col>
-                    </el-row>
-
+                <div v-for="(item,i) in form.psychologists.picUrls" :key="i">
+                    <el-col :span="12">
+                        <img style="width: 90%" :src="item.url">
+                    </el-col>
                 </div>
             </div>
         </el-row>
+        <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center;">
-                <img style="width: 100%" @click="handlePictureCardPreview(form.discussGroup.groupQR.url)" :src="form.discussGroup.displayImage.url">
+            <div style="width: 100%;text-align: center">
+                <el-row :gutter="10">
+                    <el-col :span="6">
+                        <p>{{this.form.courseConsultation.title}}</p>
+                    </el-col>
+                </el-row>
+                <div style="width: 100%">
+                    <img style="width: 100%" :src="form.courseConsultation.banner.url">
+                </div>
+            </div>
+        </el-row>
+        <el-divider class="divider2"/>
+        <el-row :gutter="20">
+            <div style="width: 100%;">
+                <div style="width: 90%; margin-left: 5%">
+                    <el-input :suffix-icon="Iphone" placeholder="请输入手机号"></el-input>
+                </div>
+                <div style="width: 100%; text-align: center;margin-top: 10px;">
+                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
+                </div>
+            </div>
+        </el-row>
+        <el-divider class="divider2"/>
+        <el-row :gutter="20">
+            <div style="width: 100%;text-align: center">
+                <el-row :gutter="10">
+                    <el-col :span="6">
+                        <p>{{this.form.HRMD.title}}</p>
+                    </el-col>
+                </el-row>
+                <div style="width: 100%">
+                    <img style="width: 100%" :src="form.HRMD.banner.url">
+                </div>
+                <el-row :gutter="20">
+                    <el-col :span="30">
+                        <p>重要提示: 避免以后受政策影响, 错过本次报名, 明年或从助理级逐级报考</p>
+                    </el-col>
+                </el-row>
+            </div>
+        </el-row>
+        <el-divider class="divider2"/>
+        <el-row :gutter="20">
+            <div style="width: 100%; text-align: center;">
+                <img style="width: 100%" :src="form.courseReservation.url">
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center;">
-                <img style="width: 100%"  :src="form.banner.url">
-            </div>
-        </el-row>
-        <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
                 <el-row :gutter="10">
                     <el-col :span="6">
-                        <p>{{this.form.operator.title}}</p>
+                        <p>{{this.form.healthManager.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.operator.picUrls" :key="i">
+                <div v-for="(item,i) in form.healthManager.picUrls" :key="i">
                     <el-col :span="12">
                         <img style="width: 90%" :src="item.url">
                     </el-col>
                 </div>
-                <el-row :gutter="10">
-                    <el-col :span="6">
-                        <p>考试提醒: 错过本次报考, 将延误一年考证</p>
-                    </el-col>
-                </el-row>
             </div>
         </el-row>
-        <el-row :gutter="20">
-            <div style="width: 100%; text-align: center;">
-                <img style="width: 100%" :src="form.appointmentCourse.url">
-            </div>
-        </el-row>
+        <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center">
                 <el-row :gutter="10">
                     <el-col :span="6">
-                        <p>{{this.form.examinationConditions.title}}</p>
+                        <p>{{this.form.purchaseCourseService.title}}</p>
                     </el-col>
                 </el-row>
                 <div style="width: 100%">
-                    <img style="width: 100%" :src="form.examinationConditions.banner.url">
+                    <img style="width: 100%" :src="form.purchaseCourseService.banner.url">
                 </div>
             </div>
         </el-row>
-        <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
-                <el-row :gutter="10">
-                    <el-col :span="6">
-                        <p>{{this.form.fireEngineer.title}}</p>
-                    </el-col>
-                </el-row>
-                <div style="width: 100%">
-                    <img style="width: 100%" :src="form.fireEngineer.banner.url">
-                </div>
-            </div>
-        </el-row>
+        <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;">
+                <img style="width: 100%" :src="form.advisoryService.url">
                 <div style="width: 90%; margin-left: 5%">
                     <el-input :suffix-icon="Iphone" placeholder="请输入手机号"></el-input>
                 </div>
@@ -167,11 +168,16 @@
         </el-row>
 
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" :subjectCode="'4'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
+            <el-drawer v-model="chatVisible" :subjectCode="'1'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
                 <Chat></Chat>
             </el-drawer>
         </div>
-
+        <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
+            <SignUp :subjectCode="'5'" @change="colseSignUp"></SignUp>
+        </el-dialog>
+        <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">
+            <Appointment :subjectCode="'5'"  @change="colseYy"></Appointment>
+        </el-dialog>
         <el-dialog v-model="dialogVisible" >
             <img  :src="dialogImageUrl" class="dialog-img"/>
         </el-dialog>
@@ -179,58 +185,54 @@
 </template>
 
 <script>
-    import axios from "axios"
     import { ElMessage, } from 'element-plus'
+    import axios from "axios"
     import router from "@/router";
-    import Chat from './CustomerChat'
 
     export default {
         name: "HomeClient",
-        components:{
-            Chat
-        },
         data() {
             return {
-                chatVisible: false,
+                signUpDialogVisible:false,
+                yyDialogVisible:false,
+                chatVisible:false,
                 dialogImageUrl: '',
                 dialogVisible: false,
-                chatPhone:'',
                 form: {
                     rollingPicUrl: [],
-                    constructionEngineerTraining:{
+                    teacherCertification:{
                         title: '',
-                        picUrls: [],
                         banner:{url:''}
                     },
                     learningGroup:{
                         displayImage:{url:''},
                         groupQR:{url:''}
                     },
-                    titleAppraisal:{
-                        title:'',
-                        detail:[
-                            {picUrl:'',titleName:'',titleDesc:''},
-                        ]
-                    },
-                    discussGroup:{
-                        displayImage:{url:''},
-                        groupQR:{url:''}
-                    },
                     banner:{url:''},
-                    operator: {
+                    psychologists: {
                         title: '',
                         picUrls: [],
                     },
-                    appointmentCourse:{url:''},
-                    examinationConditions:{
+                    courseConsultation:{
                         title: '',
                         banner:{url:''}
                     },
-                    fireEngineer:{
+                    HRMD:{
                         title: '',
                         banner:{url:''}
                     },
 
+                    courseReservation:{url:''},
+
+                    healthManager:{
+                        title: '',
+                        picUrls: [],
+                    },
+                    purchaseCourseService:{
+                        title: '',
+                        banner:{url:''}
+                    },
+                    advisoryService:{url:''},
                     bottom:{
                         columnList:[{title:''},],
                         image:{url:''},
@@ -242,10 +244,11 @@
             this.detail();
         },
         methods:{
+
             detail(){
-                axios.get("/admin/construction/detail").then((response) => {
+                axios.get("/admin/exam/detail").then((response) => {
                     if (response.data){
-                        this.form = response.data
+                        this.form = response.data;
                     }
                 }).catch(()=>{
                     ElMessage.error("查询失败");
@@ -258,6 +261,12 @@
             goHome(){
                 router.push("/home")
             },
+            colseSignUp(value){
+                this.signUpDialogVisible = value;
+            },
+            colseYy(value){
+                this.yyDialogVisible = value
+            }
         }
     }
 </script>

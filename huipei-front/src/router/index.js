@@ -94,6 +94,11 @@ const routes = [
         name:'construction',
         component:()=>import('../components/customer/Construction'),
     },
+    {
+        path:'/textual',
+        name:'textual',
+        component:()=>import('../components/customer/TextualCriticismClient'),
+    },
 
 
 ];
