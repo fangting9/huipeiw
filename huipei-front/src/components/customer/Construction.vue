@@ -131,7 +131,7 @@
 
         <el-row :gutter="20">
             <div style="width: 100%; text-align: center;">
-                <img style="width: 99%" :src="form.appointmentCourse.url">
+                <img @click="yyDialogVisible=true" style="width: 99%" :src="form.appointmentCourse.url">
             </div>
         </el-row>
         <el-row :gutter="20">
@@ -185,10 +185,13 @@
         </el-row>
 
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" :subjectCode="'4'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
-                <Chat></Chat>
+            <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat @close_chat="close_chat" :subjectCode="'4'" :phone="chatPhone" :containDisplay="true"></Chat>
             </el-drawer>
         </div>
+        <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">
+            <Appointment :subjectCode="'4'"  @change="colseYy"></Appointment>
+        </el-dialog>
 
         <el-dialog v-model="dialogVisible" >
             <img  :src="dialogImageUrl" class="dialog-img"/>
@@ -201,11 +204,13 @@
     import { ElMessage, } from 'element-plus'
     import router from "@/router";
     import Chat from './CustomerChat'
+    import Appointment from './Appointment'
 
     export default {
         name: "HomeClient",
         components:{
-            Chat
+            Chat,
+            Appointment
         },
         data() {
             return {
@@ -213,6 +218,7 @@
                 dialogImageUrl: '',
                 dialogVisible: false,
                 chatPhone:'',
+                yyDialogVisible:false,
                 form: {
                     rollingPicUrl: [],
                     constructionEngineerTraining:{
@@ -276,6 +282,12 @@
             goHome(){
                 router.push("/home")
             },
+            colseYy(value){
+                this.yyDialogVisible = value
+            },
+            close_chat(value){
+                this.chatVisible = value;
+            }
         }
     }
 </script>
