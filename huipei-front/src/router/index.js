@@ -9,13 +9,26 @@ const routes = [
         component: () => import('../components/LoginPage')
     },
     {
+        path: '/',
+        meta: { title: '登录页面' },
+        component: () => import('../components/LoginPage')
+    },
+    {
         path: '/homePage',
         component: () => import('../components/HomePage'),
+        meta: {
+            requireAuth: true
+        },
         children:[
             {
                 path:'/dateReport',
                 name:'dateReport',
                 component:()=>import('../components/DateReport'),
+            },
+            {
+                path:'/consultList',
+                name:'consultList',
+                component:()=>import('../components/ConsultList'),
             },
             {
                 path:'/homeUpload',
@@ -62,6 +75,7 @@ const routes = [
                 name:'courseUpload',
                 component:()=>import('../components/courseDetail/CourseUpload'),
             },
+
         ]
     },
     {
@@ -89,7 +103,11 @@ const routes = [
         name:'CustomerChat',
         component:()=>import('../components/customer/CustomerChat'),
     },
-
+    {
+        path:'/construction',
+        name:'construction',
+        component:()=>import('../components/customer/Construction'),
+    },
 
 ];
 

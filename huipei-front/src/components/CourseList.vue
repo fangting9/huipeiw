@@ -18,7 +18,7 @@
                 </el-row>
 
             </el-form>
-            <el-table :data="tableData" style="width: 100%" @cell-dblclick = "edit">
+            <el-table :data="tableData" style="width: 100%" @cell-dblclick = "edit" :cell-style="{textAlign:'center'}" :header-cell-style="{textAlign:'center'}">
                 <el-table-column type="index" label="序号" width="100"/>
                 <el-table-column  prop="name" label="详情页名称" >
                 </el-table-column>
@@ -270,11 +270,7 @@
     .text_left{
         text-align: left;
     }
-    .pagination {
-        text-align: right;
-        padding-top: 20px;
-        margin-left: 50%;
-    }
+
     .min-avatar {
         width: 100px;
         height: 100px;

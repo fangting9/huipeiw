@@ -11,6 +11,10 @@
                         <el-icon><histogram/></el-icon>
                         <span>数据报表</span>
                     </el-menu-item>
+                    <el-menu-item index="/consultList" >
+                        <el-icon><ChatRound /></el-icon>
+                        <span>咨询列表</span>
+                    </el-menu-item>
                     <el-menu-item index="/homeUpload">
                         <el-icon><upload-filled /></el-icon>
                         <span>首页区域上传</span>
@@ -29,16 +33,22 @@
                 <el-header>
                         <div style="width: 100%">
                             <el-dropdown trigger="click" style="float: right">
-                        <span class="el-dropdown-link">
-                          管理员 <el-icon class="el-icon--right"><CaretBottom /></el-icon>
-                        </span>
+                                <span class="el-dropdown-link">
+                                  管理员 <el-icon class="el-icon--right"><CaretBottom /></el-icon>
+                                </span>
                                 <template #dropdown>
                                     <el-dropdown-menu>
                                         <el-dropdown-item @click="loginOut">退出</el-dropdown-item>
-
                                     </el-dropdown-menu>
                                 </template>
                             </el-dropdown>
+                            <div style="float: right">
+                                <el-badge is-dot class="item" v-if="unread > 0">
+                                    <el-icon @click="toConsultList()" color="black"><BellFilled /></el-icon>
+                                </el-badge>
+                                <el-icon v-if="unread===undefined || unread === 0" @click="toConsultList()" color="black"><BellFilled /></el-icon> &#12288;
+                            </div>
+
                         </div>
                 </el-header>
                 <el-main class="el-main-div">
@@ -50,43 +60,88 @@
 </template>
 
 <script>
-    //import router from "@/router";
-    import Fingerprint2 from 'fingerprintjs2'
-    import { ElMessage, } from 'element-plus'
+   import router from "@/router";
+   import axios from "axios"
+   import { ElMessage, } from 'element-plus'
     export default {
         name: "HomePage",
+        components:{
+        },
         data() {
             return {
-                murmur:''
+                unread:this.$store.state.unread,
+                murmur:'',
             }
         },
         created(){
-            this.createFingerprint();
-            if (window.sessionStorage.getItem('token') != window.sessionStorage.getItem("murmur")){
-                //router.push("/login")
-            }
+            this.getAdminSid()
+            this.localSocket()
         },
         activated(){
-            //this.createFingerprint();
+
+        },
+        watch:{
+            "$store.state.unread": {
+                handler: function (newVal, oldVal) {
+                    console.log(newVal, oldVal);
+                    this.unread = newVal
+                }
+            }
+
         },
         methods:{
-            createFingerprint() {
-                const murmur1 = '';
-                // 浏览器指纹
-                Fingerprint2.get((components) => {
-                    // 参数只有回调函数时，默认浏览器指纹依据所有配置信息进行生成
-                    const values = components.map((component) => component.value) // 配置的值的数组
-                    this.murmur1 = Fingerprint2.x64hash128(values.join(''), 31) // 生成浏览器指纹
-                    // console.log(components, values,murmur,'你好')
-                    //murmur就是浏览器指纹啦
+            getAdminSid(){
+                if (!this.$store.state.sid){
+                    if (!this.$store.state.sid){
+                        axios.get("/admin/consult/sid").then((response) => {
+                            this.$store.commit('SET_SID', response.data)
+                        });
+                    }
+                }
+            },
+            localSocket() {
+                let that = this;
+                if ("WebSocket" in window) {
+                    console.log("您的浏览器支持 WebSocket!");
+                    if (that.ws && that.ws.readyState === 1){
+                        return
+                    }
+                    let sid = sessionStorage.getItem("sid");
+                    that.ws = new WebSocket(`ws://localhost:8081/api/socket/${sid}`);
+                    that.$adminSocked.setWs(that.ws);
+                    that.ws.onopen = function () {
+                        console.info("连接成功")
+                    }
+                    that.ws.onclose = function() {
+                        // 关闭 websocket
+                        console.log("连接已关闭...");
+                        setTimeout(() => {
+                            that.localSocket();
+                        }, 2000);
+                    }
+                    that.ws.onmessage = this.onmessage
 
-                    window.sessionStorage.setItem("murmur", murmur1);
-                });
-                console.info("2222" + window.sessionStorage.getItem("murmur"))
+                } else {
+                    // 浏览器不支持 WebSocket
+                    ElMessage.warn("您的浏览器不支持web聊天")
+                    console.log("您的浏览器不支持 WebSocket!");
+                }
             },
 
+
             loginOut(){
-                ElMessage.info("退出成功")
+                let request = {account: this.$store.state.user}
+                axios.post("/admin/logout/",request).then((response) => {
+                    if (response.data){
+                        this.$store.commit('REMOVE_INFO');
+                        router.push("/login")
+                    }
+                }).catch(()=>{
+                    ElMessage.error("退出失败");
+                })
+            },
+            toConsultList(){
+                router.push("/consultList")
             }
         }
 
@@ -116,5 +171,6 @@
 <style>
     .el-main-div{
         background-color: rgba(230, 230, 230, 0.23);
+
     }
 </style>

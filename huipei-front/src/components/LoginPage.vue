@@ -43,17 +43,36 @@
             }
         },
         methods:{
-            onSubmit(){
-                axios.post("/admin/login/", this.formInline).then((response) => {
-                    if (response.data){
-                        router.push("/homePage")
+            async onSubmit(){
+                await axios.post("/admin/login/", this.formInline).then((resp) => {
+                    console.info(resp);
+                    console.info(resp.data);
+                    if (resp.data){
+                        console.info(123);
+                        if(resp.data.validate){
+                            console.info(resp.data.validate);
+                            //存储token
+                            this.$store.commit('SET_TOKENN', resp.data.token);
+                            //存储user，
+                            this.$store.commit('SET_USER', resp.data.account);
+                            //获取sid
+                            console.info("获取sid");
+
+                            console.info("成功了啊");
+                            router.push("/homePage")
+                        }
+                    }else {
+                        ElMessage.error("账户或密码错误");
                     }
                 }).catch(()=>{
                     ElMessage.error("登录失败");
-                })
+                });
+
             },
 
         },
+
+
 
     }
 </script>
@@ -64,6 +83,7 @@
         margin-left: 25%;
         margin-top: 5%;
         background: #ebf0ff;
+        height: 90%;
     }
 
 </style>

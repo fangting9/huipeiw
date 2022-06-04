@@ -8,6 +8,13 @@ export default {
         {name:'建工培训',code:'4'},
         {name:'职业考证',code:'5'},
     ],
+    consultType:[
+        {name:'课程预约',code:'0'},
+        {name:'考试报名',code:'1'},
+        {name:'在线咨询',code:'2'},
+
+    ],
+    logList:[],
     murmur:'',
     createFingerprint() {
         // 浏览器指纹

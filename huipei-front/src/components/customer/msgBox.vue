@@ -46,7 +46,7 @@ export default {
 
 .msg-wrapper {
     display: flex;
-    width: 100%;
+    width: 99%;
     flex-direction: row;
     padding: 10px;
 }

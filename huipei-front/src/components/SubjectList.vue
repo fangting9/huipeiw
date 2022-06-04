@@ -15,7 +15,7 @@
             </el-row>
 
         </el-form>
-        <el-table :data="tableData" style="width: 100%" @cell-dblclick = "edit">
+        <el-table :data="tableData" style="width: 100%" @cell-dblclick = "edit" :cell-style="{textAlign:'center'}" :header-cell-style="{textAlign:'center'}">
             <el-table-column type="index" label="序号" width="110"/>
             <el-table-column  prop="name" label="专题名称" >
             </el-table-column>

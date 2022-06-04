@@ -219,8 +219,8 @@
             <Appointment :subjectCode="'2'"  @change="colseYy"></Appointment>
         </el-dialog>
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" :subjectCode="'2'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
-                <Chat></Chat>
+            <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat @close_chat="close_chat" :subjectCode="'2'" :phone="chatPhone" :containDisplay="true"></Chat>
             </el-drawer>
         </div>
     </div>
@@ -322,6 +322,9 @@
             },
             colseYy(value){
                 this.yyDialogVisible = value
+            },
+            close_chat(value){
+                this.chatVisible = value;
             }
         }
     }

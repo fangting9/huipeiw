@@ -267,7 +267,7 @@
                 }else if (code === '3'){
                     router.push('/cgraduate');
                 }else if (code === '4'){
-                    router.push('/ceducation');
+                    router.push('/construction');
                 }else if (code === '5'){
                     router.push('/ceducation');
                 }
