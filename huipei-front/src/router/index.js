@@ -111,7 +111,12 @@ const routes = [
     {
         path:'/course',
         name:'course',
-        component:()=>import('../components/customer/CourseDetailClient.vue'),
+        component:()=>import('../components/customer/CourseDetailClient'),
+    },
+    {
+        path:'/ccourseList',
+        name:'ccourseList',
+        component:()=>import('../components/customer/CourseListClient'),
     },
 
 

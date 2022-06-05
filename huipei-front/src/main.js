@@ -21,11 +21,11 @@ var app = createApp(App);
 app.use(router);
 app.use(VueAxios,axios);
 app.use(ElementPlus);
-app.mount('#app');
 app.use(commonData);
 app.use(store)
 app.use(Vuex)
 app.use(adminSocked)
+app.mount('#app');
 
 Object.keys(ElIconModules).forEach(function (key) {
     app.component(ElIconModules[key].name, ElIconModules[key])

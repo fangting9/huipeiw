@@ -9,7 +9,19 @@
                             <el-input v-model="form.vague" placeholder="请输入"></el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col class="text_right" :span="15">
+                    <el-col :span="6">
+                        <el-form-item label="所属专题">
+                            <el-select v-model="form.code" placeholder="请选择所属专题" style="width: 100%" clearable>
+                                <el-option
+                                        v-for="item in specialSubject"
+                                        :key="item.code"
+                                        :label="item.name"
+                                        :value="item.code"
+                                />
+                            </el-select>
+                        </el-form-item>
+                    </el-col>
+                    <el-col class="text_right" :span="9">
                         <el-button  type="primary" @click="search">查询</el-button>
                     </el-col>
                     <el-col :span="2">
@@ -22,13 +34,14 @@
                 <el-table-column type="index" label="序号" width="100"/>
                 <el-table-column  prop="name" label="详情页名称" >
                 </el-table-column>
+                <el-table-column  prop="subjectName" label="所属专题" >
+                </el-table-column>
                 <el-table-column prop="createTime" label="创建日期" />
                 <el-table-column label="操作"  width="150">
                     <template #default="scope">
                         <el-button size="small" @click="handleEdit(scope.row)"
                         >编辑</el-button
                         >
-
                         <el-switch
                                 class="left10"
                                 v-model="scope.row.enable"
@@ -99,7 +112,7 @@
                             <el-form-item label="标签">
                                 <el-tag
                                         v-for="(tag, index) in dialog.detail.label"
-                                        :key="tag"
+                                        :key="index"
                                         class="mx-1"
                                         closable
                                         :disable-transitions="false"
@@ -164,6 +177,8 @@
                 ],
                 form:{
                     vague:'',
+                    enable:'',
+                    code:'',
                     pageSize:10,
                     pageNo:1,
                     pageTotal:0,
@@ -178,20 +193,35 @@
                 router.push({path:"/courseUpload", query:{id:row.id, name:row.name}})
             },
             handleChange(row){
-                console.info(row);
-                ElMessage.info("触发成功")
+                let  status = row.enable?1:0;
+                axios.get("/admin/course/enable?status=" + status+"&id="+row.id).then((response) => {
+                    if (response.data){
+                        ElMessage.success("保存成功");
+                    }else {
+                        row.enable = !row.enable;
+                        ElMessage.error("保存失败");
+                    }
+                }).catch(()=>{
+                    row.enable = !row.enable;
+                    ElMessage.error("保存失败");
+                })
             },
-            search(){
-                axios.post("/admin/course/list",this.form).then((response) => {
+            async search(){
+                await axios.post("/admin/course/list",this.form).then((response) => {
                     this.tableData = response.data.list
                     this.tableData.forEach(item=> {
                         item.enable = item.enable === 1;
-                        item.detail = this.stringToJson(item.detail)
+                        if (!item.detail){
+                            item.detail = { url:'', price:'', label:[] }
+                        }else {
+                            item.detail = this.stringToJson(item.detail)
+                        }
                     });
                     this.form.pageTotal = response.data.total
                 }).catch(()=>{
                     ElMessage.error("查询失败");
                 })
+                console.info(this.tableData)
             },
             add(){
                 this.dialogTitle = '新增';

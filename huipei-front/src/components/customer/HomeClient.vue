@@ -235,6 +235,9 @@
 
         },
         methods:{
+            toEducationImprove(){
+
+            },
             detail(){
                 axios.get("/admin/home/detail").then((response) => {
                     if (response.data){

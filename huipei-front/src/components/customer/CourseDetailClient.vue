@@ -320,7 +320,7 @@
     import Chat from './CustomerChat'
     import SignUp from './SignUp'
     import Appointment from './Appointment'
-    //import { useRoute } from "vue-router"
+    import { useRoute } from "vue-router"
 
     export default {
         name: "HomeClient",
@@ -391,8 +391,8 @@
         },
         methods:{
             detail(){
-                /*this.courseId = useRoute().query.id;
-                this.pageTitle = useRoute().query.name;*/
+                this.courseId = useRoute().query.id;
+                this.pageTitle = useRoute().query.name;
                 axios.get("/admin/course/detail/"+this.courseId).then((response) => {
                     let res = response.data
                     if(res) {
