@@ -19,6 +19,7 @@
                                 list-type="picture-card"
                                 :on-preview="handlePictureCardPreview"
                                 :file-list="form.rollingPicUrl"
+                                id="1"
                         >
                             <el-icon><Plus /></el-icon>
                         </el-upload>
@@ -42,12 +43,17 @@
                     <el-col :span="3">课程名称</el-col>
                     <el-col :span="6">
                         <el-form-item>
-                            <el-input v-model="this.form.courseName.name" placeholder="请输入课程名称"></el-input>
+                            <el-input v-model="form.courseName.name" placeholder="请输入课程名称"></el-input>
                         </el-form-item>
                     </el-col>
                     <el-col :span="6">
                         <el-form-item>
-                            <el-input v-model="this.form.courseName.desc" placeholder="请输入课程介绍"></el-input>
+                            <el-input v-model="form.courseName.subName" placeholder="请输入副标题"></el-input>
+                        </el-form-item>
+                    </el-col>
+                    <el-col :span="6">
+                        <el-form-item>
+                            <el-input v-model="form.courseName.desc" placeholder="请输入课程介绍"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -55,7 +61,7 @@
                     <el-col :span="3">课程价格</el-col>
                     <el-col :span="6">
                         <el-form-item>
-                            <el-input v-model="this.form.coursePrice" placeholder="请输入课程价格"></el-input>
+                            <el-input v-model="form.coursePrice" placeholder="请输入课程价格"></el-input>
                         </el-form-item>
                     </el-col>
                 </el-row>
@@ -214,7 +220,7 @@
                                             class="avatar-uploader"
                                             :action="uploadUrl"
                                             :show-file-list="false"
-                                            :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,form.consultTeacher.detail)}"
+                                            :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,item)}"
                                     >
                                         <img v-if="item.url" :src="item.url" class="middle-avatar" />
                                         <el-icon v-else class="min-avatar-uploader-icon"><Plus/></el-icon>
@@ -253,16 +259,27 @@
                 </el-row>
                 <el-row :gutter="10" class="el-row-box">
                     <el-col :span="3">老师简介</el-col>
-                    <el-col :span="18">
-                        <el-upload
-                                :action="uploadUrl"
-                                list-type="picture-card"
-                                :on-preview="handlePictureCardPreview"
-                                :file-list="form.teacherProfile"
-                        >
-                            <el-icon><Plus /></el-icon>
-                        </el-upload>
+                    <el-col :span="20">
+                        <el-row :gutter="10">
+                            <el-col :span="6">
+                                <el-form-item>
+                                    <el-input v-model="form.teacherProfile.title" placeholder="请输入模块标题"></el-input>
+                                </el-form-item>
+                            </el-col>
+                        </el-row>
+                        <el-col :span="18">
+                            <el-upload
+                                    :action="uploadUrl"
+                                    list-type="picture-card"
+                                    :on-preview="handlePictureCardPreview"
+                                    :file-list="form.teacherProfile.picUrl"
+                                    id="2"
+                            >
+                                <el-icon><Plus /></el-icon>
+                            </el-upload>
+                        </el-col>
                     </el-col>
+
                 </el-row>
                 <el-row :gutter="10" class="el-row-box">
                     <el-col :span="3">课程评价</el-col>
@@ -272,7 +289,6 @@
                                 <el-form-item>
                                     <el-input v-model="form.courseComment.title" placeholder="请输入模块名称"></el-input>
                                 </el-form-item>
-
                             </el-col>
                             <el-col :span="6">
                                 <el-form-item>
@@ -427,6 +443,7 @@
                     coupon:{url:''},
                     courseName:{
                         name:'',
+                        subName:'',
                         desc:'',
                     },
                     coursePrice:'',
@@ -452,7 +469,11 @@
 
                     },
                     courseBook:{url:''},
-                    teacherProfile:[],
+                    teacherProfile:{
+                        title:'',
+                        picUrl:[]
+
+                    },
                     courseComment:{
                         title:'',
                         count:'',
@@ -473,9 +494,11 @@
                 router.push("/courseList")
             },
             savePage(){
-                let request = this.form;
+                let request = {}
                 request.courseId = this.courseId;
-                request.rollingPicUrl = this.jsonToString(this.transferPicUrl(this.form.rollingPicUrl, request.rollingPicUrl));
+                console.info(this.form)
+                let rolling = this.transferPicUrl(this.form.rollingPicUrl, [])
+                request.rollingPicUrl = this.jsonToString(rolling);
                 request.coupon = this.jsonToString(this.form.coupon);
                 request.courseName = this.jsonToString(this.form.courseName);
                 request.coursePrice = this.jsonToString(this.form.coursePrice);
@@ -486,7 +509,8 @@
                 request.courseSchedule = this.jsonToString(this.form.courseSchedule);
                 request.consultTeacher = this.jsonToString(this.form.consultTeacher);
                 request.courseBook = this.jsonToString(this.form.courseBook);
-                request.teacherProfile = this.jsonToString(this.form.teacherProfile);
+                let teacher = this.transferPicUrl(this.form.teacherProfile.picUrl, [])
+                request.teacherProfile = this.jsonToString({title:this.form.teacherProfile.title, picUrl: teacher});
                 request.courseComment = this.jsonToString(this.form.courseComment);
                 request.advisoryService = this.jsonToString(this.form.advisoryService);
                 request.banner = this.jsonToString(this.form.banner);
@@ -501,7 +525,7 @@
                 return JSON.stringify(val);
             },
             transferPicUrl(origin, target){
-                if (origin){
+                if (origin && origin.length>0){
                     let picUrl = [];
                     origin.forEach((item)=>{
                         let pictureUrl={}
@@ -540,6 +564,7 @@
                 }).catch(()=>{
                     ElMessage.error("返回重新查询");
                 })
+
             },
             stringToJson(val){
                 return val ? JSON.parse(val) : val

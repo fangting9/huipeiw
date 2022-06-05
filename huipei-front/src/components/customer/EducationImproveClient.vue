@@ -132,8 +132,8 @@
         </el-row>
 
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" :subjectCode="'1'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
-                <Chat></Chat>
+            <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat @close_chat="close_chat" :subjectCode="'1'" :phone="chatPhone" :containDisplay="true"></Chat>
             </el-drawer>
         </div>
 
@@ -210,6 +210,9 @@
             goHome(){
                 router.push("/home")
             },
+            close_chat(value){
+                this.chatVisible = value;
+            }
         }
     }
 </script>

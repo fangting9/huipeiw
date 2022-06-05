@@ -204,8 +204,10 @@
                 this.dialog.id = row.id;
                 this.dialog.code = row.code;
                 if (row.detail){
+                    console.info(row.detail)
                     this.dialog.detail = row.detail;
                 }
+                console.info(this.dialog.detail)
             },
             editSave(){
                 this.dialogVisible = false;
@@ -254,7 +256,7 @@
                 return val ? JSON.parse(val) : val
             },
             jsonToString(val){
-                return JSON.stringify(val);
+                return val ? JSON.stringify(val):'';
             },
         }
     }
