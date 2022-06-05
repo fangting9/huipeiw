@@ -108,6 +108,12 @@ const routes = [
         name:'textual',
         component:()=>import('../components/customer/TextualCriticismClient'),
     },
+    {
+        path:'/course',
+        name:'course',
+        component:()=>import('../components/customer/CourseDetailClient.vue'),
+    },
+
 
 
 ];
