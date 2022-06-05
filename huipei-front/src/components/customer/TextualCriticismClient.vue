@@ -31,8 +31,8 @@
                     <img style="width: 100%" :src="form.teacherCertification.banner.url">
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button @click="signUpDialogVisible=true" style="width: 60%;background-color: #456ced;color: white;">非师范生报名</el-button>
-                    <el-button @click="signUpDialogVisible=true" style="width: 60%;background-color: #456ced;color: white;">报名条件查询</el-button>
+                    <el-button @click="signUpDialogVisible=true" round style="width: 40%;background-color: #456ced;color: white;">非师范生报名</el-button>
+                    <el-button @click="signUpDialogVisible=true" round style="width: 40%;background-color: #456ced;color: white;">报名条件查询</el-button>
                 </div>
             </div>
         </el-row>
@@ -52,12 +52,12 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center;">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="7">
                         <p>{{this.form.psychologists.title}}</p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in form.psychologists.picUrls" :key="i">
-                    <el-col :span="12">
+                    <el-col :span="8">
                         <img style="width: 90%" :src="item.url">
                     </el-col>
                 </div>
@@ -80,7 +80,7 @@
         <el-row :gutter="20">
             <div style="width: 100%;">
                 <div style="width: 90%; margin-left: 5%">
-                    <el-input placeholder="请输入手机号"></el-input>
+                    <el-input v-model="chatPhone" placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
@@ -89,9 +89,9 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="8" :offset="1">
                         <p>{{this.form.HRMD.title}}</p>
                     </el-col>
                 </el-row>
@@ -99,8 +99,8 @@
                     <img style="width: 100%" :src="form.HRMD.banner.url">
                 </div>
                 <el-row :gutter="20">
-                    <el-col :span="30">
-                        <p>重要提示: 避免以后受政策影响, 错过本次报名, 明年或从助理级逐级报考</p>
+                    <el-col :span="30" :offset="1">
+                        <p style="color: red; font-size: x-small;">重要提示: 避免以后受政策影响, 错过本次报名, 明年或从助理级逐级报考</p>
                     </el-col>
                 </el-row>
             </div>
@@ -108,7 +108,7 @@
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%; text-align: center;">
-                <img style="width: 100%" :src="form.courseReservation.url">
+                <img @click="yyDialogVisible=true" style="width: 100%" :src="form.courseReservation.url">
             </div>
         </el-row>
         <el-divider class="divider2"/>
@@ -121,7 +121,7 @@
                 </el-row>
                 <div v-for="(item,i) in form.healthManager.picUrls" :key="i">
                     <el-col :span="12">
-                        <img style="width: 90%" :src="item.url">
+                        <img style="width: 90%" @click="chatVisible = true" :src="item.url">
                     </el-col>
                 </div>
             </div>
@@ -168,8 +168,8 @@
         </el-row>
 
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" :subjectCode="'1'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
-                <Chat></Chat>
+            <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat @close_chat="close_chat" :subjectCode="'2'" :phone="chatPhone" :containDisplay="true"></Chat>
             </el-drawer>
         </div>
         <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
@@ -188,14 +188,23 @@
     import { ElMessage, } from 'element-plus'
     import axios from "axios"
     import router from "@/router";
+    import SignUp from './SignUp'
+    import Appointment from './Appointment'
+    import Chat from './CustomerChat'
 
     export default {
         name: "HomeClient",
+        components:{
+            Chat,
+            SignUp,
+            Appointment
+        },
         data() {
             return {
                 signUpDialogVisible:false,
                 yyDialogVisible:false,
                 chatVisible:false,
+                chatPhone:'',
                 dialogImageUrl: '',
                 dialogVisible: false,
                 form: {
@@ -266,7 +275,11 @@
             },
             colseYy(value){
                 this.yyDialogVisible = value
+            },
+            close_chat(value){
+                this.chatVisible = value;
             }
+
         }
     }
 </script>
