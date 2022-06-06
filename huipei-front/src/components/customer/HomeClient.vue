@@ -6,7 +6,7 @@
                     <h3 style="text-align: center">汇培网</h3>
                 </el-col>
                 <el-col :span="7" >
-                    <img style="width: 100%;margin-top: 10%;" src="../../../static/mini-logo.jpg">
+                    <img style="width: 100%;margin-top: 17%;" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
         </el-header>
@@ -36,7 +36,7 @@
                         <p>{{this.form.hotTopic.title}}</p>
                     </el-col>
                     <el-col :span="16">
-                        <p class="text_right more" @click="toEducationImprove">了解更多<el-icon><ArrowRight /></el-icon></p>
+                        <p class="text_right more" @click="toCourseList">了解更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.hotTopic.detail" :key="i">
@@ -235,8 +235,8 @@
 
         },
         methods:{
-            toEducationImprove(){
-
+            toCourseList(){
+                router.push({path:"/ccourseList", query:{activeIndex:'1'}})
             },
             detail(){
                 axios.get("/admin/home/detail").then((response) => {

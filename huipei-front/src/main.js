@@ -5,7 +5,7 @@ import axios from "axios"
 import VueAxios from 'vue-axios'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-import * as ElIconModules from '@element-plus/icons-vue'
+import * as ElIconModules from '@element-plus/icons'
 import commonData from "@/data/commonData";
 import Swiper from './components/util/Swiper'
 import SwiperItem from './components/util/SwiperItem'
@@ -15,9 +15,12 @@ import store from './store'
 import Vuex from 'vuex'
 import adminSocked from '@/socket/socket'
 
-
-
 var app = createApp(App);
+Object.keys(ElIconModules).forEach(function (key) {
+    app.component(ElIconModules[key].name, ElIconModules[key])
+})
+
+
 app.use(router);
 app.use(VueAxios,axios);
 app.use(ElementPlus);
@@ -27,9 +30,7 @@ app.use(Vuex)
 app.use(adminSocked)
 app.mount('#app');
 
-Object.keys(ElIconModules).forEach(function (key) {
-    app.component(ElIconModules[key].name, ElIconModules[key])
-})
+
 axios.defaults.baseURL = "/api";
 axios.defaults.headers.common['token'] = store.state.token;
 app.config.globalProperties.$axios = axios;
