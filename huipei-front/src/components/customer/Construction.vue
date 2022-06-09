@@ -70,7 +70,7 @@
                         <p>{{this.form.titleAppraisal.title}}</p>
                     </el-col>
                     <el-col :span="16">
-                        <p class="text_right more">查看更多<el-icon><ArrowRight /></el-icon></p>
+                        <p @click="toCourseList" class="text_right more">查看更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.titleAppraisal.detail" :key="i">
@@ -266,6 +266,9 @@
             this.detail();
         },
         methods:{
+            toCourseList(){
+                router.push({path:"/ccourseList", query:{activeIndex:'4'}})
+            },
             detail(){
                 axios.get("/admin/construction/detail").then((response) => {
                     if (response.data){

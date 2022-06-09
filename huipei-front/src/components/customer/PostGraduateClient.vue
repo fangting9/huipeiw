@@ -123,7 +123,7 @@
             <div style="width: 100%;">
                 <img style="width: 100%" :src="form.advisoryService.url">
                 <div style="width: 90%; margin-left: 5%">
-                    <el-input placeholder="请输入手机号"></el-input>
+                    <el-input v-model="chatPhone" placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button style="width: 60%;background-color: #456ced;color: white;" @click="chatVisible=true">点击咨询</el-button>
@@ -157,8 +157,8 @@
             <Appointment :subjectCode="'3'" @change="colseYy"></Appointment>
         </el-dialog>
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" :subjectCode="'3'" :phone="chatPhone" direction="btt" size="55%" :show-close="false" :with-header="false">
-                <Chat></Chat>
+            <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="55%" :show-close="false" :with-header="false">
+                <Chat @close_chat="close_chat" :subjectCode="'3'" :phone="chatPhone" :containDisplay="true"></Chat>
             </el-drawer>
         </div>
     </div>
@@ -227,6 +227,9 @@
             this.detail();
         },
         methods:{
+            toCourseList(){
+                router.push({path:"/ccourseList", query:{activeIndex:'3'}})
+            },
             detail(){
                 axios.get("/admin/graduate/detail").then((response) => {
                     if (response.data){
@@ -248,6 +251,9 @@
             },
             colseYy(value){
                 this.yyDialogVisible = value
+            },
+            close_chat(value){
+                this.chatVisible = value;
             }
         }
     }

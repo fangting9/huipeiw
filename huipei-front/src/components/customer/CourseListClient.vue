@@ -31,20 +31,20 @@
                     </el-menu-item>
                 </div>-->
 
-                <el-menu-item index="1" @click="list()">
-                    学历提升
+                <el-menu-item index="1" @click="list()" v-if="subjectCode.subject1">
+                    {{subjectName.subject1}}
                 </el-menu-item>
-                <el-menu-item index="2" @click="list()">
-                    会计学习
+                <el-menu-item index="2" @click="list()" v-if="subjectCode.subject2">
+                    {{subjectName.subject2}}
                 </el-menu-item>
-                <el-menu-item index="3" @click="list()">
-                    研究生
+                <el-menu-item index="3" @click="list()" v-if="subjectCode.subject3">
+                    {{subjectName.subject3}}
                 </el-menu-item>
-                <el-menu-item index="4" @click="list()">
-                    建工培训
+                <el-menu-item index="4" @click="list()" v-if="subjectCode.subject4">
+                    {{subjectName.subject4}}
                 </el-menu-item>
-                <el-menu-item index="5" @click="list()">
-                    职业考证
+                <el-menu-item index="5" @click="list()" v-if="subjectCode.subject5">
+                    {{subjectName.subject5}}
                 </el-menu-item>
 
 
@@ -96,8 +96,23 @@
         },
         data() {
             return {
+                subjectCode:{
+                    subject1:false,
+                    subject2:false,
+                    subject3:false,
+                    subject4:false,
+                    subject5:false,
+                },
+                subjectName:{
+                    subject1:'',
+                    subject2:'',
+                    subject3:'',
+                    subject4:'',
+                    subject5:'',
+                },
                 activeIndex:'0',
                 subjectList:[],
+                subjectMap:'',
                 form:{
                     vague:'',
                     code:'',
@@ -110,7 +125,7 @@
         },
         created(){
             this.activeIndex = useRoute().query.activeIndex;
-           // this.search();
+            this.search();
             this.list(useRoute().query.activeIndex);
         },
 
@@ -122,10 +137,33 @@
             },
             async search(){
                 await axios.get("/admin/subject/list?enable=1" ).then((response) => {
-                    this.subjectList = response.data
+                    if (response.data){
+                        this.subjectList = response.data
+                    }
+                });
 
-                })
+                for (const data in this.subjectList){
+                    console.info(this.subjectList[data])
+                    if (this.subjectList[data].code === '1'){
+                        this.subjectName.subject1 = this.subjectList[data].name;
+                        this.subjectCode.subject1 = this.subjectList[data].code;
+                    }else if (this.subjectList[data].code === '2'){
+                        this.subjectName.subject2 = this.subjectList[data].name;
+                        this.subjectCode.subject2 = this.subjectList[data].code;
+                    }else if (this.subjectList[data].code === '3'){
+                        this.subjectName.subject3 = this.subjectList[data].name;
+                        this.subjectCode.subject3 = this.subjectList[data].code;
+                    }else if (this.subjectList[data].code === '4'){
+                        this.subjectName.subject4 = this.subjectList[data].name;
+                        this.subjectCode.subject4 = this.subjectList[data].code;
+                    }else if (this.subjectList[data].code === '5'){
+                        this.subjectName.subject5 = this.subjectList[data].name;
+                        this.subjectCode.subject5 = this.subjectList[data].code;
+                    }
+                }
+
             },
+
             async list(code){
                 if (code){
                     this.form.code = code;

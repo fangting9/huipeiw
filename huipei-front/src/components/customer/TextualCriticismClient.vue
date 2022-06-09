@@ -253,7 +253,9 @@
             this.detail();
         },
         methods:{
-
+            toCourseList(){
+                router.push({path:"/ccourseList", query:{activeIndex:'5'}})
+            },
             detail(){
                 axios.get("/admin/exam/detail").then((response) => {
                     if (response.data){

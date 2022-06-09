@@ -38,7 +38,7 @@
 
 import msgBox from './msgBox.vue';
 import axios from "axios"
-
+import Fingerprint2 from 'fingerprintjs2'
 export default {
     name: "CustomerChat.vue",
     components: {
@@ -102,10 +102,19 @@ export default {
        * 初始化ws
        */
       async wsInit() {
+          // 浏览器指纹
+          Fingerprint2.get((components) => {
+              // 参数只有回调函数时，默认浏览器指纹依据所有配置信息进行生成
+              const values = components.map((component) => component.value) // 配置的值的数组
+              sessionStorage.setItem("stoken", Fingerprint2.x64hash128(values.join(''), 31));
+          });
+          console.info(sessionStorage.getItem("stoken"))
+          this.sid = sessionStorage.getItem(sessionStorage.getItem("stoken"))
           if (!this.sid){
               let req = {phone: this.phone, subjectCode: this.subjectCode, courseId: this.courseId, type:2, createSid:true};
               await axios.post("/consult/sid", req).then((res)=>{
-                  this.sid = res.data
+                  sessionStorage.setItem(sessionStorage.getItem("stoken"), res.data);
+                  this.sid = res.data;
               })
           }
           if (this.sid){
