@@ -320,9 +320,6 @@
         },
         created(){
             this.detailHomePage();
-            if (!window.sessionStorage.getItem('token') || window.sessionStorage.getItem('token') !== window.sessionStorage.getItem("murmur")){
-                //router.push("/login")
-            }
         },
         methods:{
             test(){
@@ -398,6 +395,8 @@
                         if(item.response){
                             pictureUrl.url = item.response;
                             picUrl.push(pictureUrl);
+                        }else {
+                            picUrl.push({url: item.url})
                         }
                     })
                     target = picUrl.length > 0 ? picUrl : target

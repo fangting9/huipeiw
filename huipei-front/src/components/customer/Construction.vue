@@ -2,7 +2,8 @@
     <div>
         <div style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
-                <el-col :span="9" :offset="8">
+                <el-col :span="4"><p @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
+                <el-col :span="9" :offset="4">
                     <h3 style="text-align: center">汇培网</h3>
                 </el-col>
                 <el-col :span="7" >
@@ -29,14 +30,14 @@
                 </el-row>
                 <div v-for="(item,i) in this.form.constructionEngineerTraining.picUrls" :key="i">
                     <el-col :span="12">
-                        <img style="width: 90%" :src="item.url">
+                        <img @click="chatVisible=true" style="width: 90%" :src="item.url">
                     </el-col>
                 </div>
             </div>
             <el-divider class="divider1" border-style="dashed" />
             <div style="width: 100%;text-align: center;">
                 <el-col :span="10">
-                    <img style="width: 60px;height: 60px" :src="form.constructionEngineerTraining.banner.url"/>
+                    <img @click="chatVisible=true" style="width: 60px;height: 60px" :src="form.constructionEngineerTraining.banner.url"/>
                 </el-col>
                 <el-col :span="10">
                     <div style="text-align: center">
@@ -45,7 +46,7 @@
 
                 </el-col>
                 <el-col :span="8" :offset="1">
-                    <el-button @click="yyDialogVisible=true" class="consultButton" style="color: white;margin-top: 15px;" round>立即咨询</el-button>
+                    <el-button @click="chatVisible=true" class="consultButton" style="color: white;margin-top: 15px;" round>立即咨询</el-button>
                 </el-col>
 
             </div>
@@ -87,8 +88,8 @@
                                 <span class="majorDesc">{{item.titleDesc}}</span>
                             </el-row>
                             <el-row :gutter="20" >
-                                <span style="width: 80px" class="majorType"></span>
-                                <el-button class="consultButton marginTop30" type="primary" round>查看详情</el-button>
+                                <span style="width: 90px" class="majorType"></span>
+                                <el-button @click="chatVisible=true" class="consultButton marginTop30" type="primary" round>查看详情</el-button>
                             </el-row>
                         </el-col>
                     </el-row>
@@ -186,7 +187,7 @@
 
         <div class="drawer-div">
             <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="55%" :show-close="false" :with-header="false">
-                <Chat @close_chat="close_chat" :subjectCode="'4'" :phone="chatPhone" :containDisplay="true"></Chat>
+                <Chat @close_chat="close_chat" v-if="chatVisible" :subjectCode="'4'" :phone="chatPhone" :containDisplay="true"></Chat>
             </el-drawer>
         </div>
         <el-dialog  v-model="yyDialogVisible" custom-class="dialog_yy" @close="yyDialogVisible=false">

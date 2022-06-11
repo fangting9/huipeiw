@@ -470,6 +470,8 @@
                         if(item.response){
                             pictureUrl.url = item.response;
                             picUrl.push(pictureUrl);
+                        }else {
+                            picUrl.push({url: item.url})
                         }
                     })
                     target = picUrl.length > 0 ? picUrl : target

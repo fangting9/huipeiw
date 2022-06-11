@@ -69,7 +69,7 @@
                         <p>{{this.form.examContest.title}}</p>
                     </el-col>
                     <el-col :span="16">
-                        <p class="text_right more">查看详情<el-icon><ArrowRight /></el-icon></p>
+                        <p class="text_right more" @click="chatVisible=true">查看详情<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.examContest.detail" :key="i">
@@ -158,9 +158,11 @@
             <Appointment @change="colseYy"></Appointment>
         </el-dialog>
         <div class="drawer-div">
-            <el-drawer v-model="chatVisible" direction="btt" size="55%" :show-close="false" :with-header="false">
-                <Chat></Chat>
-            </el-drawer>
+            <div class="drawer-div">
+                <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="55%" :show-close="false" :with-header="false">
+                    <Chat @close_chat="close_chat" v-if="chatVisible" :containDisplay="true"></Chat>
+                </el-drawer>
+            </div>
         </div>
     </div>
 </template>
@@ -247,21 +249,6 @@
                     ElMessage.error("请重新加载");
                 })
             },
-           /* signUp(){
-                this.signUpDialogVisible = true;
-                this.signUpInfo.name='';
-                this.signUpInfo.phone='';
-            },
-            yySignUp(){
-                this.yyDialogVisible = true;
-                this.signUpInfo.name='';
-                this.signUpInfo.phone='';
-            },
-            signUpSave(str){
-                this.signUpDialogVisible = false;
-                this.yyDialogVisible = false;
-                ElMessage(str)
-            },*/
             toGo(code){
                 if (code === '1'){
                     router.push('/ceducation');
@@ -292,6 +279,9 @@
             },
             colseYy(value){
                 this.yyDialogVisible = value
+            },
+            close_chat(value){
+                this.chatVisible = value;
             }
 
 

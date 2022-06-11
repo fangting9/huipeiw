@@ -47,12 +47,17 @@
                 <el-table-column prop="createTime" label="创建日期" />
                 <el-table-column label="操作"  width="150" >
                     <template #default="scope">
-                        <el-icon @click="handleEdit(scope.row)"><EditPen /></el-icon> &nbsp;&nbsp;
-                        <el-icon @click="openChatDialog(scope.row)" v-if="scope.row.type === 2 && scope.row.unread === 0"><ChatDotRound /></el-icon>
-                        <el-badge is-dot class="item" v-if="scope.row.unread >0">
-                            <el-icon @click="openChatDialog(scope.row)" ><ChatDotRound /></el-icon>
-                        </el-badge>
+                        <div>
+                            <el-icon @click="handleEdit(scope.row)"><Edit /></el-icon>&nbsp;&nbsp;
+                            <el-icon @click="openChatDialog(scope.row)" v-if="scope.row.type === 2 && scope.row.unread === 0"><ChatDotRound /></el-icon>
+                            <el-badge is-dot class="item" v-if="scope.row.unread >0">
+                                <el-icon @click="openChatDialog(scope.row)" ><ChatDotRound /></el-icon>
+                            </el-badge>
+                        </div>
+                        <!--<el-button @click="handleEdit(scope.row)" type="primary" circle >编辑</el-button>-->
+
                     </template>
+
                 </el-table-column>
             </el-table>
             <div class="pagination" style="text-align: right; width: 100%;">
@@ -60,11 +65,15 @@
                                :page-size="form.pageSize" layout="total, prev, pager, next" :total="form.pageTotal">
                 </el-pagination>
             </div>
+            <div>
+                <el-dialog :with-header="false" draggable :close-on-click-modal="false" :modal="false"
+                           v-model="chatDialog.display" @close="closeChatDialog" :title="chatDialog.title">
+                    <AdminChat  v-if="chatDialog.display" :containDisplay="chatDialog.display" :consultId="chatDialog.consultId"></AdminChat>
+                </el-dialog>
+            </div>
         </el-card>
-            <el-dialog :with-header="false" draggable :close-on-click-modal="false" :modal="false"
-                       v-model="chatDialog.display" @close="closeChatDialog" :title="chatDialog.title">
-                <AdminChat :containDisplay="true" :consultId="chatDialog.consultId"></AdminChat>
-            </el-dialog>
+
+
 
 
         <el-dialog v-model="editDialogVisible" title="备注">
@@ -86,7 +95,7 @@
                 <el-row :gutter="20">
                     <el-col :span="13" :offset="10" class="text_right">
                         <el-button  type="primary" @click="editSave">保存</el-button>
-                        <el-button  type="primary" @click="editDialogVisible=false">取消</el-button>
+                        <el-button  type="primary" @click="cancelVisble">取消</el-button>
                     </el-col>
                 </el-row>
             </el-form>
@@ -168,6 +177,9 @@
                 this.editDialog.phone = row.phone;
                 this.editDialog.consultId = row.id;
             },
+            cancelVisble(){
+                this.editDialogVisible = false;
+            },
             editSave(){
                 axios.post("/admin/consult/edit",this.editDialog).then((response) => {
                     if (response.data){
@@ -178,7 +190,8 @@
                 }).catch(()=>{
                     ElMessage.error("保存失败");
                 })
-            }
+            },
+
         },
     }
 </script>

@@ -9,7 +9,7 @@ module.exports = {
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8081',
+        target: process.env.VUE_APP_BASE_API,
         changeOrigin: true,
         secure: false,
         headers:{

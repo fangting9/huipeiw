@@ -37,7 +37,7 @@
 .consultButton{
     height: 20px;
     text-align: right;
-    margin-left: 10%;
+    margin-left: 16%;
     margin-top: 30px;
 }
 .consultButton.el-button:not(.is-text){

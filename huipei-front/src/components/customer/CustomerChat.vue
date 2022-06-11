@@ -69,17 +69,13 @@ export default {
         wsTimer: null,
     }
   },
-    async mounted() {
-        this.wsInit()
-    },
-    activated(){
-        console.info("activated")
-    },
+
     created() {
-        console.info("created")
+        this.wsInit()
     },
     methods:{
         close_chat(){
+            this.webSocket.close();
             this.$emit('close_chat', false)
         },
         toSendMsg(){
@@ -108,20 +104,20 @@ export default {
               const values = components.map((component) => component.value) // 配置的值的数组
               sessionStorage.setItem("stoken", Fingerprint2.x64hash128(values.join(''), 31));
           });
-          console.info(sessionStorage.getItem("stoken"))
-          this.sid = sessionStorage.getItem(sessionStorage.getItem("stoken"))
+
+          this.sid = JSON.parse(sessionStorage.getItem(sessionStorage.getItem("stoken"))).sid
           if (!this.sid){
               let req = {phone: this.phone, subjectCode: this.subjectCode, courseId: this.courseId, type:2, createSid:true};
               await axios.post("/consult/sid", req).then((res)=>{
-                  sessionStorage.setItem(sessionStorage.getItem("stoken"), res.data);
+                  sessionStorage.setItem(sessionStorage.getItem("stoken"), JSON.stringify({sid:res.data}));
                   this.sid = res.data;
               })
           }
-          if (this.sid){
-              console.info(this.sid)
-              this.ws = `ws://localhost:8081/api/socket/${this.sid}`;
 
-              if (!this.webSocket || this.webSocket.readyState === 0) {
+
+          if (this.sid){
+              this.ws = `ws://localhost:8081/api/socket/${this.sid}`;
+              if (!this.webSocket || this.webSocket.readyState != 1) {
                 // 初始化ws
                   this.webSocket = new WebSocket(this.ws)
                   // ws连接建立时触发
@@ -143,7 +139,7 @@ export default {
                           console.log('ws建立连接失败')
                           this.wsInit()
                       }
-                  }, 3000)
+                  }, 300)
               }
           }
       },
@@ -152,7 +148,17 @@ export default {
           console.log('ws建立连接成功')
       },
       wsMessageHanler(e) {
-          this.msgList.push({ msg:JSON.parse(e.data).msg, isCustom:false });
+          let data = JSON.parse(e.data)
+          if (data.logList){
+              data.logList.forEach(item=>{
+                  this.msgList.push({msg:item.record, isCustom:!item.fromQuizzer})
+              })
+            //  console.log("历史消息", data.logList);
+          }
+          if (data.msg){
+              this.msgList.push({ msg:JSON.parse(e.data).msg, isCustom:false });
+             // console.log("接收信息", data.msg);
+          }
 
       },
       /**

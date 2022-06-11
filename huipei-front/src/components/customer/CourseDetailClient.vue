@@ -2,8 +2,9 @@
     <div>
         <div style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
-                <el-col :span="9" :offset="8">
-                    <h3 style="text-align: center"> <p>{{pageTitle}}</p></h3>
+                <el-col :span="4"><p @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
+                <el-col :span="9" :offset="4">
+                    <h3 style="text-align: center"><p>{{pageTitle}}</p></h3>
                 </el-col>
                 <el-col :span="7" >
                     <img @click="goHome" style="width: 100%;margin-top: 10%;" src="../../../static/mini-logo.jpg">
@@ -59,7 +60,7 @@
                         </el-col>
 
                         <el-col :span="6" >
-                            <p class="text_right more">查看更多<el-icon><ArrowRight /></el-icon></p>
+                            <p class="text_right more" @click="chatVisible=true">查看更多<el-icon><ArrowRight /></el-icon></p>
                         </el-col>
                     </el-row>
                 </div>
@@ -303,7 +304,7 @@
         </el-dialog>
         <div class="drawer-div">
             <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="55%" :show-close="false" :with-header="false">
-                <Chat @close_chat="close_chat" :courseId="courseId" :phone="chatPhone" :containDisplay="true"></Chat>
+                <Chat @close_chat="close_chat" v-if="chatVisible" :courseId="courseId" :phone="chatPhone" :containDisplay="true"></Chat>
             </el-drawer>
         </div>
 
@@ -414,7 +415,7 @@
                         this.form.returnRules = this.stringToJson(res.returnRules);
                     }
                 }).catch(()=>{
-                    ElMessage.error("返回重新查询");
+                    ElMessage.error("请重新刷新页面");
                 })
             },
             stringToJson(val){

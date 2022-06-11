@@ -2,8 +2,9 @@
     <div style="width: 100%">
         <el-header style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
-                <el-col :span="9" :offset="8">
-                    <h3 style="text-align: center">汇培网</h3>
+                <el-col :span="5"><p @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
+                <el-col :span="9" :offset="3">
+                    <h3 style="text-align: center"><p>课程列表</p></h3>
                 </el-col>
                 <el-col :span="7" >
                     <img @click="goHome" style="width: 100%;margin-top: 17%;" src="../../../static/mini-logo.jpg">
@@ -143,7 +144,7 @@
                 });
 
                 for (const data in this.subjectList){
-                    console.info(this.subjectList[data])
+                   // console.info(this.subjectList[data])
                     if (this.subjectList[data].code === '1'){
                         this.subjectName.subject1 = this.subjectList[data].name;
                         this.subjectCode.subject1 = this.subjectList[data].code;

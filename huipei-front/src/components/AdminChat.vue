@@ -1,4 +1,5 @@
 <template>
+    <div style="width: 100%">
     <el-container style="height: 400px; width: 100%" v-if="containDisplay">
         <el-main style="background: white;">
             <div class="message-panel">
@@ -28,6 +29,7 @@
             </el-row>
         </el-footer>
     </el-container>
+    </div>
 </template>
 
 <script>
@@ -57,13 +59,17 @@
                     this.msgList = newVal
             }
         },
-        created() {
+        created(){
             this.intSend()
             this.$adminSocked.ws.onmessage=this.onmessage;
+        },
+        activated(){
+            this.intSend();
         },
 
         methods:{
             intSend(){
+                console.info("请求来了", this.consultId);
                 let message = {consultId:this.consultId,reload:true};
                 this.$adminSocked.ws.send(JSON.stringify(message));
             },
