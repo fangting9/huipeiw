@@ -45,8 +45,6 @@
         methods:{
             async onSubmit(){
                 await axios.post("/admin/login/", this.formInline).then((resp) => {
-                    console.info(resp);
-                    console.info(resp.data);
                     if (resp.data){
                         console.info(123);
                         if(resp.data.validate){
@@ -57,8 +55,6 @@
                             this.$store.commit('SET_USER', resp.data.account);
                             //获取sid
                             console.info("获取sid");
-
-                            console.info("成功了啊");
                             router.push("/homePage")
                         }
                     }else {

@@ -65,6 +65,7 @@
    import router from "@/router";
    import axios from "axios"
    import { ElMessage, } from 'element-plus'
+   import commonData from "@/data/commonData";
     export default {
         name: "HomePage",
         components:{
@@ -110,7 +111,8 @@
                         return
                     }
                     let sid = sessionStorage.getItem("sid");
-                    that.ws = new WebSocket(`ws://localhost:8081/api/socket/${sid}`);
+                    console.info(commonData.ws)
+                    that.ws = new WebSocket(commonData.ws+sid);
                     that.$adminSocked.setWs(that.ws);
                     that.ws.onopen = function () {
                         console.info("连接成功")

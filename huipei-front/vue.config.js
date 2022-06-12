@@ -6,7 +6,7 @@ module.exports = {
     },
     host: "0.0.0.0",
     open: true,
-    port: 8080,
+    port: 8082,
     proxy: {
       '/api': {
         target: process.env.VUE_APP_BASE_API,

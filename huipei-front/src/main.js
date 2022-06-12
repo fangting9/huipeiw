@@ -42,8 +42,6 @@ router.beforeEach((to, from, next) => {
         //路由需要认证
         if (to.meta.requireAuth) {
             //判断store里是否有token
-            console.info("token====")
-            console.info(store.state.token)
             if (store.state.token) {
                 next()
             } else {

@@ -10,8 +10,8 @@ const routes = [
     },
     {
         path: '/',
-        meta: { title: '登录页面' },
-        component: () => import('../components/LoginPage')
+        meta: { title: '汇培网' },
+        component: () => import('../components/customer/HomeClient')
     },
     {
         path: '/homePage',

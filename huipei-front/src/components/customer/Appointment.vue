@@ -43,7 +43,7 @@
                 if (!this.signUpInfo.phone){
                     ElMessage("请输入手机号")
                 }
-                let req = {phone: this.signUpInfo.phone, subjectCode: this.subjectCode, courseId: this.courseId, type:0, createSid:false};
+                let req = {name: this.signUpInfo.name, phone: this.signUpInfo.phone, subjectCode: this.subjectCode, courseId: this.courseId, type:0, createSid:false};
                 commonData.getSid(req);
                 this.$emit('change', false)
                 ElMessage.success("预约成功")

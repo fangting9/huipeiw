@@ -39,6 +39,7 @@
 import msgBox from './msgBox.vue';
 import axios from "axios"
 import Fingerprint2 from 'fingerprintjs2'
+import commonData from "@/data/commonData";
 export default {
     name: "CustomerChat.vue",
     components: {
@@ -116,7 +117,7 @@ export default {
 
 
           if (this.sid){
-              this.ws = `ws://localhost:8081/api/socket/${this.sid}`;
+              this.ws = commonData.ws+this.sid;
               if (!this.webSocket || this.webSocket.readyState != 1) {
                 // 初始化ws
                   this.webSocket = new WebSocket(this.ws)
