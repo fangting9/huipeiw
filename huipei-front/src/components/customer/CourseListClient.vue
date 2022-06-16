@@ -117,6 +117,7 @@
                 form:{
                     vague:'',
                     code:'',
+                    enable:1,
                     pageSize:100,
                     pageNo:1,
                     pageTotal:0,
@@ -194,10 +195,12 @@
 </script>
 
 <style scoped>
-
+    .el-menu{
+        text-align: center;
+    }
     .el-menu-item{
-        padding: 0 3px;
-        font-size:xx-small;
+        padding: 0 5px;
+        font-size:small;
 
     }
     .el-input{

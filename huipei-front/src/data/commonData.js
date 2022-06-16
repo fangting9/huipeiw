@@ -1,7 +1,8 @@
 import Fingerprint2 from 'fingerprintjs2'
 import axios from "axios"
 export default {
-    ws:'ws://localhost:8088/api/socket/',
+    //ws:'ws://localhost:8088/api/socket/',
+    ws:'ws://www.huipeiw.com/api/socket/',
     specialSubject:[
         {name:'学历提升',code:'1'},
         {name:'会计培训',code:'2'},

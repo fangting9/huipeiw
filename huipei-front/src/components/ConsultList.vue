@@ -47,7 +47,7 @@
                 <el-table-column prop="createTime" label="创建日期" />
                 <el-table-column label="操作"  width="150" >
                     <template #default="scope">
-                        <div>
+                        <div style="text-align: left; margin-left:30px;">
                             <el-icon @click="handleEdit(scope.row)"><Edit /></el-icon>&nbsp;&nbsp;
                             <el-icon @click="openChatDialog(scope.row)" v-if="scope.row.type === 2 && scope.row.unread === 0"><ChatDotRound /></el-icon>
                             <el-badge is-dot class="item" v-if="scope.row.unread >0">
@@ -67,14 +67,12 @@
             </div>
             <div>
                 <el-dialog :with-header="false" draggable :close-on-click-modal="false" :modal="false"
-                           v-model="chatDialog.display" @close="closeChatDialog" :title="chatDialog.title">
-                    <AdminChat  v-if="chatDialog.display" :containDisplay="chatDialog.display" :consultId="chatDialog.consultId"></AdminChat>
+                           v-model="chatDialog.display" @close="closeChatDialog">
+                    <AdminChat  v-if="chatDialog.display" :containDisplay="chatDialog.display" :source="chatDialog.source"
+                                :consultId="chatDialog.consultId" :name="chatDialog.name" :phone="chatDialog.phone"></AdminChat>
                 </el-dialog>
             </div>
         </el-card>
-
-
-
 
         <el-dialog v-model="editDialogVisible" title="备注">
             <el-form>
@@ -126,7 +124,10 @@
                 chatDialog:{
                     display:false,
                     consultId:'',
-                    title:''
+                    title:'',
+                    name:'',
+                    phone:'',
+                    source:''
                 },
                 consultType: commonData.consultType,
                 tableData:[
@@ -163,8 +164,11 @@
             },
             openChatDialog(row){
                 this.chatDialog.display = true;
-                this.chatDialog.consultId = row.id
-                this.chatDialog.title = row.name
+                this.chatDialog.consultId = row.id;
+                this.chatDialog.title = row.name;
+                this.chatDialog.name = row.name;
+                this.chatDialog.phone = row.phone;
+                this.chatDialog.source = row.source;
                 this.$store.commit("SET_UNREAD", 0);
             },
             closeChatDialog(){

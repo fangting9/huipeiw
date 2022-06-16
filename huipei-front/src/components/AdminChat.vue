@@ -1,13 +1,26 @@
 <template>
-    <div style="width: 100%">
-    <el-container style="height: 400px; width: 100%" v-if="containDisplay">
+    <div style="width: 100%;">
+    <el-container style="height: 450px; width: 100%;margin-top: -50px" v-if="containDisplay">
+        <el-header>
+            <el-row :gutter="10">
+                <el-col :span="6">
+                    <p>昵称:{{name}}</p>
+                </el-col>
+                <el-col :span="8">
+                    <p>联系方式:{{phone}}</p>
+                </el-col>
+                <el-col :span="6">
+                    <p>来源:{{source}}</p>
+                </el-col>
+            </el-row>
+        </el-header>
         <el-main style="background: white;">
             <div class="message-panel">
                 <div v-for="(item, index) of msgList" :key="index">
                     <div class="msg-wrapper" v-bind:class="{ self: item.fromQuizzer===1 }">
 
-                        <el-button key="text" type="primary" v-if="item.fromQuizzer === 1" circle size="small">小培</el-button>
-                        <el-button key="text" type="primary" v-if="item.fromQuizzer === 0" circle size="small" >学员</el-button>
+                        <el-button key="text" type="primary" v-if="item.fromQuizzer === 1" circle size="small">我</el-button>
+                        <el-button key="text" type="primary" v-if="item.fromQuizzer === 0" circle size="small" >{{name}}</el-button>
 
                         <span>&#12288;</span>
                         <div class="content-self" v-if="item.fromQuizzer === 1">{{item.record}}</div>
@@ -33,10 +46,6 @@
 </template>
 
 <script>
-
-    //import commonData from "@/data/commonData";
-
-
     export default {
         name: "AdminChat",
         components:{
@@ -45,6 +54,9 @@
         props:{
             consultId:Number,
             containDisplay:Boolean,
+            name:String,
+            phone:String,
+            source:String,
         },
         data(){
             return{
@@ -106,8 +118,6 @@
 
     }
 
-
-
 </script>
 
 <style scoped>
@@ -116,8 +126,7 @@
         border-top: 1px #ebebeb solid;
         border-bottom: 1px #ebebeb solid;
         overflow-x: hidden;
-
-        height: 90%;
+        height: 98%;
     }
     .msg-wrapper {
         display: flex;

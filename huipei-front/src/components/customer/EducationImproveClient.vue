@@ -10,16 +10,17 @@
                     <img @click="goHome" style="width: 100%;margin-top: 10%;" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
-
         </div>
         <el-row :gutter="20">
-            <div class="block text-center" style="width: 100%;height: 180px;">
-                <el-carousel>
+            <div class="block text-center" style="width: 100%;height: 200px">
+                <el-carousel style="height:100%">
                     <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                         <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
                 </el-carousel>
             </div>
+        </el-row>
+        <el-row :gutter="20">
             <div style="width: 100%;text-align: center;">
                 <div v-for="(item,i) in this.form.introductionPicUrl" :key="i">
                     <img class="imgPhone" :src="item.url">
@@ -35,7 +36,7 @@
                 </el-row>
                 <div v-for="(item,i) in form.degreeProgram.picUrls" :key="i">
                     <el-col :span="12">
-                        <img style="width: 90%" :src="item.url">
+                        <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
             </div>

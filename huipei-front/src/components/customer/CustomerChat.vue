@@ -9,7 +9,7 @@
           </el-col>
 
               <div style="width: 100%; text-align: right">
-                  <el-icon color="white" @click="close_chat"><Close /></el-icon>
+                  <el-icon size="40" color="white" @click="close_chat"><Close /></el-icon>
               </div>
 
       </el-header>
@@ -76,8 +76,8 @@ export default {
     },
     methods:{
         close_chat(){
-            this.webSocket.close();
             this.$emit('close_chat', false)
+            this.webSocket.close();
         },
         toSendMsg(){
           if (!this.msg.length) {
@@ -106,18 +106,18 @@ export default {
               sessionStorage.setItem("stoken", Fingerprint2.x64hash128(values.join(''), 31));
           });
 
-          this.sid = JSON.parse(sessionStorage.getItem(sessionStorage.getItem("stoken"))).sid
+          this.sid = sessionStorage.getItem(sessionStorage.getItem("stoken"))
           if (!this.sid){
               let req = {phone: this.phone, subjectCode: this.subjectCode, courseId: this.courseId, type:2, createSid:true};
               await axios.post("/consult/sid", req).then((res)=>{
-                  sessionStorage.setItem(sessionStorage.getItem("stoken"), JSON.stringify({sid:res.data}));
+                  sessionStorage.setItem(sessionStorage.getItem("stoken"), res.data);
                   this.sid = res.data;
               })
           }
 
-
           if (this.sid){
               this.ws = commonData.ws+this.sid;
+              console.info(this.ws)
               if (!this.webSocket || this.webSocket.readyState != 1) {
                 // 初始化ws
                   this.webSocket = new WebSocket(this.ws)
