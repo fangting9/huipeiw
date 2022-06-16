@@ -49,7 +49,7 @@
                                 <span class="courseName">{{item.courseName}}</span>
                             </el-row>
                             <el-row :gutter="10">
-                                <span class="courseDesc">{{item.desc}}</span>
+                                <span class="courseDesc" style="margin-top: 1%; margin-bottom: 2%">{{item.desc}}</span>
                             </el-row>
                             <el-row :gutter="10">
                                     <el-col :span="12">

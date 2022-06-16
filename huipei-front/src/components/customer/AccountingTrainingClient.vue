@@ -13,17 +13,20 @@
         </div>
 
         <el-row :gutter="20">
-            <div class="block text-center" style="width: 100%;height: 180px">
+            <div class="block text-center" style="width: 100%;height: 230px">
                 <el-carousel>
                     <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                         <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
                 </el-carousel>
             </div>
-            <div style="width: 100%;text-align: center">
-                <div style="width: 100%;text-align: center" v-for="(item,i) in this.form.introductionPicUrl" :key="i">
-                    <img class="imgPhone" :src="item.url">
-                </div>
+        </el-row>
+
+        <el-row :gutter="20">
+            <div style="width: 100%;text-align: center;">
+            <div  v-for="(item,i) in this.form.introductionPicUrl" :key="i">
+                <img style="width: 85%" :src="item.url">
+            </div>
             </div>
         </el-row>
         <el-row :gutter="20">
@@ -50,8 +53,10 @@
                                 <span class="majorDesc">{{item.courseDesc}}</span>
                             </el-row>
                             <el-row :gutter="20" >
-                                <span style="width: 80px" class="majorType"></span>
-                                <el-button @click="chatVisible=true" class="consultButton marginTop30" type="primary" round>查看详情</el-button>
+                                <div style="width:100%; text-align: right">
+
+                                    <el-button @click="chatVisible=true" class="consultButton marginTop30" type="primary" round>查看详情</el-button>
+                                </div>
                             </el-row>
                         </el-col>
                     </el-row>
@@ -75,15 +80,18 @@
                 </el-row>
                 <div v-for="(item,i) in form.financeLaboratory.picUrls" :key="i">
                     <el-col :span="12">
-                        <img style="width: 90%" :src="item.url">
+                        <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
-        <div style="width: 100%;text-align: center">
-            <img style="width: 100%"  :src="form.banner1.url">
-        </div>
+        <el-row :gutter="20">
+            <div style="width: 100%;text-align: center">
+                <img style="width: 100%"  :src="form.banner1.url">
+            </div>
+        </el-row>
+
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center">
                 <el-row :gutter="10">
@@ -93,22 +101,24 @@
                 </el-row>
                 <div v-for="(item,i) in form.professionalTeacher.picUrls" :key="i">
                     <el-col :span="12">
-                        <img style="width: 90%" :src="item.url">
+                        <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
                 <div style="width: 100%;text-align: center">
                     <el-col :span="10">
-                        <img style="width: 60px;height: 60px" :src="form.professionalTeacher.banner.url"/>
+                        <img style="width: 100%;" :src="form.professionalTeacher.banner.url"/>
                     </el-col>
                     <el-col :span="14">
-                        <div style="text-align: center">
+                        <div style="text-align: center; margin-top: 50%">
                             <span style="color: dodgerblue; font-size: small">阅读更多培训课程</span><br>
                             <span style="color: darkgrey;font-size: xx-small">随时掌握更多课程</span>
                         </div>
-
                     </el-col>
-                    <el-col :span="8" :offset="1">
-                        <el-button @click="yyDialogVisible=true" class="consultButton" style="color: white;margin-top: 15px;" round>立即订阅</el-button>
+                    <el-col :span="8">
+                        <div style="text-align: right;margin-top: 50%;">
+
+                            <el-button @click="yyDialogVisible=true" class="consultButton" style="color: white;margin-top: 15px;" round>立即订阅</el-button>
+                        </div>
                     </el-col>
 
                 </div>
@@ -122,9 +132,9 @@
                         <p>{{this.form.specialTeaching.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.specialTeaching.picUrls" :key="i">
+                <div v-for="(item,i) in form.specialTeaching.picUrls" :key="i" style="margin-left: 10px">
                     <el-col :span="12">
-                        <img style="width: 90%" :src="item.url">
+                        <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
             </div>
@@ -144,7 +154,7 @@
                     </el-col>
                 </el-row>
                 <div style="width: 100%">
-                    <img  style="width: 100%" :src="form.careerProgression.banner.url">
+                    <img  style="width: 90%" :src="form.careerProgression.banner.url">
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">立即规划</el-button>
@@ -160,7 +170,7 @@
                     </el-col>
                 </el-row>
                 <div style="width: 100%">
-                    <img style="width: 100%" :src="form.employmentServices.banner.url">
+                    <img style="width: 90%" :src="form.employmentServices.banner.url">
                 </div>
             </div>
         </el-row>
@@ -173,7 +183,7 @@
                     <el-input v-model="chatPhone" placeholder="请输入手机号"></el-input>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
+                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;height: 36px;">点击咨询</el-button>
                 </div>
             </div>
         </el-row>
@@ -187,11 +197,13 @@
                 </el-row>
                 <div v-for="(item,i) in form.hotActivity.picUrls" :key="i">
                     <el-row :gutter="10">
-                        <img @click="signUpDialogVisible=true" style="width: 90%; margin-left: 6%;" :src="item.url">
+                    <el-col :span="24">
+                        <img @click="signUpDialogVisible=true" style="width: 90%;" :src="item.url">
+                    </el-col>
                     </el-row>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">咨询更多优惠</el-button>
+                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;height: 36px;">咨询更多优惠</el-button>
                 </div>
             </div>
         </el-row>
@@ -200,7 +212,7 @@
             <div style="width: 100%;background: #2f3130; color: white; text-align:center;height:80%">
                 <div v-for="(item, i) in form.bottom.columnList" :key="i" >
                     <el-col :span="120" :offset="2" >
-                        <h4>{{item.title}}</h4>
+                        <h4 style="margin-bottom: -5%">{{item.title}}</h4>
                     </el-col>
                 </div>
             </div>
