@@ -167,11 +167,9 @@
             <Appointment @change="colseYy"></Appointment>
         </el-dialog>
         <div class="drawer-div">
-            <div class="drawer-div">
-                <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="50%" :show-close="false" :with-header="false">
-                    <Chat @close_chat="close_chat" v-if="chatVisible" :containDisplay="true"></Chat>
-                </el-drawer>
-            </div>
+            <el-drawer :close-on-click-modal="false" v-model="chatVisible"  direction="btt" size="50%" :show-close="false" :with-header="false">
+                <Chat @close_chat="close_chat" v-if="chatVisible" :containDisplay="true"></Chat>
+            </el-drawer>
         </div>
     </div>
 </template>

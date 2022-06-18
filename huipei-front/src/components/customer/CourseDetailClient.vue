@@ -460,6 +460,7 @@
             },
             close_chat(value){
                 this.chatVisible = value;
+                this.chatPhone = '';
             },
             contactCopy(){
                 let cInput = document.createElement("input");

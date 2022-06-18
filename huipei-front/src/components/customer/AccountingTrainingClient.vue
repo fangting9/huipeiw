@@ -32,10 +32,10 @@
         <el-row :gutter="20">
             <div style="width: 100%;">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="10" :offset="1">
                         <p class="title">{{this.form.hotCourse.title}}</p>
                     </el-col>
-                    <el-col :span="16">
+                    <el-col :span="12">
                         <p @click="toCourseList" class="text_right more">查看更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
@@ -71,13 +71,13 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="20" :offset="1">
                         <p class="title">{{this.form.financeLaboratory.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.financeLaboratory.picUrls" :key="i">
+                <div v-for="(item,i) in form.financeLaboratory.picUrls" :key="i" style="text-align: center">
                     <el-col :span="12">
                         <img style="width: 100%" :src="item.url">
                     </el-col>
@@ -358,6 +358,7 @@
             },
             close_chat(value){
                 this.chatVisible = value;
+                this.chatPhone = '';
             },
             telTest () {
                 const reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
@@ -405,12 +406,5 @@
         --el-button-border-color:#456CED;
         margin-top: 15px;
     }
-    .consoleButton{
-        width: 60%;
-        background-color: #456ced;
-        color: white;
-        height: 36px;
-        margin-top: 10px;
-        font-size: 15px;
-    }
+
 </style>

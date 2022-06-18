@@ -216,3 +216,11 @@ text-align: left;
 .elCarousel{
     height: 100%;
 }
+.consoleButton{
+    width: 60%;
+    background-color: #456ced;
+    color: white;
+    height: 36px;
+    margin-top: 10px;
+    font-size: 15px;
+}
