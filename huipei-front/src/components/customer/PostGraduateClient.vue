@@ -22,13 +22,13 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6" :offset="1">
+                    <el-col :span="20" :offset="1">
                         <p class="title">{{this.form.tutorial.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.tutorial.picUrls" :key="i">
+                <div v-for="(item,i) in form.tutorial.picUrls" :key="i" style="width: 100%; text-align: center">
                     <img style="width: 95%" :src="item.url">
                 </div>
                 <div style="width: 100%; text-align: center">
@@ -51,13 +51,13 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6">
-                        <p>{{this.form.coursePlan.title}}</p>
+                    <el-col :span="20" :offset="1">
+                        <p class="title">{{this.form.coursePlan.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.coursePlan.picUrls" :key="i" style="margin-left: 2%">
+                <div v-for="(item,i) in form.coursePlan.picUrls" :key="i" style="text-align: center">
                     <el-col :span="12">
                     <img style="width: 100%" :src="item.url">
                     </el-col>
@@ -112,13 +112,13 @@
         </div>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6">
-                        <p>{{this.form.signUp.title}}</p>
+                    <el-col :span="20" :offset="1">
+                        <p class="title">{{this.form.signUp.title}}</p>
                     </el-col>
                 </el-row>
-                <div style="width: 100%">
+                <div style="width: 100%;text-align: center">
                     <img style="width: 90%" :src="form.signUp.banner.url">
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
