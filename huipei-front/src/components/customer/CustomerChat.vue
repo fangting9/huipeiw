@@ -8,9 +8,9 @@
             <h5 style="color: white">汇培网教育,专注成人学历提升培训</h5>
           </el-col>
 
-              <div style="width: 100%; text-align: right">
-                  <el-icon size="40" color="white" @click="close_chat"><Close /></el-icon>
-              </div>
+          <div style="width: 100%; text-align: right">
+              <el-icon size="50" color="white" @click="close_chat"><Close /></el-icon>
+          </div>
 
       </el-header>
       <el-main style="background: white;">

@@ -14,6 +14,7 @@ import Chat from './components/customer/CustomerChat'
 import store from './store'
 import Vuex from 'vuex'
 import adminSocked from '@/socket/socket'
+import 'font-awesome/css/font-awesome.css'
 
 var app = createApp(App);
 Object.keys(ElIconModules).forEach(function (key) {

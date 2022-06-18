@@ -4,10 +4,10 @@
             <el-row :gutter="10">
                 <el-col :span="4"><p @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
                 <el-col :span="9" :offset="4">
-                    <h3 style="text-align: center; margin-top: 10%">汇培网</h3>
+                    <h3 class="pageTitle">汇培网</h3>
                 </el-col>
-                <el-col :span="7" >
-                    <img @click="goHome" style="width: 100%;margin-top: 10%;" src="../../../static/mini-logo.jpg">
+                <el-col :span="6" >
+                    <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
         </div>
@@ -28,13 +28,13 @@
             </div>
         </el-row>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center;">
+            <div style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="6">
-                        <p>{{this.form.degreeProgram.title}}</p>
+                    <el-col :span="10" :offset="1">
+                        <p class="title">{{this.form.degreeProgram.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.degreeProgram.picUrls" :key="i">
+                <div v-for="(item,i) in form.degreeProgram.picUrls" :key="i" class="center">
                     <el-col :span="12">
                         <img style="width: 100%" :src="item.url">
                     </el-col>
@@ -58,7 +58,7 @@
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1">
-                        <p>{{this.form.hotMajor.title}}</p>
+                        <p class="title">{{this.form.hotMajor.title}}</p>
                     </el-col>
                     <el-col :span="12">
                         <p class="text_right more" @click="toCourseList">易考科目<el-icon><ArrowRight /></el-icon></p>
@@ -79,15 +79,12 @@
                                 <span class="majorDesc">{{item.majorDesc}}</span>
                             </el-row>
                             <el-row :gutter="20" >
-                                <el-row :gutter="10">
                                     <el-col :span="16">
                                         <span class="majorType">{{item.majorType}}</span>
                                     </el-col>
-                                    <el-col :span="8">
-                                        <el-button @click="chatVisible=true" class="consultButton" type="primary" round>考试科目咨询</el-button>
+                                    <el-col :span="7">
+                                            <el-button @click="chatVisible=true" class="consultButton" type="primary" round>考试科目咨询</el-button>
                                     </el-col>
-
-                                </el-row>
                                 <!--//<el-button class="consultButton marginTop30" @click="chatVisible=true" type="primary" round>考试科目咨询</el-button>-->
                             </el-row>
                             </div>
@@ -100,21 +97,31 @@
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%; text-align: center;">
-                <img style="width: 100%" :src="form.advisoryService.url">
-                <div style="width: 90%; margin-left: 5%">
-                    <el-input v-model="chatPhone" placeholder="请输入手机号"></el-input>
-                </div>
-                <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button style="width: 60%;background-color: #456ced;color: white; height: 36px" @click="chatVisible=true">点击咨询</el-button>
-                </div>
+                <el-col :span="24">
+                    <img style="width: 100%" :src="form.advisoryService.url">
+                </el-col>
+                <el-row :gutter="20">
+                <el-col :span="24">
+                        <el-input prefix-icon="Iphone" style="text-align: center; width: 80%; height: 38px" v-model="chatPhone" placeholder="请输入手机号" oninput="value=value.replace(/[^\d]/g,'')"
+                                  maxlength="11" @blur="telTest"></el-input>
+                </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <el-button style="width: 60%;background-color: #456ced;color: white; height: 36px;margin-top: 10px" @click="chatVisible=true">点击咨询</el-button>
+                    </el-col>
+                </el-row>
             </div>
+        </el-row>
+        <el-row :gutter="20">
+
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align:left;">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1">
-                        <p>{{this.form.formalService.title}}</p>
+                        <p class="title"> {{this.form.formalService.title}}</p>
                     </el-col>
 
                     <el-col :span="12">
@@ -228,8 +235,15 @@
                 router.push("/home")
             },
             close_chat(value){
+                this.chatPhone= '';
                 this.chatVisible = value;
-            }
+            },
+            telTest () {
+                const reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
+                if (this.chatPhone=== '' || this.chatPhone.length <= 10 || !reg.test(this.chatPhone)) {
+                    ElMessage.error("手机号码错误");
+                }
+            },
         }
     }
 </script>

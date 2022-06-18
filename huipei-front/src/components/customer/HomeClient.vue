@@ -3,10 +3,10 @@
         <el-header style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
                 <el-col :span="9" :offset="8">
-                    <h3 style="text-align: center;">汇培网</h3>
+                    <h3 class="pageTitle">首页</h3>
                 </el-col>
                 <el-col :span="7" >
-                    <img style="width: 100%;margin-top: 17%;" src="../../../static/mini-logo.jpg">
+                    <img class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
         </el-header>
@@ -33,7 +33,7 @@
             <div style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1">
-                        <p>{{this.form.hotTopic.title}}</p>
+                        <p class="title">{{this.form.hotTopic.title}}</p>
                     </el-col>
                     <el-col :span="12">
                         <p class="text_right more" @click="toCourseList">了解更多<el-icon><ArrowRight /></el-icon></p>
@@ -71,7 +71,7 @@
             <div style="width: 100%; text-align: left;">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1">
-                        <p>{{this.form.examContest.title}}</p>
+                        <p class="title">{{this.form.examContest.title}}</p>
                     </el-col>
                     <el-col :span="12">
                         <p class="text_right more" @click="chatVisible=true">查看详情<el-icon><ArrowRight /></el-icon></p>
@@ -84,10 +84,10 @@
                         </el-col>
                         <el-col :span="14">
                             <el-row :gutter="10">
-                                <span class="courseName" style="margin-top: 1%">{{item.desc}}</span>
+                                <span class="examContestName" style="margin-top: 1%">{{item.desc}}</span>
                             </el-row>
                             <el-row :gutter="10">
-                                <span class="courseDesc red" style="margin-top: 6%; margin-bottom: 3%" >¥{{item.price}}</span>
+                                <span class="price" style="margin-top: 6%; margin-bottom: 3%" >¥{{item.price}}</span>
                             </el-row>
                             <el-row :gutter="10">
                                 <el-col :span="12">
@@ -108,7 +108,7 @@
             <div style="width: 100%; text-align: left;">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1">
-                        <p>{{this.form.campusEnvironment.title}}</p>
+                        <p class="title">{{this.form.campusEnvironment.title}}</p>
                     </el-col>
                     <el-col :span="12">
                         <p @click="yyDialogVisible=true" class="text_right more">立即预约<el-icon><ArrowRight /></el-icon></p>
@@ -126,7 +126,7 @@
             <div style="width: 100%; text-align: left;">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1">
-                        <p>{{this.form.brandAdvantage.title}}</p>
+                        <p class="title">{{this.form.brandAdvantage.title}}</p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.brandAdvantage.picUrls" :key="i" style="text-align :center">
@@ -141,7 +141,7 @@
             <div style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1">
-                        <p>{{this.form.aboutUs.title}}</p>
+                        <p class="title">{{this.form.aboutUs.title}}</p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.aboutUs.picUrls" :key="i" style="text-align :center">
@@ -306,9 +306,20 @@
     }
     .text-small{
         text-align: center;
-        font-size: xx-small;
+        font-size: 11px;
+        color: #161616 ;
+        font-family: "PingFang SC-Semibold";
     }
-
+    .examContestName{
+        font-size: 14px;
+        font-family: PingFang SC-Regular;
+        color: #161616;
+    }
+    .price{
+        color: #FF243A ;
+        font-size: 16px;
+        font-family: Mittelschrift-Regular;
+    }
     .image50{
         text-align: center;
         width: 80%;
