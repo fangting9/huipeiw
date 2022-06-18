@@ -2,19 +2,25 @@
     <div style="width: 100%">
         <el-header style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
-                <el-col :span="5"><p @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
+                <el-col :span="4"><p class="back" @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
                 <el-col :span="9" :offset="3">
-                    <h3 style="text-align: center"><p>课程列表</p></h3>
+                    <h3 class="pageTitle"><p>课程列表</p></h3>
                 </el-col>
-                <el-col :span="7" >
-                    <img @click="goHome" style="width: 100%;margin-top: 17%;" src="../../../static/mini-logo.jpg">
+                <el-col :span="6" >
+                    <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
         </el-header>
-        <div style="width: 80%; margin-left: 10%">
-            <el-input class="el-input" v-model="form.vague" placeholder="搜索课程关键词" suffix-icon="Search" @change="list"></el-input>
-        </div>
-        <div style="height: 50px; text-align: center">
+
+            <el-row :gutter="20">
+                <div style="width: 100%; text-align: center">
+                <el-input class="el-input" v-model="form.vague" placeholder="搜索课程关键词" suffix-icon="Search" @change="list(form.code)"></el-input>
+
+                </div>
+            </el-row>
+
+
+        <div style="height: 50px; text-align: center; margin-left: 5%">
             <el-menu
                     :default-active= 'activeIndex'
                     mode="horizontal"
@@ -22,7 +28,7 @@
                     class="el-menu-demo"
             >
 
-                <el-menu-item index="0" style="margin-left: 30px;" @click="list()">
+                <el-menu-item index="0"  @click="list()">
                     全部
                 </el-menu-item>
 
@@ -48,15 +54,14 @@
                     {{subjectName.subject5}}
                 </el-menu-item>
 
-
             </el-menu>
         </div>
 
         <el-main style="width: 100%">
             <div v-for="(item,i) in this.courseList" :key="i" style="width: 100%; text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="8" :offset="1">
-                        <img style="width: 100px; height: 100px; -webkit-border-radius: 5px;" :src="item.detail.url">
+                    <el-col :span="8" >
+                        <img style="width: 100%; -webkit-border-radius: 5px;" :src="item.detail.url">
                     </el-col>
                     <el-col :span="14">
                         <el-row :gutter="10">
@@ -67,15 +72,21 @@
                                     v-for="(tag, index) in item.detail.label"
                                     :key="index"
                                     class="mx-1"
-                                    style="margin-left: 1px"
+                                    style="margin-left: 1px; margin-top: -10px; margin-bottom: 5px"
                                     :disable-transitions="false"
                             >
                                 {{ tag }}
                             </el-tag>
                         </el-row>
                         <el-row :gutter="10">
-                            <span class="courseNum red" style="margin-top: 20px;">¥{{item.detail.price}}</span>
-                            <el-button @click="detail(item)" class="signUpButton" style="margin-top: -20px" round>查看详情</el-button>
+                            <el-col :span="12">
+                                <span class="price" >¥{{item.detail.price}}</span>
+                            </el-col>
+                            <el-col :span="12">
+                                <el-button @click="detail(item)" class="signUpButton"  round>查看详情</el-button>
+                            </el-col>
+
+
                         </el-row>
                     </el-col>
                 </el-row>
@@ -127,6 +138,7 @@
         },
         created(){
             this.activeIndex = useRoute().query.activeIndex;
+            this.code = useRoute().query.activeIndex;
             this.search();
             this.list(useRoute().query.activeIndex);
         },
@@ -199,12 +211,14 @@
         text-align: center;
     }
     .el-menu-item{
-        padding: 0 5px;
+        padding: 0 6px;
         font-size:small;
 
     }
     .el-input{
         --el-input-bg-color: #f5f5f5;
-        --el-input-border-color:none
+        --el-input-border-color:none;
+        width: 90%;
+        text-align: center;
     }
 </style>

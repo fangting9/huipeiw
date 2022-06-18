@@ -1,9 +1,9 @@
 
 module.exports = {
-  allowedHosts:[
-      'www.huipeiw.com'
-  ],
   devServer: {
+    allowedHosts:[
+      'www.huipeiw.com'
+    ],
     headers: {
       'Access-Control-Allow-Origin': '*',
     },

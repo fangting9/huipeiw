@@ -2,7 +2,7 @@
     <div>
         <div style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
-                <el-col :span="4"><p @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
+                <el-col :span="4"><p class="back" @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
                 <el-col :span="9" :offset="4">
                     <h3 class="pageTitle">汇培网</h3>
                 </el-col>
@@ -14,8 +14,8 @@
 
         <el-row :gutter="20">
             <div class="block text-center" style="width: 100%;height: 230px">
-                <el-carousel>
-                    <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
+                <el-carousel class="elCarousel">
+                    <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i" >
                         <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
                 </el-carousel>
@@ -199,7 +199,7 @@
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="24">
-                        <el-button style="width: 60%;background-color: #456ced;color: white; height: 36px;margin-top: 10px" @click="chatVisible=true">点击咨询</el-button>
+                        <el-button class="consoleButton" @click="chatVisible=true">点击咨询</el-button>
                     </el-col>
                 </el-row>
             </div>
@@ -220,7 +220,7 @@
                     </el-row>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 5px;margin-bottom: 10px">
-                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white; height: 36px;margin-top: 10px">咨询更多优惠</el-button>
+                    <el-button @click="chatVisible=true" class="consoleButton">咨询更多优惠</el-button>
                 </div>
             </div>
         </el-row>
@@ -404,5 +404,13 @@
         border-color: #456CED;
         --el-button-border-color:#456CED;
         margin-top: 15px;
+    }
+    .consoleButton{
+        width: 60%;
+        background-color: #456ced;
+        color: white;
+        height: 36px;
+        margin-top: 10px;
+        font-size: 15px;
     }
 </style>

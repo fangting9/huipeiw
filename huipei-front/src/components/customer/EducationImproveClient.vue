@@ -13,7 +13,7 @@
         </div>
         <el-row :gutter="20">
             <div class="block text-center" style="width: 100%;height: 200px">
-                <el-carousel>
+                <el-carousel class="elCarousel">
                     <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                         <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
@@ -138,10 +138,10 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;background: #2f3130; color: white; text-align:center;height:80%">
+            <div style="width: 100%;background: #2F3130; color: white; text-align:center;height:80%">
                 <div v-for="(item, i) in form.bottom.columnList" :key="i" >
-                    <el-col :span="120" :offset="2" >
-                        <h4 style="margin-bottom: -5%">{{item.title}}</h4>
+                    <el-col :span="12" :offset="2" >
+                        <h4 class="bottom-column">{{item.title}}</h4>
                     </el-col>
                 </div>
             </div>

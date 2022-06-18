@@ -12,7 +12,7 @@
         </el-header>
         <el-row :gutter="20">
             <div class="block text-center" style="width: 100%;height: 180px">
-                <el-carousel style="height:100%">
+                <el-carousel class="elCarousel">
                     <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                             <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
@@ -315,11 +315,7 @@
         font-family: PingFang SC-Regular;
         color: #161616;
     }
-    .price{
-        color: #FF243A ;
-        font-size: 16px;
-        font-family: Mittelschrift-Regular;
-    }
+
     .image50{
         text-align: center;
         width: 80%;

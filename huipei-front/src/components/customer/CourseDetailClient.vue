@@ -2,19 +2,19 @@
     <div>
         <div style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
-                <el-col :span="4"><p @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
+                <el-col :span="4"><p class="back" @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
                 <el-col :span="9" :offset="4">
                     <h3 style="text-align: center"><p>{{pageTitle}}</p></h3>
                 </el-col>
-                <el-col :span="7" >
-                    <img @click="goHome" style="width: 100%;margin-top: 10%;" src="../../../static/mini-logo.jpg">
+                <el-col :span="6" >
+                    <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
         </div>
 
         <el-row :gutter="20">
-            <div class="block text-center" style="width: 100%;height: 180px;">
-                <el-carousel>
+            <div class="block text-center" style="width: 100%;height: 200px;">
+                <el-carousel class="elCarousel">
                     <el-carousel-item v-for="(item,i) in form.rollingPicUrl" :key="i">
                         <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
@@ -22,52 +22,65 @@
             </div>
         </el-row>
         <el-divider class="divider2"/>
-        <div style="width: 100%;">
+
             <el-row :gutter="20">
                 <div style="width: 100%;text-align: center;">
                     <img style="width: 90%" :src="form.coupon.url">
                 </div>
             </el-row>
+
+
             <el-row :gutter="20">
-                <div style="width: 100%;text-align: left;">
-                    <el-row :gutter="10">
-                    <el-col :span="5" :offset="1">
-                        <p >{{form.courseName.name}}</p>
-                    </el-col>
-                    <el-col :span="9">
-                        <p style="color: #8c939d">{{form.courseName.subName}}</p>
-                    </el-col>
-                    <el-col :span="8">
-                        <el-button @click="yyDialogVisible=true" round style="background-color: #28c444;color: white;margin-top: 11%; ">咨询入学习群</el-button>
-                    </el-col>
-                        <span style="font-size: x-small; color: #8c939d;margin-left: 6%; margin-top: -10px; ">{{this.form.courseName.desc}}</span>
-                    </el-row>
-                </div>
+                <el-col :span="15" :offset="1">
+                    <div style="width: 100%;text-align: left;">
+                    <p class="title">{{form.courseName.name}}<span style="color: #666666">{{form.courseName.subName}}</span></p>
+
+                    </div>
+                </el-col>
+
+                <el-col :span="7">
+                    <div style="width: 100%;text-align: right;">
+                        <el-button @click="yyDialogVisible=true" round class="consoleLearnButton">咨询入学习群</el-button>
+                    </div>
+                </el-col>
+
             </el-row>
-            <el-row :gutter="10">
+            <el-row :gutter="20">
+
+                <el-col :span="18" :offset="1">
+                    <div style="width: 100%;text-align: left;margin-top: -5%;">
+                        <p style="color: #828282;font-size: 11px">{{form.courseName.desc}}</p>
+                    </div>
+                </el-col>
+                <el-col :span="18" :offset="1">
+                    <p class="price" style="color: #FF685B">{{this.form.coursePrice}}</p>
+                </el-col>
+
+            </el-row>
+
+
+           <!-- <el-row :gutter="10">
                 <el-col :span="6" :offset="1">
                     <p style="color: red">¥ {{form.coursePrice}}</p>
                 </el-col>
-            </el-row>
+            </el-row>-->
             <el-row :gutter="10">
                 <div v-for="(item, index) in form.courseClassification" :key="index" style="width: 100%">
                     <el-row :gutter="10">
-                        <el-col :span="10" :offset="1">
-                            <span class="majorName" style="font-size: smaller">{{item.name}}</span>
-                        </el-col>
-                        <el-col :span="6">
-                            <span class="majorDesc" style="color: red">¥ {{item.price}}</span>
+                        <el-col :span="16" :offset="1">
+                            <span class="majorName" style="font-size: 12px;color: #161616">{{item.name}}
+                            <span class="majorDesc" style="color: #FF685B;font-size: 12px;">{{item.price}}</span>
+                            </span>
                         </el-col>
 
                         <el-col :span="6" >
-                            <p class="text_right more" @click="chatVisible=true">查看更多<el-icon><ArrowRight /></el-icon></p>
+                            <p class="text_right" style="font-size: 12px;color: #161616;margin-top: 4%" @click="chatVisible=true">查看更多<el-icon><ArrowRight /></el-icon></p>
                         </el-col>
                     </el-row>
                 </div>
 
             </el-row>
 
-        </div>
 
         <el-divider class="divider2"/>
         <el-row :gutter="20">
@@ -80,11 +93,11 @@
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
                     <el-col :span="9" :offset="1">
-                        <p>{{this.form.courseDetail.title}}</p>
+                        <p class="title">{{this.form.courseDetail.title}}</p>
                     </el-col>
                     <el-col :span="12" :offset="1">
                         <p style="text-align: right">
-                            <el-button @click="yyDialogVisible=true" round style="background-color: #456ced;color: white;">预约课程</el-button>
+                            <el-button @click="yyDialogVisible=true" round class="yyButton">预约课程</el-button>
                         </p>
                     </el-col>
                 </el-row>
@@ -92,7 +105,7 @@
                     <el-divider class="divider"/>
                     <el-row :gutter="10">
                         <el-col :span="20" :offset="1">
-                            <p class="majorName" style="font-size: xx-small;color: #8c939d">{{item.desc}}</p>
+                            <p class="majorName" style="font-size: 11px;color: #828282">{{item.desc}}</p>
                         </el-col>
                     </el-row>
                 </div>
@@ -109,26 +122,26 @@
             <div style="width: 100%;">
                 <el-row :gutter="10">
                     <el-col :span="9" :offset="1">
-                        <p>{{this.form.courseSchedule.title}}</p>
+                        <p class="title">{{this.form.courseSchedule.title}}</p>
                     </el-col>
                     <el-col :span="12" :offset="1">
                         <p style="text-align: right">
-                            <el-button @click="yyDialogVisible=true" round style="background-color: #456ced;color: white;">预约课程</el-button>
+                            <el-button @click="yyDialogVisible=true" round class="yyButton">预约课程</el-button>
                         </p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.courseSchedule.detail" :key="i" style="width: 100%; text-align: left">
-                    <div style="width: 100%; background: #e9f1fe; ">
+                    <div style="width: 100%; background: #E9F1FE">
                         <el-row :gutter="10">
                             <el-col :span="20" :offset="1">
-                                <p style="font-size: smaller">{{item.name}}</p>
+                                <p style="font-size: 14px; color: #161616">{{item.name}}</p>
                             </el-col>
                         </el-row>
                     </div>
                     <div style="width: 100%;">
                         <el-row :gutter="10">
                             <el-col :span="20" :offset="2">
-                                <p style="font-size: small"><el-icon><Star /></el-icon> {{item.desc}}</p>
+                                <p style="font-size: 11px;color:#161616"><el-icon><ChatDotRound /></el-icon> &nbsp;{{item.desc}}</p>
                             </el-col>
                         </el-row>
                     </div>
@@ -138,8 +151,8 @@
         </el-row>
         <el-divider class="divider2"/>
             <el-row :gutter="10">
-                <el-col :span="9">
-                    <p>{{this.form.consultTeacher.title}}</p>
+                <el-col :span="9" :offset="1">
+                    <p class="title">{{this.form.consultTeacher.title}}</p>
                 </el-col>
             </el-row>
 
@@ -148,17 +161,17 @@
                 <el-col
                         v-for="(item, index) in form.consultTeacher.detail"
                         :key="index"
-                        :span="8"
+                        :span="7"
                         :offset="index > 0 ? 1 : 0"
                 >
                     <el-card :body-style="{ padding: '0px',background:'#e9f1fe',overflow:'hiden'}">
                         <div >
                             <el-avatar  style="margin-top: 10px" :size="50" :src="item.url" />
                         </div>
-                        <div style="padding: 14px">
-                            <span>{{item.name}}</span>
+                        <div >
+                            <span style="font-size: 12px;color:#161616">{{item.name}}</span>
                             <div style="margin-top: 5px;">
-                                <el-button @click="chatVisible=true" style="background-color: #e9f1fe;color: #3374ff;border-color: #3374ff;" >在线咨询</el-button>
+                                <el-button @click="chatVisible=true" style="height:21px; background-color: #e9f1fe;font-size: 12px;color: #2F76F1;border-color: #3374ff;margin-bottom: 10%;" >在线咨询</el-button>
                             </div>
                         </div>
                     </el-card>
@@ -173,15 +186,15 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="10">
-            <el-col :span="9">
-                <p>{{form.teacherProfile.title}}</p>
+            <el-col :span="9" :offset="1">
+                <p class="title">{{form.teacherProfile.title}}</p>
             </el-col>
         </el-row>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center">
                 <div v-for="(item,i) in form.teacherProfile.picUrl" :key="i">
                     <el-col :span="12">
-                        <img style="width: 90%" :src="item.url">
+                        <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
             </div>
@@ -189,10 +202,10 @@
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <el-col :span="6" :offset="1">
-                <p >{{form.courseComment.title}}</p>
+                <p class="title">{{form.courseComment.title}}</p>
             </el-col>
             <el-col :span="16">
-                <p style="color: #8c939d; font-size: xx-small;margin-top: 20px;margin-left: -20px;">
+                <p style="color: #828282; font-size: 10px;margin-top: 20px;margin-left: -20px;">
                     (累计
                 <span class="red">{{form.courseComment.count}}</span>
                     条，包含往期同班型评价)
@@ -204,7 +217,7 @@
         <div v-for="(item, index) in form.courseComment.detail" :key="index" style="width: 100%; text-align: left">
             <el-row :gutter="10">
                 <el-col :span="4" :offset="1">
-                    <p style="color: #4484f2; font-size: small;">{{item.userName}}</p>
+                    <p style="color: #2F76F1; font-size: 12px;">{{item.userName}}</p>
                 </el-col>
                 <el-col :span="10">
                     <p style="color: #8c939d; font-size: x-small;margin-top: 15px;margin-left: -10px;">{{item.time}}</p>
@@ -218,7 +231,7 @@
             </el-row>
             <el-row :gutter="10">
                 <el-col :span="24" :offset="1">
-                    <p>{{item.content}}</p>
+                    <p style="color:#161616; font-size:12px">{{item.content}}</p>
                 </el-col>
             </el-row>
             <el-row :gutter="10">
@@ -227,7 +240,7 @@
                     <el-tag
                             v-for="(tag, index) in item.label"
                             :key="index"
-                            class="mx-1"
+                            class="mx-1 tag"
                             :disable-transitions="false"
                     >
                         {{ tag }}
@@ -237,7 +250,7 @@
             </el-row>
             <el-row :gutter="10">
                 <el-col :span="24" :offset="1">
-                    <span style="color: #8c939d">该学员评价来自&nbsp;<span style="color: #2f3130">{{item.fromTeacher}}</span>&nbsp;老师课程</span>
+                    <span style="color: #828282; font-size: 10px">该学员评价来自&nbsp;<span style="color: #2f3130">{{item.fromTeacher}}</span>&nbsp;老师课程</span>
                 </el-col>
             </el-row>
             <el-divider class="divider1"/>
@@ -246,16 +259,21 @@
 
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;">
-                <div style="width: 100%;text-align: center;">
-                    <img class="imgPhone" :src="form.advisoryService.url">
-                </div>
-                <div style="width: 90%; margin-left: 5%">
-                    <el-input v-model="chatPhone" placeholder="请输入手机号"></el-input>
-                </div>
-                <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;">点击咨询</el-button>
-                </div>
+            <div style="width: 100%; text-align: center">
+                <el-col :span="24">
+                    <img style="width: 100%" :src="form.advisoryService.url">
+                </el-col>
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <el-input prefix-icon="Iphone" style="text-align: center; width: 80%; height: 38px" v-model="chatPhone" placeholder="请输入手机号" oninput="value=value.replace(/[^\d]/g,'')"
+                                  maxlength="11" @blur="telTest"></el-input>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="20">
+                    <el-col :span="24">
+                        <el-button class="consoleButton" @click="chatVisible=true">点击咨询</el-button>
+                    </el-col>
+                </el-row>
             </div>
         </el-row>
         <el-divider class="divider2"/>
@@ -265,20 +283,26 @@
             </div>
         </el-row>
         <el-divider class="divider2"/>
-            <div style="width: 100%">
-                <el-row :gutter="10">
-                    <el-col :span="9">
-                        <p>退换课程规则</p>
-                    </el-col>
-                </el-row>
-                <el-divider class="divider"/>
-                <div style="width: 100%;text-align: center;">
-                    <img style="width: 100%"  :src="form.returnRules.url">
-                </div>
+            <div style="width: 100%;text-align: center;">
+                <img style="width: 90%"  :src="form.returnRules.url">
             </div>
+
         <el-divider class="divider2"/>
-        <div style="width: 100%; text-align: center">
+        <div style="width: 100%; text-align: center; margin-left: 5px">
             <el-row :gutter="20">
+                <el-divider class="divider1" style="margin-bottom: -2px;"/>
+                <el-col :span="6">
+                    <img @click="chatVisible=true" style="width: 85%" src="../../../static/zx.jpg"/>
+                </el-col>
+                <el-divider direction="vertical" style="height: 46px"/>
+                <el-col :span="5">
+                    <img @click="signUpDialogVisible=true" style="width: 100%" src="../../../static/bm.jpg"/>
+                </el-col>
+                <el-col :span="11">
+                    <img @click="contactCopy" style="width: 100%" src="../../../static/dh.jpg"/>
+                </el-col>
+            </el-row>
+            <!--<el-row :gutter="20">
                 <el-divider class="divider1" style="margin-bottom: -2px;"/>
                 <div style="width: 30%" @click="chatVisible=true">
                     <el-icon size="large" style="margin-top: 6px;" ><ChatDotRound /></el-icon>
@@ -293,7 +317,7 @@
                     <el-icon size="large" style="margin-top: 25px;"><PhoneFilled /></el-icon>
                     电话咨询
                 </div>
-            </el-row>
+            </el-row>-->
         </div>
 
         <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
@@ -447,6 +471,12 @@
                 // 复制成功后再将构造的标签 移除
                 document.body.removeChild(cInput);
             },
+            telTest () {
+                const reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
+                if (this.chatPhone=== '' || this.chatPhone.length <= 10 || !reg.test(this.chatPhone)) {
+                    ElMessage.error("手机号码错误");
+                }
+            },
         }
     }
 </script>
@@ -465,6 +495,36 @@
     .grid-content {
         border-radius: 4px;
         min-height: 36px;
+    }
+    .consoleLearnButton{
+        height: 26px;
+        font-size: 11px;
+        background: #28C445 ;
+        color: white;
+        margin-top: 14%;
+    }
+    .yyButton{
+        background: #456CED;
+        border-color: #456CED;
+        --el-button-border-color:#456CED;
+        font-size: 10px;
+        height: 21px;
+        color: white;
+    }
+    .consoleButton{
+        width: 60%;
+        background-color: #456ced;
+        color: white;
+        height: 36px;
+        margin-top: 10px;
+        font-size: 15px;
+    }
+    .tag{
+        margin-left: 3px;
+        background-color: #E3E5E8;
+        border-color: #E3E5E8;
+        color: #161616;
+        font-size: 10px;
     }
 
 </style>

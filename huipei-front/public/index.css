@@ -72,7 +72,7 @@
     margin-top: 1px;
     margin-bottom: 0;
     width: 100%;
-    border-block-color: rgba(0, 0, 0, 0.02);
+    border-block-color: rgba(69, 108, 237, 0.02);
     border-top: rgba(255, 0, 0, 0.02);
 }
 .text_right{
@@ -91,8 +91,8 @@ text-align: left;
 }
 .dialogs .el-dialog__header{
     background-image: url("../static/header.jpg");
-    height: 50px;
-    width: 87%;
+    height: 70px;
+    width: 87.8%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 
@@ -103,9 +103,9 @@ text-align: left;
 
 }
 .dialog_yy .el-dialog__header{
-    background-image: url("../static/yy_header.png");
-    height: 50px;
-    width: 87%;
+    background-image: url("../static/yy_header.jpg");
+    height: 70px;
+    width: 87.8%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 
@@ -202,4 +202,17 @@ text-align: left;
     font-weight: 400;
     color: #FFFFFF;
     margin-bottom: -5%;
+}
+.back{
+    margin-top: 40%;
+}
+
+.price{
+    color: #FF243A ;
+    font-size: 16px;
+    font-family: Mittelschrift-Regular;
+}
+
+.elCarousel{
+    height: 100%;
 }
