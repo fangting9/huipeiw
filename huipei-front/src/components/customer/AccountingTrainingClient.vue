@@ -199,7 +199,7 @@
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="24">
-                        <el-button class="consoleButton" @click="chatVisible=true">点击咨询</el-button>
+                        <el-button style="margin-top:5%;width: 60%;background-color: #456ced;color: white;height: 36px;" @click="chatVisible=true">点击咨询</el-button>
                     </el-col>
                 </el-row>
             </div>
@@ -220,7 +220,7 @@
                     </el-row>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 5px;margin-bottom: 10px">
-                    <el-button @click="chatVisible=true" class="consoleButton">咨询更多优惠</el-button>
+                    <el-button @click="chatVisible=true" style=" width: 60%;background-color: #456ced;color: white;height: 36px;">咨询更多优惠</el-button>
                 </div>
             </div>
         </el-row>
