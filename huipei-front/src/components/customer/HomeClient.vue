@@ -36,7 +36,7 @@
                     <el-col :span="10" :offset="1"  style="padding-left: 16px">
                         <p class="title">{{this.form.hotTopic.title}}</p>
                     </el-col>
-                    <el-col :span="12">
+                    <el-col :span="12" style="padding-right: 16px">
                         <p class="text_right more" @click="toCourseList">了解更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
@@ -56,7 +56,7 @@
                                     <el-col :span="12">
                                         <span style="margin-left: -5px" class="courseNum">{{item.applyNum}}人报名</span>
                                     </el-col>
-                                    <el-col :span="12">
+                                    <el-col :span="12" style="padding-right: 16px">
                                         <el-button @click="signUpDialogVisible=true" class="signUpButton" round>报名</el-button>
                                     </el-col>
 
@@ -74,8 +74,8 @@
                     <el-col :span="10" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.examContest.title}}</p>
                     </el-col>
-                    <el-col :span="12">
-                        <p class="text_right more" @click="chatVisible=true">查看详情<el-icon><ArrowRight /></el-icon></p>
+                    <el-col :span="13" style="padding-right: 16px">
+                        <p class="text_right more" @click="chatVisible=true" style="padding-right: 16px">查看详情<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.examContest.detail" :key="i">
@@ -94,8 +94,8 @@
                                 <el-col :span="12">
                                     <span class="courseNum">{{item.status}}</span>
                                 </el-col>
-                                <el-col :span="12">
-                                    <el-button @click="yyDialogVisible=true" class="signUpButton" round>预约</el-button>
+                                <el-col :span="12" style="padding-right: 16px">
+                                    <el-button @click="yyDialogVisible=true" class="signUpButton" style="padding-right: 16px" round>预约</el-button>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -112,7 +112,7 @@
                         <p class="title">{{this.form.campusEnvironment.title}}</p>
                     </el-col>
                     <el-col :span="12">
-                        <p @click="yyDialogVisible=true" class="text_right more">立即预约<el-icon><ArrowRight /></el-icon></p>
+                        <p @click="yyDialogVisible=true" class="text_right more" style="padding-right: 16px">立即预约<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.campusEnvironment.picUrls" :key="i" class="divFor">
@@ -163,11 +163,9 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%; text-align: center;">
-                <div v-for="(item,i) in this.form.contact.picUrls" :key="i">
-                    <img @click="contactCopy" style="width: 100%" :src="item.url">
+                <div v-for="(item,i) in this.form.contact.picUrls" :key="i" style="width: 100%; text-align: center;padding-bottom: 0">
+                    <img @click="contactCopy" style="width: 100%;margin-bottom: -5px;" :src="item.url">
                 </div>
-            </div>
         </el-row>
 
         <el-dialog  v-model="signUpDialogVisible" custom-class="dialogs" @close="signUpDialogVisible=false">
