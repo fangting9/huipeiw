@@ -1,11 +1,12 @@
 <template>
-    <div>
-        <el-header style="width: 100%; height: 60px;text-align: right">
+    <div class="overflow">
+        <el-header style="width: 100%; height: 60px;text-align: center">
             <el-row :gutter="10">
-                <el-col :span="9" :offset="8">
+                <el-col :span="8" ></el-col>
+                <el-col :span="8" >
                     <h3 class="pageTitle">首页</h3>
                 </el-col>
-                <el-col :span="7" >
+                <el-col :span="8" >
                     <img class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
@@ -20,9 +21,9 @@
             </div>
         </el-row>
         <el-row :gutter="10">
-            <div style="width: 100%; margin-inline-start: 15px;margin-top:10px;text-align: center;">
+            <div style="width: 100%;margin-inline-start: 20px;  margin-top:10px;text-align: center;">
                 <div v-for="(item,i) in this.form.brandIntroductionPicUrl" :key="i">
-                    <el-col :span="4" style="margin-left: 10px">
+                    <el-col :span="4" style="margin-left: 2%">
                         <img class="image50" :src="item.picUrl" alt="" @click="toGo(item.code)">
                         <p class="text-small" @click="toGo(item.code)">{{item.name}}</p>
                     </el-col>
@@ -32,7 +33,7 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="10" :offset="1">
+                    <el-col :span="10" :offset="1"  style="padding-left: 16px">
                         <p class="title">{{this.form.hotTopic.title}}</p>
                     </el-col>
                     <el-col :span="12">
@@ -41,7 +42,7 @@
                 </el-row>
                 <div v-for="(item,i) in this.form.hotTopic.detail" :key="i" style="text-align: left;">
                     <el-row :gutter="10">
-                        <el-col :span="8" :offset="1">
+                        <el-col :span="8" :offset="1" style="padding-left: 16px">
                             <img class="courseImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
@@ -70,7 +71,7 @@
         <el-row :gutter="20">
             <div style="width: 100%; text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="10" :offset="1">
+                    <el-col :span="10" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.examContest.title}}</p>
                     </el-col>
                     <el-col :span="12">
@@ -79,7 +80,7 @@
                 </el-row>
                 <div v-for="(item,i) in this.form.examContest.detail" :key="i">
                     <el-row :gutter="10">
-                        <el-col :span="8" :offset="1">
+                        <el-col :span="8" :offset="1" style="padding-left: 16px">
                             <img class="courseImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
@@ -107,30 +108,36 @@
         <el-row :gutter="20">
             <div style="width: 100%; text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="10" :offset="1">
+                    <el-col :span="10" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.campusEnvironment.title}}</p>
                     </el-col>
                     <el-col :span="12">
                         <p @click="yyDialogVisible=true" class="text_right more">立即预约<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in this.form.campusEnvironment.picUrls" :key="i" style="text-align: center;">
-                        <el-col :span="12">
-                            <img style="width: 100%" :src="item.url">
-                        </el-col>
+                <div v-for="(item,i) in this.form.campusEnvironment.picUrls" :key="i" class="divFor">
+                    <el-col :span="11" v-if="i%2 === 0" style="padding-right: 0;padding-bottom: 10px;padding-top: 0">
+                        <img style="width: 100%" :src="item.url">
+                    </el-col>
+                    <el-col :span="12" style="padding-left: 15px; padding-bottom: 10px;padding-top: 0" v-if="i%2 === 1">
+                        <img style="width: 100%" :src="item.url">
+                    </el-col>
                 </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%; text-align: left;">
-                <el-row :gutter="10">
-                    <el-col :span="10" :offset="1">
+                <el-row :gutter="10" >
+                    <el-col :span="10" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.brandAdvantage.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in this.form.brandAdvantage.picUrls" :key="i" style="text-align :center">
-                    <el-col :span="12">
+                <div v-for="(item,i) in this.form.brandAdvantage.picUrls" :key="i" class="divFor">
+                    <el-col :span="11" v-if="i%2 === 0" style="padding-right: 0;padding-bottom: 10px;padding-top: 0">
+                        <img style="width: 100%" :src="item.url">
+                    </el-col>
+                    <el-col :span="12" style="padding-left: 15px; padding-bottom: 10px;padding-top: 0" v-if="i%2 === 1">
                         <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
@@ -140,12 +147,15 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="10" :offset="1">
+                    <el-col :span="10" :offset="1"  style="padding-left: 16px">
                         <p class="title">{{this.form.aboutUs.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in this.form.aboutUs.picUrls" :key="i" style="text-align :center">
-                    <el-col :span="12">
+                <div v-for="(item,i) in this.form.aboutUs.picUrls" :key="i" class="divFor">
+                    <el-col :span="11" v-if="i%2 === 0" style="padding-right: 0;padding-bottom: 10px;padding-top: 0">
+                        <img style="width: 100%" :src="item.url">
+                    </el-col>
+                    <el-col :span="12" style="padding-left: 15px; padding-bottom: 10px;padding-top: 0" v-if="i%2 === 1">
                         <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
