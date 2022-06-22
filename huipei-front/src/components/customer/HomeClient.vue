@@ -276,7 +276,14 @@
                 document.body.appendChild(cInput);
                 cInput.select();
                 document.execCommand("copy");
-                ElMessage("电话号复制成功");
+                // ElMessage("电话号复制成功");
+                ElMessage({
+                   message: '电话号复制成功',
+                   center: true,
+                   offset: 200,
+                   type: 'success',
+                });
+
                 // 复制成功后再将构造的标签 移除
                 document.body.removeChild(cInput);
             },
