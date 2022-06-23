@@ -1,17 +1,20 @@
 <template>
-    <div>
-        <div style="width: 100%; height: 60px;text-align: right">
+    <div class="overflow">
+        <el-header style="width: 100%; height: 60px;text-align: center">
             <el-row :gutter="10">
-                <el-col :span="4"><p class="back" @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
-                <el-col :span="9" :offset="4">
+                <el-col :span="8" >
+                    <div style="text-align: left">
+                        <h3 ><el-icon @click="this.$router.back()" style="vertical-align: -30%"><CloseBold /></el-icon></h3>
+                    </div>
+                </el-col>
+                <el-col :span="8" >
                     <h3 class="pageTitle">汇培网</h3>
                 </el-col>
-                <el-col :span="6" >
-                    <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
+                <el-col :span="8" >
+                    <img class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
-
-        </div>
+        </el-header>
         <el-row :gutter="20">
             <div class="block text-center" style="width: 100%;height: 200px;">
                 <el-carousel class="elCarousel">

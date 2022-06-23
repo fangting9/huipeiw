@@ -133,6 +133,7 @@ text-align: left;
 }
 .hotImage{
     width: 90%;
+    height: 100%;
     -webkit-border-radius: 5px;
 }
 .majorDesc{
@@ -192,12 +193,19 @@ text-align: left;
 }
 .center{
     text-align: center;
+    width: 100%;
 }
 .right{
     text-align: right;
 }
 .bottom-column{
-    font-size: 13px;
+     font-size: 13px;
+     font-weight: 400;
+     color: #FFFFFF;
+     margin-bottom: -5%;
+ }
+.bottom-column12{
+    font-size: 12px;
     font-weight: 400;
     color: #FFFFFF;
     margin-bottom: -5%;
@@ -231,5 +239,9 @@ text-align: left;
 
 .divFor{
     margin-left: 16px;
+    margin-right: 16px;
     text-align :center;
+}
+.div30{
+    margin-bottom: 30px;
 }

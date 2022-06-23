@@ -46,21 +46,21 @@
                             <img class="courseImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
-                            <el-row :gutter="10">
-                                <span class="courseName">{{item.courseName}}</span>
-                            </el-row>
-                            <el-row :gutter="10">
-                                <span class="courseDesc" style="margin-top: 1%; margin-bottom: 2%">{{item.desc}}</span>
-                            </el-row>
-                            <el-row :gutter="10">
+                                <el-row :gutter="10" >
+                                    <span class="courseName">{{item.courseName}}</span>
+                                </el-row>
+                                <el-row :gutter="10">
+                                    <span class="courseDesc" style="margin-top: 1%; margin-bottom: 2%">{{item.desc}}</span>
+                                </el-row>
+                                <el-row :gutter="10" >
                                     <el-col :span="12">
-                                        <span style="margin-left: -5px" class="courseNum">{{item.applyNum}}人报名</span>
+                                        <span style="margin-left: -5px;" class="courseNum">{{item.applyNum}}人报名</span>
                                     </el-col>
                                     <el-col :span="12" style="padding-right: 16px">
                                         <el-button @click="signUpDialogVisible=true" class="signUpButton" round>报名</el-button>
                                     </el-col>
 
-                            </el-row>
+                                </el-row>
                         </el-col>
                     </el-row>
                     <el-divider class="divider"/>
@@ -69,7 +69,7 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%; text-align: left;">
+            <div class="center Top30">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.examContest.title}}</p>
@@ -116,11 +116,8 @@
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.campusEnvironment.picUrls" :key="i" class="divFor">
-                    <el-col :span="11" v-if="i%2 === 0" style="padding-right: 0;padding-bottom: 10px;padding-top: 0">
-                        <img style="width: 100%" :src="item.url">
-                    </el-col>
-                    <el-col :span="12" style="padding-left: 15px; padding-bottom: 10px;padding-top: 0" v-if="i%2 === 1">
-                        <img style="width: 100%" :src="item.url">
+                    <el-col :span="12" style="padding-bottom: 16px">
+                        <img style="width: 100%; height: 100%;" :src="item.url">
                     </el-col>
                 </div>
             </div>
@@ -134,11 +131,8 @@
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.brandAdvantage.picUrls" :key="i" class="divFor">
-                    <el-col :span="11" v-if="i%2 === 0" style="padding-right: 0;padding-bottom: 10px;padding-top: 0">
-                        <img style="width: 100%" :src="item.url">
-                    </el-col>
-                    <el-col :span="12" style="padding-left: 15px; padding-bottom: 10px;padding-top: 0" v-if="i%2 === 1">
-                        <img style="width: 100%" :src="item.url">
+                    <el-col :span="12" style="padding-bottom: 16px">
+                        <img style="width: 100%; height: 100%;" :src="item.url">
                     </el-col>
                 </div>
             </div>
@@ -152,11 +146,8 @@
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.aboutUs.picUrls" :key="i" class="divFor">
-                    <el-col :span="11" v-if="i%2 === 0" style="padding-right: 0;padding-bottom: 10px;padding-top: 0">
-                        <img style="width: 100%" :src="item.url">
-                    </el-col>
-                    <el-col :span="12" style="padding-left: 15px; padding-bottom: 10px;padding-top: 0" v-if="i%2 === 1">
-                        <img style="width: 100%" :src="item.url">
+                    <el-col :span="12" style="padding-bottom: 16px">
+                        <img style="width: 100%; height: 100%;" :src="item.url">
                     </el-col>
                 </div>
             </div>
