@@ -84,12 +84,14 @@
                             <el-row :gutter="20">
                                 <span class="majorDesc">{{item.majorDesc}}</span>
                             </el-row>
-                            <el-row :gutter="20" style="padding-right: 16px">
-                                    <el-col :span="16">
+                            <el-row :gutter="20" >
+                                    <el-col :span="10">
                                         <span class="majorType">{{item.majorType}}</span>
                                     </el-col>
-                                    <el-col :span="7" >
+                                    <el-col :span="14" >
+                                        <div style="width:100%; text-align: right">
                                             <el-button @click="chatVisible=true" class="consultButton" type="primary" round>考试科目咨询</el-button>
+                                        </div>
                                     </el-col>
                                 <!--//<el-button class="consultButton marginTop30" @click="chatVisible=true" type="primary" round>考试科目咨询</el-button>-->
                             </el-row>
@@ -143,21 +145,15 @@
             </div>
         </el-row>
         <el-divider class="divider2"/>
-        <!--<el-row :gutter="10">
-            <div style="width: 100%;background: #2F3130; color: white; text-align:center;margin-top: 30px;">
-                <div v-for="index of 2" :key="index" style="width: 100%;">
-                    <div style="width: 30%">
-                        <p class="bottom-column" >{{columnValue(index-1)}}</p>
-                    </div>
-                    <div style="width: 30%">
-                        <p class="bottom-column" >wte</p>
-                    </div>
-                    <div style="width: 30%">
-                        <p class="bottom-column" >tew</p>
-                    </div>
+        <el-row :gutter="20" >
+            <div style="width: 100%;background: #2F3130; color: white; text-align:center;height:90%;">
+                <div v-for="(item, i) in form.bottom.columnList" :key="i" >
+                    <el-col :span="12" :offset="2" style="padding-left: 20px">
+                        <h4 class="bottom-column">{{item.title}}</h4>
+                    </el-col>
                 </div>
             </div>
-        </el-row>-->
+        </el-row>
         <el-row :gutter="20">
             <div style="width: 100%;text-align:center">
                 <img style="width: 100%;" :src="form.bottom.image.url">

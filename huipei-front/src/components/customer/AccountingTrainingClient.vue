@@ -17,36 +17,37 @@
         </el-header>
 
         <el-row :gutter="20">
-            <div class="block text-center" style="width: 100%;height: 230px">
+            <div class="block text-center" style="width: 100%;height: 200px">
                 <el-carousel class="elCarousel">
-                    <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i" >
+                    <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                         <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
                 </el-carousel>
             </div>
         </el-row>
-
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center;">
-            <div  v-for="(item,i) in this.form.introductionPicUrl" :key="i">
-                <img style="width: 85%" :src="item.url">
-            </div>
+            <div style="width: 100%;text-align: center; margin-top: 20px">
+                <div v-for="(item,i) in this.form.introductionPicUrl" :key="i">
+                    <el-col :span="24" style="padding-left: 16px;padding-right: 16px;">
+                        <img :src="item.url" style="width: 90%">
+                    </el-col>
+                </div>
             </div>
         </el-row>
         <el-row :gutter="20">
-            <div style="width: 100%;">
+            <div style="width: 100%; text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="10" :offset="1">
-                        <p class="title">{{this.form.hotCourse.title}}</p>
+                    <el-col :span="10" :offset="1" style="padding-left: 16px">
+                        <p class="title" style="margin-block-end: 0; margin-block-start: 2em;">{{this.form.hotCourse.title}}</p>
                     </el-col>
                     <el-col :span="12">
-                        <p @click="toCourseList" class="text_right more">查看更多<el-icon><ArrowRight /></el-icon></p>
+                        <p @click="toCourseList" class="text_right more" style="margin-block-end: 0; margin-block-start: 2.5em;padding-right: 16px">查看更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.hotCourse.detail" :key="i">
                     <el-divider class="divider"/>
                     <el-row :gutter="10">
-                        <el-col :span="8" :offset="1">
+                        <el-col :span="8" :offset="1" style="padding-left: 16px">
                             <img class="hotImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
@@ -57,7 +58,7 @@
                                 <span class="majorDesc">{{item.courseDesc}}</span>
                             </el-row>
                             <el-row :gutter="20" >
-                                <div style="width:100%; text-align: right">
+                                <div style="width:100%; text-align: right;padding-right: 16px">
                                     <el-button @click="chatVisible=true" class="consultButton marginTop30" type="primary" round>查看详情</el-button>
                                 </div>
                             </el-row>
@@ -69,29 +70,27 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: center;margin-top:30px;">
                 <img style="width: 100%" @click="handlePictureCardPreview(form.learningGroup.groupQR.url)" :src="form.learningGroup.displayImage.url">
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
-                <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                <el-row :gutter="10" >
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.financeLaboratory.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.financeLaboratory.picUrls" :key="i" style="text-align: center">
-                    <el-col :span="12">
-                        <img style="width: 100%" :src="item.url">
+                <div v-for="(item,i) in form.financeLaboratory.picUrls" :key="i" class="divFor">
+                    <el-col :span="12" style="padding-bottom: 16px;">
+                        <img style="width: 100%;" :src="item.url">
                     </el-col>
                 </div>
-
-
             </div>
         </el-row>
         <div style="width: 100%;text-align: center;margin-bottom: 15px;margin-top: -10px">
-            <el-row :gutter="20">
+            <el-row :gutter="20" style="padding-left: 16px;">
                     <el-col :span="12">
                         <el-button @click="chatVisible=true" class="leftTry" round>申请免费试用</el-button>
                     </el-col>
@@ -108,47 +107,46 @@
         </el-row>
 
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="6" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.professionalTeacher.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.professionalTeacher.picUrls" :key="i">
+                <div v-for="(item,i) in form.professionalTeacher.picUrls" :key="i" class="divFor">
                     <el-col :span="12">
                         <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
-                <div style="width: 100%;text-align: center">
+                <div style="width: 100%;text-align: center;">
                     <el-col :span="8">
                         <img style="width: 70%;" :src="form.professionalTeacher.banner.url"/>
                     </el-col>
-                    <el-col :span="14">
+                    <el-col :span="15">
                         <div style="text-align: center; margin-top: 20%">
                             <span style="color: #3D81EF; font-size: 12px">阅读更多培训课程</span><br>
                             <span style="color: #161616 ;font-size: 10px">随时掌握更多课程</span>
                         </div>
                     </el-col>
-                    <el-col :span="7" :offset="1">
-                        <div style="text-align: right;margin-top: 20%;">
+                    <el-col :span="8" :offset="1" style="padding-right: 0">
+                        <div style="text-align: right;margin-top: 20%; ">
                             <el-button @click="yyDialogVisible=true" class="subscription" round>立即订阅</el-button>
                         </div>
                     </el-col>
-
                 </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="6" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.specialTeaching.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.specialTeaching.picUrls" :key="i" >
+                <div v-for="(item,i) in form.specialTeaching.picUrls" :key="i" class="divFor">
                     <el-col :span="12">
-                        <img style="width: 100%" :src="item.url">
+                        <img style="width: 100%; margin-bottom: 16px" :src="item.url">
                     </el-col>
                 </div>
             </div>
@@ -161,14 +159,19 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="6" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.careerProgression.title}}</p>
                     </el-col>
                 </el-row>
-                <div style="width: 100%">
-                    <img  style="width: 90%" :src="form.careerProgression.banner.url">
+                <div style="width: 100%; text-align: center">
+                <el-row :gutter="10">
+                    <el-col :span="24" style="padding-left: 16px;padding-right: 16px">
+                        <img  style="width: 90%" :src="form.careerProgression.banner.url">
+                    </el-col>
+                </el-row>
+
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button @click="chatVisible=true" style="width: 60%;background-color: #456ced;color: white;height: 36px;">立即规划</el-button>
@@ -177,14 +180,19 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left; margin-top: 20px;">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="6" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.employmentServices.title}}</p>
                     </el-col>
                 </el-row>
-                <div style="width: 100%">
-                    <img style="width: 90%" :src="form.employmentServices.banner.url">
+                <div style="width: 100%; text-align: center">
+                    <el-row :gutter="10">
+                        <el-col :span="24" style="padding-left: 16px;padding-right: 16px">
+                            <img style="width: 90%" :src="form.employmentServices.banner.url">
+                        </el-col>
+                    </el-row>
+
                 </div>
             </div>
         </el-row>
@@ -210,20 +218,20 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="8" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.hotActivity.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.hotActivity.picUrls" :key="i">
+                <div v-for="(item,i) in form.hotActivity.picUrls" :key="i" class="divFor">
                     <el-row :gutter="10">
                     <el-col :span="24">
-                        <img @click="signUpDialogVisible=true" style="width: 90%;" :src="item.url">
+                        <img @click="signUpDialogVisible=true" style="width: 90%;margin-bottom: 16px;" :src="item.url">
                     </el-col>
                     </el-row>
                 </div>
-                <div style="width: 100%; text-align: center;margin-top: 5px;margin-bottom: 10px">
+                <div style="width: 100%; text-align: center;margin-bottom: 16px">
                     <el-button @click="chatVisible=true" style=" width: 60%;background-color: #456ced;color: white;height: 36px;">咨询更多优惠</el-button>
                 </div>
             </div>
@@ -232,15 +240,15 @@
         <el-row :gutter="20">
             <div style="width: 100%;background: #2F3130; color: white; text-align:center;height:80%">
                 <div v-for="(item, i) in form.bottom.columnList" :key="i" >
-                    <el-col :span="12" :offset="2" >
+                    <el-col :span="12" :offset="2" style="padding-left: 20px">
                         <h4 class="bottom-column">{{item.title}}</h4>
                     </el-col>
                 </div>
             </div>
         </el-row>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align:center">
-                <img style="width: 100%;" :src="form.bottom.image.url">
+            <div style="width: 100%;text-align:center;">
+                <img style="width: 100%; margin-bottom: -5px;" :src="form.bottom.image.url">
             </div>
         </el-row>
         <el-dialog v-model="dialogVisible" >

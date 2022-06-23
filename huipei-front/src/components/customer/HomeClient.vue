@@ -12,8 +12,8 @@
             </el-row>
         </el-header>
         <el-row :gutter="20">
-            <div class="block text-center" style="width: 100%;height: 180px">
-                <el-carousel class="elCarousel">
+            <div class="block text-center" style="width: 100%;height: 200px">
+                <el-carousel style="height: 100%">
                     <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                             <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
@@ -69,13 +69,13 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div class="center Top30">
+            <div class="Top30" style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="10" :offset="1" style="padding-left: 16px">
+                    <el-col :span="10" :offset="1"  style="padding-left: 16px">
                         <p class="title">{{this.form.examContest.title}}</p>
                     </el-col>
-                    <el-col :span="13" style="padding-right: 16px">
-                        <p class="text_right more" @click="chatVisible=true" style="padding-right: 16px">查看详情<el-icon><ArrowRight /></el-icon></p>
+                    <el-col :span="12" style="padding-right: 16px">
+                        <p class="text_right more" @click="chatVisible=true">查看详情<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.examContest.detail" :key="i">
