@@ -28,42 +28,49 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.tutorial.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.tutorial.picUrls" :key="i" style="width: 100%; text-align: center">
-                    <img style="width: 95%" :src="item.url">
+                <div v-for="(item,i) in form.tutorial.picUrls" :key="i" style="width: 100%; ">
+                    <div style="width: 100%;padding-left:0;padding-right: 32px;" v-if="i===0">
+                        <img style="width: 90%;"  :src="item.url">
+                    </div>
+                    <div style="width: 100%;padding-left:15px;padding-right: 15px;" v-else>
+                        <img style="width: 92%;"  :src="item.url">
+                    </div>
+
+
                 </div>
                 <div style="width: 100%; text-align: center">
-                    <el-button @click="chatVisible=true" round style="width: 35%;border-color: #ffa900;background-color: #ffa900;color: white;height: 34px">科学诊断测试</el-button>
-                    <el-button @click="chatVisible=true" round style="width: 35%;border-color: #ffa900;background-color: #ffa900;color: white;height: 34px">1对1课程详情</el-button>
+                    <el-button @click="chatVisible=true" round style="width: 35%;border-color: #ffa900;background-color: #ffa900;color: white;height: 34px; ">科学诊断测试</el-button>
+                    <el-button @click="chatVisible=true" round style="width: 35%;border-color: #ffa900;background-color: #ffa900;color: white;height: 34px;margin-left: 25px;">1对1课程详情</el-button>
                 </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center">
-                <img style="width: 100%" @click="handlePictureCardPreview(form.learningGroup.groupQR.url)" :src="form.learningGroup.displayImage.url">
+                <img style="width: 100%; margin-top:20px;" @click="handlePictureCardPreview(form.learningGroup.groupQR.url)" :src="form.learningGroup.displayImage.url">
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
         <div style="width: 100%;text-align: center">
-            <img style="width: 100%"  :src="form.bannerFirst.url">
+            <img style="width: 98%"  :src="form.bannerFirst.url">
         </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.coursePlan.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.coursePlan.picUrls" :key="i" style="text-align: center">
+                <div v-for="(item,i) in form.coursePlan.picUrls" :key="i" class="divFor">
                     <el-col :span="12">
-                    <img style="width: 100%" :src="item.url">
+                    <img style="width: 100%; margin-bottom: 16px;" :src="item.url">
                     </el-col>
                 </div>
                 <div style="width: 100%; text-align: center">
@@ -76,7 +83,7 @@
         <el-row :gutter="20">
             <div style="width: 100%; text-align: center">
                 <el-col :span="24">
-                    <img style="width: 100%" :src="form.advisoryService.url">
+                    <img style="width: 100%; margin-top:30px;" :src="form.advisoryService.url">
                 </el-col>
                 <el-row :gutter="20">
                     <el-col :span="24">
@@ -99,31 +106,43 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: center">
+            <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="6">
+                    <el-col :span="7" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.coursePurchase.title}}</p>
                     </el-col>
                 </el-row>
-                <div style="width: 100%">
-                    <img style="width: 90%" :src="form.coursePurchase.banner.url" >
+                <div style="width: 100%; text-align: center">
+                    <el-row :gutter="10">
+                        <el-col :span="24" style="padding-left: 16px;padding-right: 16px">
+                            <img style="width: 90%" :src="form.coursePurchase.banner.url">
+                        </el-col>
+                    </el-row>
                 </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
-        <div style="width: 100%;text-align: center">
-            <img style="width: 100%"  :src="form.courseBook.url" @click="yyDialogVisible=true">
-        </div>
+
+        <el-row :gutter="20" style="padding-left: 16px; padding-right: 16px;">
+            <div style="width: 100%; text-align: center;">
+                <img @click="yyDialogVisible=true" style="width: 95%;margin-top: 30px;" :src="form.courseBook.url">
+            </div>
+        </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.signUp.title}}</p>
                     </el-col>
                 </el-row>
-                <div style="width: 100%;text-align: center">
-                    <img style="width: 90%" :src="form.signUp.banner.url">
+
+                <div style="width: 100%; text-align: center">
+                    <el-row :gutter="10">
+                        <el-col :span="24" style="padding-left: 16px;padding-right: 16px">
+                            <img style="width: 90%" :src="form.signUp.banner.url">
+                        </el-col>
+                    </el-row>
                 </div>
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
                     <el-button style="width: 60%;border-color: #ffa900;background-color: #ffa900;color: white;height: 36px;" @click="signUpDialogVisible=true">马上报名学习</el-button>
@@ -135,7 +154,7 @@
         <el-row :gutter="20">
             <div style="width: 100%; text-align: center">
                 <el-col :span="24">
-                    <img style="width: 100%" :src="form.advisoryService.url">
+                    <img style="width: 100%; margin-top:30px;" :src="form.advisoryService.url">
                 </el-col>
                 <el-row :gutter="20">
                     <el-col :span="24">
@@ -155,7 +174,7 @@
         <el-row :gutter="20">
             <div style="width: 100%;background: #2F3130; color: white; text-align:center;height:80%">
                 <div v-for="(item, i) in form.bottom.columnList" :key="i" >
-                    <el-col :span="12" :offset="2" >
+                    <el-col :span="12" :offset="2" style="padding-left: 20px">
                         <h4 class="bottom-column" v-if="item.title.length === 3">{{item.title}}&#12288;&#12288;</h4>
                         <h4 class="bottom-column" v-else>{{item.title}}</h4>
                     </el-col>

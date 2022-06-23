@@ -27,11 +27,11 @@
         <el-row :gutter="20">
             <div style="width: 100%; text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="10" :offset="1">
+                    <el-col :span="10" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.constructionEngineerTraining.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in this.form.constructionEngineerTraining.picUrls" :key="i" style="text-align: center">
+                <div v-for="(item,i) in this.form.constructionEngineerTraining.picUrls" :key="i" class="divFor">
                     <el-col :span="12">
                         <img @click="chatVisible=true" style="width: 100%" :src="item.url">
                     </el-col>
@@ -57,7 +57,7 @@
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center;">
-                <img style="width: 100%" @click="handlePictureCardPreview(form.learningGroup.groupQR.url)" :src="form.learningGroup.displayImage.url">
+                <img style="width: 100%; margin-top: 16px;" @click="handlePictureCardPreview(form.learningGroup.groupQR.url)" :src="form.learningGroup.displayImage.url">
             </div>
         </el-row>
         <el-divider class="divider2"/>
@@ -70,11 +70,11 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="10" :offset="1">
-                        <p class="title">{{this.form.titleAppraisal.title}}</p>
+                    <el-col :span="10" :offset="1" style="padding-left: 16px">
+                        <p class="title" style="margin-block-end: 0; margin-block-start: 2em;">{{this.form.titleAppraisal.title}}</p>
                     </el-col>
                     <el-col :span="12">
-                        <p @click="toCourseList" class="text_right more">查看更多<el-icon><ArrowRight /></el-icon></p>
+                        <p @click="toCourseList" class="text_right more" style="margin-block-end: 0; margin-block-start: 2.5em;padding-right: 16px">查看更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.titleAppraisal.detail" :key="i">
@@ -90,7 +90,7 @@
                             <el-row :gutter="20">
                                 <span class="majorDesc">{{item.titleDesc}}</span>
                             </el-row>
-                            <el-row :gutter="20" >
+                            <el-row :gutter="20" style="padding-right: 16px">
                                 <div style="width: 95%; text-align: right">
                                     <el-button @click="chatVisible=true" class="consultButton marginTop30" type="primary" round>查看详情</el-button>
                                 </div>
@@ -98,7 +98,6 @@
                             </el-row>
                         </el-col>
                     </el-row>
-
                 </div>
             </div>
         </el-row>
@@ -117,50 +116,60 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="18" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.operator.title}}</p>
                     </el-col>
                 </el-row>
 
-                <div v-for="(item,i) in form.operator.picUrls" :key="i" style="text-align: center">
+                <div v-for="(item,i) in form.operator.picUrls" :key="i" class="divFor">
                     <el-col :span="12">
-                        <img style="width: 100%" :src="item.url">
+                        <img style="width: 100%; margin-bottom: 16px;" :src="item.url">
                     </el-col>
                 </div>
             </div>
         </el-row>
-        <el-row :gutter="10">
+        <el-row :gutter="10" style="padding-left: 16px; padding-top: 0;margin-top: -16px;">
             <el-col :span="20">
                 <p style="color: #FF2020; font-size: 12px">考试提醒: 错过本次报考, 将延误一年考证</p>
             </el-col>
         </el-row>
 
-        <el-row :gutter="20">
+        <el-row :gutter="20" style="padding-left: 16px; padding-right: 16px;">
             <div style="width: 100%; text-align: center;">
-                <img @click="yyDialogVisible=true" style="width: 99%" :src="form.appointmentCourse.url">
+                 <img @click="yyDialogVisible=true" style="width: 95%" :src="form.appointmentCourse.url">
             </div>
         </el-row>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.examinationConditions.title}}</p>
                     </el-col>
                 </el-row>
                 <div style="width: 100%; text-align: center">
-                    <img style="width: 90%" :src="form.examinationConditions.banner.url">
+                    <el-row :gutter="10">
+                        <el-col :span="24" style="padding-left: 16px;padding-right: 16px">
+                            <img style="width: 90%" :src="form.examinationConditions.banner.url">
+                        </el-col>
+                    </el-row>
+
                 </div>
             </div>
         </el-row>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.fireEngineer.title}}</p>
                     </el-col>
                 </el-row>
                 <div style="width: 100%; text-align: center">
-                    <img style="width: 100%" :src="form.fireEngineer.banner.url">
+                    <el-row :gutter="10">
+                        <el-col :span="24" >
+                            <img style="width: 100%" :src="form.fireEngineer.banner.url">
+                        </el-col>
+                    </el-row>
+
                 </div>
             </div>
         </el-row>
@@ -169,7 +178,7 @@
             <div style="width: 100%; text-align: center">
                 <el-row :gutter="20">
                     <el-col :span="24">
-                        <el-input prefix-icon="Iphone" style="text-align: center; width: 80%; height: 38px" v-model="chatPhone" placeholder="请输入手机号" oninput="value=value.replace(/[^\d]/g,'')"
+                        <el-input prefix-icon="Iphone" style="text-align: center; width: 80%; height: 38px" v-model="chatPhone" placeholder="请输入手机号我们将严格保障您的信息安全" oninput="value=value.replace(/[^\d]/g,'')"
                                   maxlength="11" @blur="telTest"></el-input>
                     </el-col>
                 </el-row>
@@ -184,7 +193,7 @@
         <el-row :gutter="20">
             <div style="width: 100%;background: #2F3130; color: white; text-align:center;height:80%">
                 <div v-for="(item, i) in form.bottom.columnList" :key="i" >
-                    <el-col :span="12" :offset="2" >
+                    <el-col :span="12" :offset="2" style="padding-left: 20px">
                         <h4 class="bottom-column" v-if="item.title.length === 3">{{item.title}}&#12288;</h4>
                         <h4 class="bottom-column" v-else>{{item.title}}</h4>
                     </el-col>

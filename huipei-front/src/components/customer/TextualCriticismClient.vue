@@ -27,16 +27,22 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left;">
                 <el-row :gutter="20">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.teacherCertification.title}}</p>
                     </el-col>
                 </el-row>
                 <div style="width: 100%;text-align: center">
-                    <img style="width: 90%" :src="form.teacherCertification.banner.url">
+                    <el-row :gutter="20" style="padding-left: 16px; padding-right: 16px;">
+                        <div style="width: 100%; text-align: center;">
+                            <img style="width: 90%" :src="form.teacherCertification.banner.url">
+                        </div>
+                    </el-row>
+
                 </div>
+
                 <div style="width: 100%; text-align: center;margin-top: 10px;">
-                    <el-button @click="signUpDialogVisible=true" round style="width: 40%;background-color: #2D9BF6;color: white;height: 36px;font-size: 14px;">非师范生报名</el-button>
-                    <el-button @click="signUpDialogVisible=true" round style="width: 40%;background-color: #5A90FF;color: white;height: 36px;font-size: 14px;">报名条件查询</el-button>
+                    <el-button @click="signUpDialogVisible=true" round style="width: 35%;background-color: #2D9BF6;color: white;height: 36px;font-size: 14px;">非师范生报名</el-button>
+                    <el-button @click="signUpDialogVisible=true" round style="width: 35%;background-color: #5A90FF;color: white;height: 36px;font-size: 14px;margin-left: 40px">报名条件查询</el-button>
                 </div>
             </div>
         </el-row>
@@ -56,12 +62,12 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.psychologists.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.psychologists.picUrls" :key="i" style="text-align: center;">
-                    <el-col :span="8" style="padding-left: 0px;padding-right: 0px;">
+                <div v-for="(item,i) in form.psychologists.picUrls" :key="i" class="divFor">
+                    <el-col :span="8" style="padding-left: 0;padding-right: 0;">
                         <img style="width: 100%" :src="item.url">
                     </el-col>
                 </div>
@@ -71,7 +77,7 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.courseConsultation.title}}</p>
                     </el-col>
                 </el-row>
@@ -101,35 +107,39 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p>{{this.form.HRMD.title}}</p>
                     </el-col>
                 </el-row>
-                <div style="width: 100%; text-align: center">
-                    <img style="width: 90%" :src="form.HRMD.banner.url">
-                </div>
+
+                <el-row :gutter="20" style="padding-left: 16px; padding-right: 16px;">
+                    <div style="width: 100%; text-align: center;">
+                        <img style="width: 90%" :src="form.HRMD.banner.url">
+                    </div>
+                </el-row>
                 <el-row :gutter="20">
-                    <el-col :span="22" :offset="1">
+                    <el-col :span="22" :offset="1" style="padding-left: 16px;">
                         <p style="color: #FF2020; font-size: 12px;">重要提示: 避免以后受政策影响, 错过本次报名, 明年或从助理级逐级报考</p>
                     </el-col>
                 </el-row>
             </div>
         </el-row>
         <el-divider class="divider2"/>
-        <el-row :gutter="20">
+
+        <el-row :gutter="20" style="padding-left: 16px; padding-right: 16px;">
             <div style="width: 100%; text-align: center;">
-                <img @click="yyDialogVisible=true" style="width: 100%" :src="form.courseReservation.url">
+                <img @click="yyDialogVisible=true" style="width: 95%" :src="form.courseReservation.url">
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left;">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.healthManager.title}}</p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in form.healthManager.picUrls" :key="i" style="text-align: center">
+                <div v-for="(item,i) in form.healthManager.picUrls" :key="i" class="divFor">
                     <el-col :span="12">
                         <img style="width: 100%" @click="chatVisible = true" :src="item.url">
                     </el-col>
@@ -140,12 +150,17 @@
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
-                    <el-col :span="20" :offset="1">
+                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
                         <p class="title">{{this.form.purchaseCourseService.title}}</p>
                     </el-col>
                 </el-row>
                 <div style="width: 100%; text-align: center">
-                    <img style="width: 90%" :src="form.purchaseCourseService.banner.url">
+                    <el-row :gutter="10">
+                        <el-col :span="24" style="padding-left: 16px;padding-right: 16px">
+                            <img style="width: 90%" :src="form.purchaseCourseService.banner.url">
+                        </el-col>
+                    </el-row>
+
                 </div>
             </div>
         </el-row>
@@ -153,7 +168,7 @@
         <el-row :gutter="20">
             <div style="width: 100%; text-align: center">
                 <el-col :span="24">
-                    <img style="width: 100%" :src="form.advisoryService.url">
+                    <img style="width: 100%;margin-top: 16px;" :src="form.advisoryService.url">
                 </el-col>
                 <el-row :gutter="20">
                     <el-col :span="24">
