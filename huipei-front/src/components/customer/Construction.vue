@@ -317,7 +317,12 @@
             telTest () {
                 const reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
                 if (this.chatPhone=== '' || this.chatPhone.length <= 10 || !reg.test(this.chatPhone)) {
-                    ElMessage.error("手机号码错误");
+                    ElMessage({
+                        message: '请输入正确的手机号',
+                        center: true,
+                        offset: 200,
+                        type: 'error',
+                    });
                 }
             },
         }

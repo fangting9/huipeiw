@@ -35,7 +35,7 @@
             </el-row>
 
 
-        <div style="height: 50px; text-align: center; margin-left: 5%">
+        <div style="height: 50px; text-align: center; width: 90%;padding-left: 16px; padding-right: 16px; overflow-x: auto">
             <el-menu
                     :default-active= 'activeIndex'
                     mode="horizontal"
@@ -86,8 +86,7 @@
                             <el-tag
                                     v-for="(tag, index) in item.detail.label"
                                     :key="index"
-                                    class="mx-1"
-                                    style="margin-left: 2px; margin-top: -10px; margin-bottom: 5px"
+                                    class="mx-1 tag"
                                     :disable-transitions="false"
                             >
                                 {{ tag }}
@@ -226,7 +225,7 @@
         text-align: center;
     }
     .el-menu-item{
-        padding: 0 7px;
+        padding: 0 6px;
         font-size:14px;
 
     }
@@ -237,5 +236,15 @@
         text-align: center;
         padding-left: 10px;
         padding-right: 10px;
+    }
+    .tag{
+        margin-right: 5px;
+        height: 20px;
+        background-color: #bbd0ff;
+        border-color: #bbd0ff;
+        color: #4b7ae6;
+        font-size: 10px;
+        margin-top: -10px;
+        margin-bottom: 5px;
     }
 </style>

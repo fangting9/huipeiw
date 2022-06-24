@@ -31,7 +31,7 @@
     margin-top: 9%;
 }
 .signUpButton{
-    height: 20px;
+    height: 21px;
     text-align: right;
     margin-left: 50%;
     color:#2F76F1;
@@ -75,6 +75,22 @@
     width: 100%;
     border-block-color: rgba(69, 108, 237, 0.02);
     border-top: rgba(255, 0, 0, 0.02);
+}
+.divider3{
+    width: 85%;
+    margin-left: 3%;
+    height: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-block-color: rgba(0, 0, 0, 0.05);
+}
+.divider4{
+    width: 92%;
+    margin-left: 4%;
+    height: 1px;
+    margin-top: 16px;
+    margin-bottom: 0;
+    border-block-color: rgba(0, 0, 0, 0.05);
 }
 .text_right{
 text-align: right;
