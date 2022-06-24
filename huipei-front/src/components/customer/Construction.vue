@@ -202,7 +202,7 @@
         </el-row>
         <el-row :gutter="20">
             <div style="width: 100%;text-align:center">
-                <img style="width: 100%;" :src="form.bottom.image.url">
+                <img style="width: 100%;margin-bottom: -5px;" :src="form.bottom.image.url">
             </div>
         </el-row>
 

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div style="width: 100%; height: 60px;text-align: right">
+    <div class="overflow">
+        <!--<div style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
                 <el-col :span="4"><p class="back" @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
                 <el-col :span="9" :offset="4">
@@ -10,7 +10,22 @@
                     <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
-        </div>
+        </div>-->
+        <el-header style="width: 100%; height: 60px;text-align: center">
+            <el-row :gutter="10">
+                <el-col :span="8" >
+                    <div style="text-align: left">
+                        <h3 ><el-icon @click="this.$router.back()" style="vertical-align: -30%"><ArrowLeft /></el-icon></h3>
+                    </div>
+                </el-col>
+                <el-col :span="8" >
+                    <h3 class="pageTitle">{{pageTitle}}</h3>
+                </el-col>
+                <el-col :span="8" >
+                    <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
+                </el-col>
+            </el-row>
+        </el-header>
 
         <el-row :gutter="20">
             <div class="block text-center" style="width: 100%;height: 200px;">
@@ -157,7 +172,7 @@
             </el-row>
 
         <div style="width: 100%; text-align: center">
-            <el-row :gutter="10">
+            <el-row :gutter="10" style="padding-left: 16px;">
                 <el-col
                         v-for="(item, index) in form.consultTeacher.detail"
                         :key="index"
@@ -179,33 +194,33 @@
             </el-row>
         </div>
         <el-divider class="divider2"/>
-        <el-row :gutter="20">
+        <el-row :gutter="20" style="padding-left: 16px; padding-right: 16px;">
             <div style="width: 100%; text-align: center;">
-                <img @click="yyDialogVisible=true" style="width: 99%" :src="form.courseBook.url">
+                <img @click="yyDialogVisible=true" style="width: 95%;margin-top: 30px;" :src="form.courseBook.url">
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="10">
-            <el-col :span="9" :offset="1">
+            <el-col :span="9" :offset="1" style="padding-left: 16px;">
                 <p class="title">{{form.teacherProfile.title}}</p>
             </el-col>
         </el-row>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: center">
-                <div v-for="(item,i) in form.teacherProfile.picUrl" :key="i">
+                <div v-for="(item,i) in form.teacherProfile.picUrl" :key="i" class="divFor">
                     <el-col :span="12">
-                        <img style="width: 100%" :src="item.url">
+                        <img style="width: 100%;margin-bottom: 16px;" :src="item.url">
                     </el-col>
                 </div>
             </div>
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <el-col :span="6" :offset="1">
-                <p class="title">{{form.courseComment.title}}</p>
+            <el-col :span="6" :offset="1" style="padding-left: 16px;">
+                <p class="title" style="margin-block-end: 0; margin-block-start: 2em;">{{form.courseComment.title}}</p>
             </el-col>
             <el-col :span="16">
-                <p style="color: #828282; font-size: 10px;margin-top: 20px;margin-left: -20px;">
+                <p style="color: #828282; font-size: 10px;margin-top: 20px;margin-left: -20px;margin-block-end: 0; margin-block-start: 3.8em;">
                     (累计
                 <span class="red">{{form.courseComment.count}}</span>
                     条，包含往期同班型评价)

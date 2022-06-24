@@ -64,16 +64,16 @@
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10" >
                     <el-col :span="10" :offset="1" style="padding-left: 16px;">
-                        <p class="title">{{this.form.hotMajor.title}}</p>
+                        <p class="title" style="margin-block-end: 0; margin-block-start: 2em;">{{this.form.hotMajor.title}}</p>
                     </el-col>
                     <el-col :span="12" style="padding-right: 16px">
-                        <p class="text_right more" @click="toCourseList">易考科目<el-icon><ArrowRight /></el-icon></p>
+                        <p class="text_right more" @click="toCourseList" style="margin-block-end: 0; margin-block-start: 2.5em;" >易考科目<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.hotMajor.detail" :key="i" style="width: 100%;text-align: center">
                     <el-divider class="divider"/>
-                    <el-row :gutter="10"  style="padding-left: 16px">
-                        <el-col :span="8">
+                    <el-row :gutter="10"  >
+                        <el-col :span="8" :offset="1" style="padding-left: 16px">
                             <img class="hotImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
@@ -88,7 +88,7 @@
                                     <el-col :span="10">
                                         <span class="majorType">{{item.majorType}}</span>
                                     </el-col>
-                                    <el-col :span="14" >
+                                    <el-col :span="14" style="padding-right: 16px;">
                                         <div style="width:100%; text-align: right">
                                             <el-button @click="chatVisible=true" class="consultButton" type="primary" round>考试科目咨询</el-button>
                                         </div>
@@ -116,7 +116,7 @@
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="24">
-                        <el-button style="width: 60%;background-color: #456ced;color: white; height: 36px;margin-top: 10px" @click="chatVisible=true">点击咨询</el-button>
+                        <el-button style="width: 60%;background-color: #456ced;color: white; height: 36px;margin-top: 16px" @click="chatVisible=true">点击咨询</el-button>
                     </el-col>
                 </el-row>
             </div>
@@ -140,7 +140,7 @@
             </div>
             <div style="width: 100%;text-align:center;">
                 <div v-for="(item,i) in this.form.formalService.images" :key="i" class="divFor">
-                    <img style="width: 95%" class="imgPhone" :src="item.url">
+                    <img style="width: 95%; margin-bottom: 16px;" class="imgPhone" :src="item.url">
                 </div>
             </div>
         </el-row>

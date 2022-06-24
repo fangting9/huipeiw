@@ -1,12 +1,27 @@
 <template>
-    <div style="width: 100%">
-        <el-header style="width: 100%; height: 60px;text-align: right">
+    <div class="overflow">
+        <!--<el-header style="width: 100%; height: 60px;text-align: right">
             <el-row :gutter="10">
                 <el-col :span="4"><p class="back" @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
                 <el-col :span="9" :offset="3">
                     <h3 class="pageTitle"><p>课程列表</p></h3>
                 </el-col>
                 <el-col :span="6" >
+                    <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
+                </el-col>
+            </el-row>
+        </el-header>-->
+        <el-header style="width: 100%; height: 60px;text-align: center">
+            <el-row :gutter="10">
+                <el-col :span="8" >
+                    <div style="text-align: left">
+                        <h3 ><el-icon @click="this.$router.back()" style="vertical-align: -30%"><ArrowLeft /></el-icon></h3>
+                    </div>
+                </el-col>
+                <el-col :span="8" >
+                    <h3 class="pageTitle">课程列表</h3>
+                </el-col>
+                <el-col :span="8" >
                     <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
@@ -72,7 +87,7 @@
                                     v-for="(tag, index) in item.detail.label"
                                     :key="index"
                                     class="mx-1"
-                                    style="margin-left: 1px; margin-top: -10px; margin-bottom: 5px"
+                                    style="margin-left: 2px; margin-top: -10px; margin-bottom: 5px"
                                     :disable-transitions="false"
                             >
                                 {{ tag }}
@@ -211,8 +226,8 @@
         text-align: center;
     }
     .el-menu-item{
-        padding: 0 6px;
-        font-size:small;
+        padding: 0 7px;
+        font-size:14px;
 
     }
     .el-input{
@@ -220,5 +235,7 @@
         --el-input-border-color:none;
         width: 90%;
         text-align: center;
+        padding-left: 10px;
+        padding-right: 10px;
     }
 </style>

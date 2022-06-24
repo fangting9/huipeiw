@@ -108,7 +108,7 @@
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">
                     <el-col :span="20" :offset="1" style="padding-left: 16px;">
-                        <p>{{this.form.HRMD.title}}</p>
+                        <p class="title">{{this.form.HRMD.title}}</p>
                     </el-col>
                 </el-row>
 
@@ -196,7 +196,7 @@
         </el-row>
         <el-row :gutter="20">
             <div style="width: 100%;text-align:center">
-                <img style="width: 100%;" :src="form.bottom.image.url">
+                <img style="width: 100%;margin-bottom: -5px;" :src="form.bottom.image.url">
             </div>
         </el-row>
 
