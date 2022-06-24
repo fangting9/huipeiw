@@ -44,13 +44,13 @@
                         <p @click="toCourseList" class="text_right more" style="margin-block-end: 0; margin-block-start: 2.5em;padding-right: 16px">查看更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
-                <div v-for="(item,i) in this.form.hotCourse.detail" :key="i">
+                <div v-for="(item,i) in this.form.hotCourse.detail" :key="i" >
                     <el-divider class="divider"/>
                     <el-row :gutter="10">
                         <el-col :span="8" :offset="1" style="padding-left: 16px">
                             <img class="hotImage" :src="item.picUrl">
                         </el-col>
-                        <el-col :span="14">
+                        <el-col :span="14" style="padding-right: 16px;">
                             <el-row :gutter="20">
                                 <span class="majorName">{{item.courseName}}</span>
                             </el-row>
@@ -58,7 +58,7 @@
                                 <span class="majorDesc">{{item.courseDesc}}</span>
                             </el-row>
                             <el-row :gutter="20" >
-                                <div style="width:100%; text-align: right;padding-right: 16px">
+                                <div style="width:100%; text-align: right;">
                                     <el-button @click="chatVisible=true" class="consultButton marginTop30" type="primary" round>查看详情</el-button>
                                 </div>
                             </el-row>

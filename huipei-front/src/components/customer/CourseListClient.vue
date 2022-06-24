@@ -35,7 +35,7 @@
             </el-row>
 
 
-        <div style="height: 50px; text-align: center; width: 90%;padding-left: 16px; padding-right: 16px; overflow-x: auto">
+        <div style="height: 50px; text-align: center; width: 90%;padding-left: 16px; padding-right: 16px; overflow-x: scroll; overflow-y: hidden">
             <el-menu
                     :default-active= 'activeIndex'
                     mode="horizontal"

@@ -80,17 +80,17 @@
                 <div v-for="(item,i) in this.form.titleAppraisal.detail" :key="i">
                     <el-divider class="divider"/>
                     <el-row :gutter="10">
-                        <el-col :span="8" :offset="1">
+                        <el-col :span="8" :offset="1" style="padding-left: 16px;">
                             <img class="hotImage" :src="item.picUrl">
                         </el-col>
-                        <el-col :span="14">
+                        <el-col :span="14" style="padding-right: 16px">
                             <el-row :gutter="20">
                                 <span class="majorName">{{item.titleName}}</span>
                             </el-row>
                             <el-row :gutter="20">
                                 <span class="majorDesc">{{item.titleDesc}}</span>
                             </el-row>
-                            <el-row :gutter="20" style="padding-right: 16px">
+                            <el-row :gutter="20" >
                                 <div style="width: 95%; text-align: right">
                                     <el-button @click="chatVisible=true" class="consultButton marginTop30" type="primary" round>查看详情</el-button>
                                 </div>
@@ -139,23 +139,24 @@
                  <img @click="yyDialogVisible=true" style="width: 95%" :src="form.appointmentCourse.url">
             </div>
         </el-row>
-        <el-row :gutter="20">
-            <div style="width: 100%;text-align: left">
-                <el-row :gutter="10">
-                    <el-col :span="20" :offset="1" style="padding-left: 16px;">
-                        <p class="title">{{this.form.examinationConditions.title}}</p>
-                    </el-col>
-                </el-row>
-                <div style="width: 100%; text-align: center">
-                    <el-row :gutter="10">
-                        <el-col :span="24" style="padding-left: 16px;padding-right: 16px">
-                            <img style="width: 90%" :src="form.examinationConditions.banner.url">
-                        </el-col>
-                    </el-row>
+        <el-row :gutter="10">
+            <div style="width: 100%;text-align:left;">
 
-                </div>
+                    <el-col :span="20" :offset="1" style="padding-left: 16px">
+                        <p class="title"> {{this.form.examinationConditions.title}}</p>
+                    </el-col>
+
             </div>
         </el-row>
+        <el-divider class="divider4" style="margin-top: 0;margin-bottom: 16px;"/>
+        <el-row :gutter="10">
+            <div style="width: 100%;text-align:center;">
+            <el-col :span="24" style="padding-left: 16px;padding-right: 16px">
+                <img style="width: 90%; margin-bottom: 16px;" :src="form.examinationConditions.banner.url">
+            </el-col>
+            </div>
+        </el-row>
+
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
                 <el-row :gutter="10">

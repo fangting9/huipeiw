@@ -62,7 +62,7 @@
         <el-divider class="divider2"/>
         <el-row :gutter="20">
             <div style="width: 100%;text-align: left">
-                <el-row :gutter="10" >
+                <el-row :gutter="10" style="margin-top:-30px">
                     <el-col :span="10" :offset="1" style="padding-left: 16px;">
                         <p class="title" style="margin-block-end: 0; margin-block-start: 2em;">{{this.form.hotMajor.title}}</p>
                     </el-col>
@@ -76,7 +76,7 @@
                         <el-col :span="8" :offset="1" style="padding-left: 16px">
                             <img class="hotImage" :src="item.picUrl">
                         </el-col>
-                        <el-col :span="14">
+                        <el-col :span="14" style="padding-right: 16px;">
                             <div style="width: 100%;text-align: left">
                             <el-row :gutter="20">
                                 <span class="majorName">{{item.majorName}}</span>
@@ -88,7 +88,7 @@
                                     <el-col :span="10">
                                         <span class="majorType">{{item.majorType}}</span>
                                     </el-col>
-                                    <el-col :span="14" style="padding-right: 16px;">
+                                    <el-col :span="14" >
                                         <div style="width:100%; text-align: right">
                                             <el-button @click="chatVisible=true" class="consultButton" type="primary" round>考试科目咨询</el-button>
                                         </div>
