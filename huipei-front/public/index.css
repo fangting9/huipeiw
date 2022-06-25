@@ -104,12 +104,12 @@ text-align: left;
 .dialogs{
     width: 80%;
     -webkit-border-radius: 8px;
-
+    overflow-x: hidden;
 }
 .dialogs .el-dialog__header{
     background-image: url("../static/header.jpg");
     height: 70px;
-    width: 87.8%;
+    width: 88%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 
@@ -117,12 +117,13 @@ text-align: left;
 .dialog_yy{
     width: 80%;
     -webkit-border-radius: 8px;
+    overflow-x: hidden;
 
 }
 .dialog_yy .el-dialog__header{
     background-image: url("../static/yy_header.jpg");
     height: 70px;
-    width: 87.8%;
+    width: 88%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 
