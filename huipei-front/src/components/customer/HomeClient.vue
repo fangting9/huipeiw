@@ -43,11 +43,11 @@
                 <div v-for="(item,i) in this.form.hotTopic.detail" :key="i" style="text-align: left;">
                     <el-row :gutter="10">
                         <el-col :span="8" :offset="1" style="padding-left: 16px">
-                            <img class="courseImage" :src="item.picUrl">
+                            <img @click="signUpDialogVisible=true" class="courseImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
                                 <el-row :gutter="10" >
-                                    <span class="courseName">{{item.courseName}}</span>
+                                    <span @click="signUpDialogVisible=true" class="courseName">{{item.courseName}}</span>
                                 </el-row>
                                 <el-row :gutter="10">
                                     <span class="courseDesc" style="margin-top: 1%; margin-bottom: 2%">{{item.desc}}</span>
@@ -81,11 +81,11 @@
                 <div v-for="(item,i) in this.form.examContest.detail" :key="i">
                     <el-row :gutter="10">
                         <el-col :span="8" :offset="1" style="padding-left: 16px">
-                            <img class="courseImage" :src="item.picUrl">
+                            <img @click="yyDialogVisible=true" class="courseImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
                             <el-row :gutter="10">
-                                <span class="examContestName" style="margin-top: 1%">{{item.desc}}</span>
+                                <span @click="yyDialogVisible=true" class="examContestName" style="margin-top: 1%">{{item.desc}}</span>
                             </el-row>
                             <el-row :gutter="10">
                                 <span class="price" style="margin-top: 6%; margin-bottom: 3%" >¥{{item.price}}</span>
