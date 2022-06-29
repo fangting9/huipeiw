@@ -270,7 +270,7 @@
         },
         methods:{
             toCourseList(){
-                router.push({path:"/ccourseList", query:{activeIndex:'3'}})
+                router.push({path:`/ccourseList/3`})
             },
             detail(){
                 axios.get("/admin/graduate/detail").then((response) => {

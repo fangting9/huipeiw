@@ -344,7 +344,7 @@
         },
         methods:{
             toCourseList(){
-                router.push({path:"/ccourseList", query:{activeIndex:'2'}})
+                router.push({path:`/ccourseList/2`})
             },
             detail(){
                 axios.get("/admin/accountant/detail").then((response) => {

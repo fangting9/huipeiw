@@ -1,5 +1,5 @@
 
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 
 
 const routes = [
@@ -109,12 +109,12 @@ const routes = [
         component:()=>import('../components/customer/TextualCriticismClient'),
     },
     {
-        path:'/course',
+        path:'/course/:id/:name',
         name:'course',
         component:()=>import('../components/customer/CourseDetailClient'),
     },
     {
-        path:'/ccourseList',
+        path:'/ccourseList/:activeIndex',
         name:'ccourseList',
         component:()=>import('../components/customer/CourseListClient'),
     },
@@ -125,8 +125,8 @@ const routes = [
 
 
 const router = createRouter({
-   history: createWebHashHistory(),  // hash路由模式
- //    history: createWebHistory(),  // history路由模式
+ //  history: createWebHashHistory(),  // hash路由模式
+    history: createWebHistory(),  // history路由模式
     routes
 });
 

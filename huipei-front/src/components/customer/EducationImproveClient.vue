@@ -224,7 +224,7 @@
         },
         methods:{
             toCourseList(){
-                router.push({path:"/ccourseList", query:{activeIndex:'1'}})
+                router.push({path:`/ccourseList/1`})
             },
             detail(){
                 axios.get("/admin/edu/detail").then((response) => {

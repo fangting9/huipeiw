@@ -290,7 +290,7 @@
         },
         methods:{
             toCourseList(){
-                router.push({path:"/ccourseList", query:{activeIndex:'4'}})
+                router.push({path:`/ccourseList/4`})
             },
             detail(){
                 axios.get("/admin/construction/detail").then((response) => {

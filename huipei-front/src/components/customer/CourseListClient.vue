@@ -151,16 +151,17 @@
             }
         },
         created(){
-            this.activeIndex = useRoute().query.activeIndex;
-            this.code = useRoute().query.activeIndex;
+            this.activeIndex = useRoute().params.activeIndex;
+            this.code = useRoute().params.activeIndex;
             this.search();
-            this.list(useRoute().query.activeIndex);
+            this.list(useRoute().params.activeIndex);
         },
 
         methods:{
+            // eslint-disable-next-line no-unused-vars
             handleSelect (key, keyPath) {
                 //key: string, keyPath: string[]
-                console.log(key, keyPath)
+               // console.log(key, keyPath)
                 this.form.code = key;
             },
             async search(){
@@ -211,7 +212,7 @@
                 return val ? JSON.parse(val) : val
             },
             detail(row){
-                router.push({path:"/course", query:{id:row.id, name:row.name}})
+                router.push({path:`/course/${row.id}/${row.name}`})
             },
             goHome(){
                 router.push("/home")
