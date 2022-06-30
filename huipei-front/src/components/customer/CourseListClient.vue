@@ -76,11 +76,11 @@
             <div v-for="(item,i) in this.courseList" :key="i" style="width: 100%; text-align: left">
                 <el-row :gutter="10">
                     <el-col :span="8" >
-                        <img style="width: 100%; -webkit-border-radius: 5px;" :src="item.detail.url">
+                        <img @click="Jump(item)" style="width: 100%; -webkit-border-radius: 5px;" :src="item.detail.url">
                     </el-col>
                     <el-col :span="14">
                         <el-row :gutter="10">
-                            <p style="margin-top: -1px">{{item.name}}</p>
+                            <p @click="Jump(item)" style="margin-top: -1px">{{item.name}}</p>
                         </el-row>
                         <el-row :gutter="10">
                             <el-tag
@@ -213,6 +213,13 @@
             },
             detail(row){
                 router.push({path:`/course/${row.id}/${row.name}`})
+            },
+            Jump(row){
+                if (row.id === 1){
+                    window.location.href = "http://m.yuanhaowang.com/su/loupan/p_tuiguangloupan1.html"
+                }else {
+                    router.push({path:`/course/${row.id}/${row.name}`})
+                }
             },
             goHome(){
                 router.push("/home")
