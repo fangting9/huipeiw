@@ -215,11 +215,8 @@
                 router.push({path:`/course/${row.id}/${row.name}`})
             },
             Jump(row){
-                if (row.id === 1){
-                    window.location.href = "http://m.yuanhaowang.com/su/loupan/p_tuiguangloupan1.html"
-                }else {
                     router.push({path:`/course/${row.id}/${row.name}`})
-                }
+
             },
             goHome(){
                 router.push("/home")

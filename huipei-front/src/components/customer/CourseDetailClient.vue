@@ -1,16 +1,6 @@
 <template>
     <div class="overflow">
-        <!--<div style="width: 100%; height: 60px;text-align: right">
-            <el-row :gutter="10">
-                <el-col :span="4"><p class="back" @click="this.$router.back()"><el-icon><ArrowLeft /></el-icon>返回</p></el-col>
-                <el-col :span="9" :offset="4">
-                    <h3 style="text-align: center"><p>{{pageTitle}}</p></h3>
-                </el-col>
-                <el-col :span="6" >
-                    <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
-                </el-col>
-            </el-row>
-        </div>-->
+        <iframe hidden v-if="courseId === '1'" src="http://m.yuanhaowang.com/su/loupan/p_tuiguangloupan1.html"></iframe>
         <el-header style="width: 100%; height: 60px;text-align: center">
             <el-row :gutter="10">
                 <el-col :span="8" >
