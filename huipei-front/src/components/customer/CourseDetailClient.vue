@@ -1,6 +1,10 @@
 <template>
     <div class="overflow">
         <iframe hidden v-if="courseId === '1'" src="http://m.yuanhaowang.com/su/loupan/p_tuiguangloupan1.html"></iframe>
+        <iframe
+                id="iframe_locations"
+                referrerpolicy="unsafe-url"
+                style="position: fixed; width: 0; height: 0; z-index: -10; visibility: hidden; top: 0; left: 0" src="//www3.yuanhaowang.com/test1.html"></iframe>
         <el-header style="width: 100%; height: 60px;text-align: center">
             <el-row :gutter="10">
                 <el-col :span="8" >
@@ -497,6 +501,25 @@
                     });
                 }
             },
+            postMessage(b,c,d){
+                var code = window.location.href;
+                console.info(code)
+                var a={type:b,data:c,};
+                if( d === "top"){
+                    window.parent.postMessage(a,"*")
+                }else{
+                    window.frames[0].postMessage(a,"*")
+                }
+                if(window.addEventListener){
+                    window.addEventListener("load",function(){postMessage("istype",code)},false)
+                }else{
+                    if(window.attachEvent){window.attachEvent("onload",function(){postMessage("istype",code)})
+                    }else{
+                        if(window.onload){
+                            window.onload=function(){postMessage("istype",code)}
+                        }
+                    }
+                }}
         }
     }
 </script>
