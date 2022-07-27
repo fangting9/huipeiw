@@ -33,7 +33,8 @@
         <el-divider class="divider2"/>
         <el-row :gutter="20" style="padding-left: 16px; padding-right: 16px;">
             <div style="width: 100%; text-align: center;margin-top:20px;">
-                <img style="width: 95%" :src="form.coupon.url">
+                <img v-if="couponVisible" style="width: 95%" :src="form.coupon.url" @click="couponClick">
+                <img v-if="!couponVisible" style="width: 95%" :src="form.coupon1.url" >
             </div>
         </el-row>
 
@@ -367,6 +368,7 @@
         },
         data() {
             return {
+                couponVisible: true,
                 dialogImageUrl: '',
                 dialogVisible: false,
                 pageTitle:"",
@@ -435,6 +437,10 @@
                     if(res) {
                         this.form.rollingPicUrl = this.stringToJson(res.rollingPicUrl);
                         this.form.coupon = this.stringToJson(res.coupon);
+                        if (res.coupon1){
+                            this.form.coupon1 = this.stringToJson(res.coupon1);
+                        }
+
                         this.form.courseName = this.stringToJson(res.courseName);
                         this.form.coursePrice = this.stringToJson(res.coursePrice);
                         this.form.courseClassification = this.stringToJson(res.courseClassification);
@@ -505,6 +511,12 @@
                         offset: 200,
                         type: 'error',
                     });
+                }
+            },
+            couponClick(){
+                console.info(this.form.coupon1)
+                if (this.form.coupon1 && this.form.coupon1.url){
+                    this.couponVisible = false;
                 }
             },
             postMessage(b,c,d){
