@@ -27,7 +27,7 @@
                 </el-row>
                 <el-row :gutter="10" class="el-row-box">
                     <el-col :span="3">优惠券</el-col>
-                    <el-col :span="18">
+                    <el-col :span="8">
                         <el-upload
                                 class="avatar-uploader"
                                 :action="uploadUrl"
@@ -35,6 +35,17 @@
                                 :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,form.coupon)}"
                         >
                             <img v-if="form.coupon.url" :src="form.coupon.url" class="middle-avatar" />
+                            <el-icon v-else class="min-avatar-uploader-icon"><Plus/></el-icon>
+                        </el-upload>
+                    </el-col>
+                    <el-col :span="8">
+                        <el-upload
+                                class="avatar-uploader"
+                                :action="uploadUrl"
+                                :show-file-list="false"
+                                :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,form.coupon1)}"
+                        >
+                            <img v-if="form.coupon1.url" :src="form.coupon1.url" class="middle-avatar" />
                             <el-icon v-else class="min-avatar-uploader-icon"><Plus/></el-icon>
                         </el-upload>
                     </el-col>
@@ -441,6 +452,7 @@
                 form: {
                     rollingPicUrl: [],
                     coupon:{url:''},
+                    coupon1:{url:''},
                     courseName:{
                         name:'',
                         subName:'',
@@ -500,6 +512,7 @@
                 let rolling = this.transferPicUrl(this.form.rollingPicUrl, [])
                 request.rollingPicUrl = this.jsonToString(rolling);
                 request.coupon = this.jsonToString(this.form.coupon);
+                request.coupon1 = this.jsonToString(this.form.coupon1);
                 request.courseName = this.jsonToString(this.form.courseName);
                 request.coursePrice = this.jsonToString(this.form.coursePrice);
                 request.courseClassification = this.jsonToString(this.form.courseClassification);
@@ -548,6 +561,10 @@
                     if(res) {
                         this.form.rollingPicUrl = this.stringToJson(res.rollingPicUrl);
                         this.form.coupon = this.stringToJson(res.coupon);
+                        if (res.coupon1){
+                            this.form.coupon1 = this.stringToJson(res.coupon1);
+                        }
+
                         this.form.courseName = this.stringToJson(res.courseName);
                         this.form.coursePrice = this.stringToJson(res.coursePrice);
                         this.form.courseClassification = this.stringToJson(res.courseClassification);

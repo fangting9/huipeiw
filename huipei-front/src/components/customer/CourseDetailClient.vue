@@ -239,12 +239,12 @@
                 </el-col>
             </el-row>
             <el-row :gutter="10">
-                <el-col :span="24" :offset="1">
+                <el-col :span="22" :offset="1">
                     <p style="color:#161616; font-size:12px">{{item.content}}</p>
                 </el-col>
             </el-row>
             <el-row :gutter="10">
-                <el-col :span="24" :offset="1">
+                <el-col :span="22" :offset="1">
                 <el-form-item>
                     <el-tag
                             v-for="(tag, index) in item.label"
@@ -369,7 +369,7 @@
             return {
                 dialogImageUrl: '',
                 dialogVisible: false,
-                pageTitle:"成人高考",
+                pageTitle:"",
                 courseId:1,
                 signUpDialogVisible:false,
                 yyDialogVisible:false,
@@ -424,11 +424,12 @@
         },
         created(){
             this.detail();
+            this.getCourseName();
         },
         methods:{
             detail(){
                 this.courseId = useRoute().params.id;
-                this.pageTitle = useRoute().params.name;
+
                 axios.get("/admin/course/detail/"+this.courseId).then((response) => {
                     let res = response.data
                     if(res) {
@@ -452,6 +453,11 @@
                 }).catch(()=>{
                     ElMessage.error("请重新刷新页面");
                 })
+            },
+            getCourseName(){
+                axios.get("/admin/course/courseName/"+this.courseId).then((response) => {
+                    this.pageTitle = response.data;
+                });
             },
             stringToJson(val){
                 return val ? JSON.parse(val) : val

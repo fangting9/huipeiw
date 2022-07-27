@@ -109,7 +109,7 @@ const routes = [
         component:()=>import('../components/customer/TextualCriticismClient'),
     },
     {
-        path:'/course/:id/:name',
+        path:'/course/:id',
         name:'course',
         component:()=>import('../components/customer/CourseDetailClient'),
     },

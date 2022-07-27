@@ -6,7 +6,7 @@
             </el-form-item>
             <el-form-item label="电话">
                 <el-input v-model="signUpInfo.phone" placeholder="请输入手机号" oninput="value=value.replace(/[^\d]/g,'')"
-                          maxlength="11" @blur="telTest"></el-input>
+                          maxlength="11"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" @click="signUpSave()" style="width: 100%;height:40px;color: white" round>立即报名</el-button>
@@ -23,7 +23,7 @@
         data(){
             return{
                 signUpInfo:{
-                    phone: '',
+                    phone:'',
                     name:'',
                     code:''
                 },
@@ -39,8 +39,15 @@
                     ElMessage("请输入姓名");
                     return
                 }
-                if (!this.signUpInfo.phone){
-                    ElMessage("请输入手机号")
+                const reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
+                if (this.signUpInfo.phone=== '' || this.signUpInfo.phone.length <= 10 || !reg.test(this.signUpInfo.phone)) {
+                    ElMessage({
+                        message: '请输入正确的手机号',
+                        center: true,
+                        offset: 200,
+                        type: 'error',
+                    });
+                    return;
                 }
                 let req = {name: this.signUpInfo.name, phone: this.signUpInfo.phone, subjectCode: this.subjectCode, courseId: this.courseId, type:1, createSid:false};
                 commonData.getSid(req);
@@ -52,17 +59,7 @@
                     type: 'success',
                 });
             },
-            telTest () {
-                const reg = /^1([38]\d|5[0-35-9]|7[3678])\d{8}$/;
-                if (this.chatPhone=== '' || this.chatPhone.length <= 10 || !reg.test(this.chatPhone)) {
-                    ElMessage({
-                        message: '请输入正确的手机号',
-                        center: true,
-                        offset: 200,
-                        type: 'error',
-                    });
-                }
-            },
+
         }
     }
 </script>

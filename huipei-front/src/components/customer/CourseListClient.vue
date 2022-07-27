@@ -212,11 +212,10 @@
                 return val ? JSON.parse(val) : val
             },
             detail(row){
-                router.push({path:`/course/${row.id}/${row.name}`})
+                router.push({path:`/course/${row.id}`})
             },
             Jump(row){
-                    router.push({path:`/course/${row.id}/${row.name}`})
-
+                router.push({path:`/course/${row.id}`})
             },
             goHome(){
                 router.push("/home")
