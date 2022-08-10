@@ -105,7 +105,7 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%; text-align: left;">
+            <div style="width: 100%; text-align: left;" v-if="this.form.campusEnvironment.title">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.campusEnvironment.title}}</p>
@@ -121,9 +121,39 @@
                 </div>
             </div>
         </el-row>
+
+        <el-row :gutter="20">
+            <div style="width: 100%; text-align: left;" v-if="this.form.organization.title">
+            </div>
+        </el-row>
+
+        <el-row :gutter="20">
+            <div style="width: 100%; text-align: left;" v-if="this.form.hotConsult.title">
+                <el-row :gutter="10" >
+                    <el-col :span="10" :offset="1" style="padding-left: 16px">
+                        <p class="title">{{this.form.hotConsult.title}}</p>
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="12" style="padding-bottom: 16px">
+                        <img style="width: 100%; height: 100%;" :src="this.form.hotConsult.picUrl1.url">
+                    </el-col>
+                    <el-col :span="12" style="padding-bottom: 16px">
+                        <img style="width: 100%; height: 100%;" :src="this.form.hotConsult.picUrl2.url">
+                    </el-col>
+                </el-row>
+                <el-row :gutter="10">
+                    <el-col :span="12" style="text-align: center">
+                        <img style="width: 90%;" :src="this.form.hotConsult.picUrl3.url">
+                    </el-col>
+                </el-row>
+            </div>
+        </el-row>
+
+
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%; text-align: left;">
+            <div style="width: 100%; text-align: left;" v-if="this.form.brandAdvantage.title">
                 <el-row :gutter="10" >
                     <el-col :span="10" :offset="1" style="padding-left: 16px">
                         <p class="title">{{this.form.brandAdvantage.title}}</p>
@@ -138,7 +168,7 @@
         </el-row>
         <el-divider class="divider2"/>
         <el-row :gutter="20">
-            <div style="width: 100%;text-align: left;">
+            <div style="width: 100%;text-align: left;" v-if="this.form.aboutUs.title">
                 <el-row :gutter="10">
                     <el-col :span="10" :offset="1"  style="padding-left: 16px">
                         <p class="title">{{this.form.aboutUs.title}}</p>
@@ -234,8 +264,22 @@
                         phone: '',
                         picUrls: [],
                     },
-                    organization:{},
-                    hotConsult:{}
+                    organization:{
+                        title: '',
+                        detail:[
+                            {
+                                content:'',
+                                name:'',
+                                picUrl: ''
+                            }
+                        ]
+                    },
+                    hotConsult:{
+                        title: '',
+                        picUrl1: {url:''},
+                        picUrl2: {url:''},
+                        picUrl3: {url:''},
+                    }
 
                 }
             }
