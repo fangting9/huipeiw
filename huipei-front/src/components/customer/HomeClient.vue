@@ -12,8 +12,8 @@
             </el-row>
         </el-header>
         <el-row :gutter="20">
-            <div class="block text-center" style="width: 100%;height: 200px">
-                <el-carousel style="height: 100%" v-if="form.rollingPicUrl?.[0] != null">
+            <div class="block text-center" style="width: 100%;">
+                <el-carousel style="height: 100%" :height="getH" v-if="form.rollingPicUrl?.[0] != null">
                     <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                             <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
@@ -37,7 +37,7 @@
                         <p class="title">{{this.form.hotTopic.title}}</p>
                     </el-col>
                     <el-col :span="12" style="padding-right: 16px">
-                        <p class="text_right more" @click="toCourseList">了解更多<el-icon><ArrowRight /></el-icon></p>
+                        <p class="text_right more" @click="toCourseList(1)">了解更多<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.hotTopic.detail" :key="i" style="text-align: left;">
@@ -57,9 +57,8 @@
                                         <span style="margin-left: -5px;" class="courseNum">{{item.applyNum}}人报名</span>
                                     </el-col>
                                     <el-col :span="12" style="padding-right: 16px">
-                                        <el-button @click="signUpDialogVisible=true" class="signUpButton" round>报名</el-button>
+                                        <el-button @click="chatVisible=true" class="signUpButton" round>咨询</el-button>
                                     </el-col>
-
                                 </el-row>
                         </el-col>
                     </el-row>
@@ -88,14 +87,14 @@
                                 <span @click="yyDialogVisible=true" class="examContestName" style="margin-top: 1%">{{item.desc}}</span>
                             </el-row>
                             <el-row :gutter="10">
-                                <span class="price" style="margin-top: 6%; margin-bottom: 3%" >¥{{item.price}}</span>
+                                <span  style="margin-top: 6%; margin-bottom: 3%; font-size: 13px" >{{item.price}}人报名</span>
                             </el-row>
                             <el-row :gutter="10">
                                 <el-col :span="12">
                                     <span class="courseNum">{{item.status}}</span>
                                 </el-col>
                                 <el-col :span="12" style="padding-right: 16px">
-                                    <el-button @click="yyDialogVisible=true" class="signUpButton" style="padding-right: 16px" round>预约</el-button>
+                                    <el-button @click="chatVisible=true" class="signUpButton" style="padding-right: 16px" round>咨询</el-button>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -234,7 +233,10 @@
                         title: '',
                         phone: '',
                         picUrls: [],
-                    }
+                    },
+                    organization:{},
+                    hotConsult:{}
+
                 }
             }
         },
@@ -242,9 +244,14 @@
             this.detail();
 
         },
+        computed:{
+            getH(){
+                return document.documentElement.clientWidth/434 * 222 + 'px';
+            }
+        },
         methods:{
-            toCourseList(){
-                router.push({path:`/ccourseList/1`})
+            toCourseList(code){
+                router.push({path:`/ccourseList/${code}`})
             },
             detail(){
                 axios.get("/admin/home/detail").then((response) => {
@@ -256,7 +263,8 @@
                 })
             },
             toGo(code){
-                if (code === '1'){
+                this.toCourseList(code)
+                /*if (code === '1'){
                     router.push('/ceducation');
                 }else if (code === '2'){
                     router.push('/caccount');
@@ -266,7 +274,7 @@
                     router.push('/construction');
                 }else if (code === '5'){
                     router.push('/textual');
-                }
+                }*/
 
             },
             contactCopy(){

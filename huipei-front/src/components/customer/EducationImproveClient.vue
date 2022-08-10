@@ -16,8 +16,8 @@
             </el-row>
         </el-header>
         <el-row :gutter="20">
-            <div class="block text-center" style="width: 100%;height: 200px">
-                <el-carousel class="elCarousel" v-if="form.rollingPicUrl?.[0] != null">
+            <div class="block text-center" style="width: 100%;">
+                <el-carousel class="elCarousel" :height="getH" v-if="form.rollingPicUrl?.[0] != null">
                     <el-carousel-item v-for="(item,i) in this.form.rollingPicUrl" :key="i">
                         <img :src="item.url" alt="" class="rollingPic">
                     </el-carousel-item>
@@ -221,6 +221,11 @@
         },
         created(){
             this.detail();
+        },
+        computed:{
+            getH(){
+                return document.documentElement.clientWidth/434 * 222 + 'px';
+            }
         },
         methods:{
             toCourseList(){

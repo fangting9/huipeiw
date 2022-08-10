@@ -96,6 +96,18 @@
                                 <el-input type="textarea" v-model="item.desc" placeholder="请输入课程介绍" ></el-input>
                             </el-form-item>
                         </el-col>
+                        <el-col :span="6" style="margin-top: 70px">
+                            <el-form-item >
+                                <el-select v-model="item.courseId" placeholder="请选择对应的课程详情页">
+                                    <el-option
+                                            v-for="i in courseList"
+                                            :key="i.id"
+                                            :label="i.name"
+                                            :value="i.id"
+                                    />
+                                </el-select>
+                            </el-form-item>
+                        </el-col>
                         <el-col :span="4" style="margin-left:10px; margin-top: 70px">
                             <el-button circle @click="addList(form.hotTopic.detail)" v-if="index ===0">
                                 <el-icon><Plus /></el-icon>
@@ -135,10 +147,22 @@
                                 <el-input v-model="item.desc" placeholder="请输入考试科目" ></el-input>
                             </el-form-item>
                             <el-form-item >
-                                <el-input type="number" v-model="item.price" placeholder="请输入考试价格" ></el-input>
+                                <el-input  v-model="item.price" placeholder="请输入人数" ></el-input>
                             </el-form-item>
                             <el-form-item >
                                 <el-input v-model="item.status" placeholder="请输入开始状态" ></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="6" style="margin-top: 70px">
+                            <el-form-item >
+                                <el-select v-model="item.courseId" placeholder="请选择对应的课程详情页">
+                                    <el-option
+                                            v-for="i in courseList"
+                                            :key="i.id"
+                                            :label="i.name"
+                                            :value="i.id"
+                                    />
+                                </el-select>
                             </el-form-item>
                         </el-col>
                         <el-col :span="4" style="margin-left:10px; margin-top: 70px">
@@ -154,6 +178,95 @@
                 </div>
             </el-col>
         </el-row>
+            <el-row :gutter="20" class="el-row-box">
+                <el-col :span="3">机构入驻</el-col>
+                <el-col :span="18">
+                    <el-row :gutter="20">
+                        <el-form-item>
+                            <el-input v-model="newForm.organization.title" placeholder="请输入模块标题"></el-input>
+                        </el-form-item>
+                    </el-row>
+                    <div v-for="(item, index) in newForm.organization.detail" :key="index">
+                        <div class="div-dotted" v-if="index>0"></div>
+                        <el-row :gutter="20">
+                            <el-col :span="6">
+                                <el-upload
+                                        class="avatar-uploader"
+                                        :action="uploadUrl"
+                                        :show-file-list="false"
+                                        :on-success="(res,file)=>{handleAvatarSuccess(res,file,newForm.organization.detail,index)}"
+                                >
+                                    <img v-if="item.picUrl" :src="item.picUrl" class="middle-avatar" />
+                                    <el-icon v-else class="min-avatar-uploader-icon"><Plus /></el-icon>
+                                </el-upload>
+                            </el-col>
+                            <el-col :span="6">
+                                <el-form-item >
+                                    <el-input type="textarea" v-model="item.content" placeholder="请输入描述" ></el-input>
+                                </el-form-item>
+                                <el-form-item >
+                                    <el-input v-model="item.name" placeholder="请输入机构名称" ></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="4" style="margin-left:10px; margin-top: 70px">
+                                <el-button circle @click="addList(newForm.organization.detail)" v-if="index ===0">
+                                    <el-icon><Plus /></el-icon>
+                                </el-button>
+                                <el-button circle  @click="subList(newForm.organization.detail,index)" v-if="index>0">
+                                    <el-icon><SemiSelect /></el-icon>
+                                </el-button>
+                            </el-col>
+                        </el-row>
+                    </div>
+                </el-col>
+            </el-row>
+
+            <el-row :gutter="20" class="el-row-box">
+                <el-col :span="3">热门咨询</el-col>
+                <el-col :span="18">
+                    <el-row :gutter="20">
+                        <el-form-item>
+                            <el-input v-model="newForm.hotConsult.title" placeholder="请输入标题"></el-input>
+                        </el-form-item>
+                    </el-row>
+                    <el-row :gutter="20">
+                        <el-col :span="6">
+                            <el-upload
+                                    class="avatar-uploader"
+                                    :action="uploadUrl"
+                                    :show-file-list="false"
+                                    :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,newForm.hotConsult.picUrl1)}"
+                            >
+                                <img v-if="newForm.hotConsult.picUrl1.url" :src="newForm.hotConsult.picUrl1.url" class="middle-avatar" />
+                                <el-icon v-else class="min-avatar-uploader-icon">图一排左</el-icon>
+                            </el-upload>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-upload
+                                    class="avatar-uploader"
+                                    :action="uploadUrl"
+                                    :show-file-list="false"
+                                    :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,newForm.hotConsult.picUrl2)}"
+                            >
+                                <img v-if="newForm.hotConsult.picUrl2.url" :src="newForm.hotConsult.picUrl2.url" class="middle-avatar" />
+                                <el-icon v-else class="min-avatar-uploader-icon">图一排右</el-icon>
+                            </el-upload>
+                        </el-col>
+                        <el-col :span="6">
+                            <el-upload
+                                    class="avatar-uploader"
+                                    :action="uploadUrl"
+                                    :show-file-list="false"
+                                    :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,newForm.hotConsult.picUrl3)}"
+                            >
+                                <img v-if="newForm.hotConsult.picUrl3.url" :src="newForm.hotConsult.picUrl3.url" class="middle-avatar" />
+                                <el-icon v-else class="min-avatar-uploader-icon">图二排</el-icon>
+                            </el-upload>
+                        </el-col>
+                    </el-row>
+
+                </el-col>
+            </el-row>
         <el-row :gutter="20" class="el-row-box">
             <el-col :span="3">校区照片</el-col>
             <el-col :span="18">
@@ -174,6 +287,7 @@
                 </el-row>
             </el-col>
         </el-row>
+
         <el-row :gutter="20" class="el-row-box">
             <el-col :span="3">品牌优势</el-col>
             <el-col :span="18">
@@ -278,6 +392,7 @@
                 dialogVisible:false,
                 uploadUrl:"/api/upload/image",
                 specialSubject:commonData.specialSubject,
+                courseList:[],
                 form: {
                     rollingPicUrl: [],
                     brandIntroductionPicUrl: [
@@ -314,12 +429,31 @@
                         title: '',
                         phone: '',
                         picUrls: [],
+                    },
+                },
+                newForm:{
+                    organization:{
+                        title: '',
+                        detail:[
+                            {
+                                content:'',
+                                name:'',
+                                picUrl: ''
+                            }
+                        ]
+                    },
+                    hotConsult:{
+                        title: '',
+                        picUrl1: {url:''},
+                        picUrl2: {url:''},
+                        picUrl3: {url:''},
                     }
                 }
             }
         },
         created(){
             this.detailHomePage();
+            this.getCourseList();
         },
         methods:{
             test(){
@@ -327,6 +461,11 @@
                     console.log (response.data)
                 }).catch(()=>{
                     ElMessage.error("上传失败");
+                })
+            },
+            async getCourseList(){
+                await axios.post("/admin/course/list",{pageSize:100, pageNo:1}).then((response) => {
+                    this.courseList = response.data.list
                 })
             },
             handlePictureCardPreview(uploadFile) {
@@ -341,7 +480,13 @@
                 }
 
             },
-
+            handleObjectAvatarSuccess(response, uploadFile,object) {
+                console.info(response)
+                console.info(object)
+                if (object){
+                    object.url = response;
+                }
+            },
 
 
             beforeAvatarUpload() {
@@ -368,11 +513,18 @@
                 axios.get("/admin/home/detail").then((response) => {
                     if (response.data){
                         this.form = response.data
+                        if (response.data.organization){
+                            this.newForm.organization = this.stringToJson(response.data.organization)
+                        }
+                        if (response.data.hotConsult){
+                            this.newForm.hotConsult = this.stringToJson(response.data.hotConsult)
+                        }
                     }
 
                 }).catch(()=>{
                     ElMessage.error("查询失败");
                 })
+
             },
             saveHomePage(){
                 let request = this.form;
@@ -381,11 +533,19 @@
                 request.brandAdvantage.picUrls = this.transferPicUrl(this.form.brandAdvantage.picUrls, request.brandAdvantage.picUrls);
                 request.aboutUs.picUrls = this.transferPicUrl(this.form.aboutUs.picUrls, request.aboutUs.picUrls);
                 request.contact.picUrls = this.transferPicUrl(this.form.contact.picUrls, request.contact.picUrls);
+                request.hotConsult = this.jsonToString(this.newForm.hotConsult);
+                request.organization = this.jsonToString(this.newForm.organization);
                 axios.post("/admin/home/save",request).then(() => {
                     ElMessage.success("保存成功");
                 }).catch(()=>{
                     ElMessage.error("保存失败");
                 })
+            },
+            jsonToString(val){
+                return JSON.stringify(val);
+            },
+            stringToJson(val){
+                return val ? JSON.parse(val) : val
             },
             transferPicUrl(origin, target){
                 if (origin){

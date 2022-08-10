@@ -81,7 +81,6 @@
 
         methods:{
             intSend(){
-                console.info("请求来了", this.consultId);
                 let message = {consultId:this.consultId,reload:true};
                 this.$adminSocked.ws.send(JSON.stringify(message));
             },
@@ -92,7 +91,6 @@
                 }
                 this.msgList.push({record:this.msg, fromQuizzer:1});
                 if (that.$adminSocked.ws && that.$adminSocked.ws.readyState == 1) {
-                    console.log("发送信息", this.msg);
                     let message = {consultId:this.consultId,msg:this.msg};
                     that.$adminSocked.ws.send(JSON.stringify(message));
                 }
@@ -100,7 +98,6 @@
             },
             onmessage(e){
                 let data = JSON.parse(e.data)
-                console.log("接收信息", data);
                 if (data.logList){
                     this.msgList = data.logList
                     console.log("历史消息", data.logList);
@@ -110,9 +107,11 @@
                     if (data.consultId === this.consultId){
                         this.msgList.push({record:data.msg, fromQuizzer:0})
                     }
-                    console.log("接收信息", data.msg);
+
                 }
             },
+
+
 
         }
 

@@ -77,8 +77,8 @@
             }
         },
         created(){
-            this.getAdminSid()
-            this.localSocket()
+            this.getAdminSid();
+            this.localSocket();
         },
         activated(){
 
@@ -124,7 +124,9 @@
                             that.localSocket();
                         }, 2000);
                     }
-                    that.ws.onmessage = this.onmessage
+                    that.ws.onmessage = function () {
+                        that.$store.commit("SET_UNREAD", that.unread +1);
+                    }
 
                 } else {
                     // 浏览器不支持 WebSocket

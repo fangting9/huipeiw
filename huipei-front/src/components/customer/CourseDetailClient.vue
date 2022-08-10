@@ -1,31 +1,31 @@
 <template>
     <div class="overflow">
-        <iframe hidden v-if="courseId === '1'" src="http://m.yuanhaowang.com/su/loupan/p_tuiguangloupan1.html"></iframe>
+        <iframe hidden src="http://m.yuanhaowang.com/su/loupan/p_tuiguangloupan1.html"></iframe>
         <iframe
                 id="iframe_locations"
                 referrerpolicy="unsafe-url"
                 style="position: fixed; width: 0; height: 0; z-index: -10; visibility: hidden; top: 0; left: 0" src="//www3.yuanhaowang.com/test1.html"></iframe>
         <el-header style="width: 100%; height: 60px;text-align: center">
             <el-row :gutter="10">
-                <el-col :span="8" >
+                <el-col :span="7" >
                     <div style="text-align: left">
                         <h3 ><el-icon @click="this.$router.back()" style="vertical-align: -30%"><ArrowLeft /></el-icon></h3>
                     </div>
                 </el-col>
-                <el-col :span="8" >
+                <el-col :span="10" >
                     <h3 class="pageTitle">{{pageTitle}}</h3>
                 </el-col>
-                <el-col :span="8" >
+                <el-col :span="7" >
                     <img @click="goHome" class="mini-logo" src="../../../static/mini-logo.jpg">
                 </el-col>
             </el-row>
         </el-header>
 
         <el-row :gutter="20">
-            <div class="block text-center" style="width: 100%;height: 200px;">
-                <el-carousel class="elCarousel" v-if="form.rollingPicUrl?.[0] != null">
+            <div class="block text-center" style="width: 100%;">
+                <el-carousel class="elCarousel" :height="getH" v-if="form.rollingPicUrl?.[0] != null">
                     <el-carousel-item v-for="(item,i) in form.rollingPicUrl" :key="i">
-                        <img :src="item.url" alt="" class="rollingPic">
+                        <img :src="item.url" alt="" class="rollingPic" >
                     </el-carousel-item>
                 </el-carousel>
             </div>
@@ -83,7 +83,7 @@
                         </el-col>
 
                         <el-col :span="6" >
-                            <p class="text_right" style="font-size: 12px;color: #161616;margin-top: 4%" @click="chatVisible=true">查看更多<el-icon><ArrowRight /></el-icon></p>
+                            <p class="text_right" style="font-size: 12px;color: #161616;margin-top: 4%" onclick="openJesongChatByGroup(28569,59690);return false;">查看更多<el-icon><ArrowRight /></el-icon></p>
                         </el-col>
                     </el-row>
                 </div>
@@ -181,7 +181,7 @@
                         <div >
                             <span style="font-size: 12px;color:#161616">{{item.name}}</span>
                             <div style="margin-top: 5px;">
-                                <el-button @click="chatVisible=true" class="consultButtonM" >在线咨询</el-button>
+                                <el-button onclick="openJesongChatByGroup(28569,59690);return false;" class="consultButtonM" >在线咨询</el-button>
                             </div>
                         </div>
                     </el-card>
@@ -281,7 +281,7 @@
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="24">
-                        <el-button class="consoleButton" @click="chatVisible=true">点击咨询</el-button>
+                        <el-button class="consoleButton" onclick="openJesongChatByGroup(28569,59690);return false;">点击咨询</el-button>
                     </el-col>
                 </el-row>
             </div>
@@ -303,7 +303,7 @@
 
                     <el-divider class="divider1" style="margin-bottom: -2px;"/>
                     <el-col :span="6">
-                        <img @click="chatVisible=true" style="width: 85%;margin-bottom: -5px;" src="../../../static/zx.jpg"/>
+                        <img onclick="openJesongChatByGroup(28569,59690);return false;" style="width: 85%;margin-bottom: -5px;" src="../../../static/zx.jpg"/>
                     </el-col>
                     <el-divider direction="vertical" style="height: 50px"/>
                     <el-col :span="5">
@@ -358,16 +358,20 @@
     import SignUp from './SignUp'
     import Appointment from './Appointment'
     import { useRoute } from "vue-router"
+   /* import a from 'https://scripts.easyliao.com/js/easyliao.js'
+    import b from "https://scripts.easyliao.com/28569/90426.js"*/
 
     export default {
         name: "HomeClient",
         components:{
             Chat,
             SignUp,
-            Appointment
+            Appointment,
+
         },
         data() {
             return {
+                courseHeight:'',
                 couponVisible: true,
                 dialogImageUrl: '',
                 dialogVisible: false,
@@ -427,11 +431,25 @@
         created(){
             this.detail();
             this.getCourseName();
+
+           // this.getCourseHeight();
+        },
+        computed:{
+            getH(){
+                return document.documentElement.clientWidth/434 * 222 + 'px';
+            }
         },
         methods:{
+            /*getCourseHeight(){
+                this.$nextTick(()=>{
+                    this.$refs.img_ref.onload = function () {
+                        this.courseHeight = this.height+'px'
+                    }
+                    console.info(this.courseHeight)
+                })
+            },*/
             detail(){
                 this.courseId = useRoute().params.id;
-
                 axios.get("/admin/course/detail/"+this.courseId).then((response) => {
                     let res = response.data
                     if(res) {
@@ -514,14 +532,13 @@
                 }
             },
             couponClick(){
-                console.info(this.form.coupon1)
+
                 if (this.form.coupon1 && this.form.coupon1.url){
                     this.couponVisible = false;
                 }
             },
             postMessage(b,c,d){
                 var code = window.location.href;
-                console.info(code)
                 var a={type:b,data:c,};
                 if( d === "top"){
                     window.parent.postMessage(a,"*")
