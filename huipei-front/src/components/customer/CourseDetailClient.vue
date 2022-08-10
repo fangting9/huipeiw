@@ -83,7 +83,8 @@
                         </el-col>
 
                         <el-col :span="6" >
-                            <p class="text_right" style="font-size: 12px;color: #161616;margin-top: 4%" onclick="openJesongChatByGroup(28569,59690);return false;">查看更多<el-icon><ArrowRight /></el-icon></p>
+                            <p v-if="courseId === '1' || courseId === '2'" class="text_right" style="font-size: 12px;color: #161616;margin-top: 4%" onclick="openJesongChatByGroup(28569,59690);return false;">查看更多<el-icon><ArrowRight /></el-icon></p>
+                            <p v-else class="text_right" style="font-size: 12px;color: #161616;margin-top: 4%" @click="chatVisible=true">查看更多<el-icon><ArrowRight /></el-icon></p>
                         </el-col>
                     </el-row>
                 </div>
@@ -181,7 +182,8 @@
                         <div >
                             <span style="font-size: 12px;color:#161616">{{item.name}}</span>
                             <div style="margin-top: 5px;">
-                                <el-button onclick="openJesongChatByGroup(28569,59690);return false;" class="consultButtonM" >在线咨询</el-button>
+                                <el-button v-if="courseId === '1' || courseId === '2'" onclick="openJesongChatByGroup(28569,59690);return false;" class="consultButtonM" >在线咨询</el-button>
+                                <el-button v-else @click="chatVisible=true" class="consultButtonM" >在线咨询</el-button>
                             </div>
                         </div>
                     </el-card>
@@ -281,7 +283,9 @@
                 </el-row>
                 <el-row :gutter="20">
                     <el-col :span="24">
-                        <el-button class="consoleButton" onclick="openJesongChatByGroup(28569,59690);return false;">点击咨询</el-button>
+
+                        <el-button v-if="courseId === '1' || courseId === '2'" class="consoleButton" onclick="openJesongChatByGroup(28569,59690);return false;">点击咨询</el-button>
+                        <el-button v-else class="consoleButton" @click="chatVisible=true">点击咨询</el-button>
                     </el-col>
                 </el-row>
             </div>
@@ -303,7 +307,8 @@
 
                     <el-divider class="divider1" style="margin-bottom: -2px;"/>
                     <el-col :span="6">
-                        <img onclick="openJesongChatByGroup(28569,59690);return false;" style="width: 85%;margin-bottom: -5px;" src="../../../static/zx.jpg"/>
+                        <img v-if="courseId === '1' || courseId === '2'" onclick="openJesongChatByGroup(28569,59690);return false;" style="width: 85%;margin-bottom: -5px;" src="../../../static/zx.jpg"/>
+                        <img v-else @click="chatVisible=true" style="width: 85%;margin-bottom: -5px;" src="../../../static/zx.jpg"/>
                     </el-col>
                     <el-divider direction="vertical" style="height: 50px"/>
                     <el-col :span="5">
