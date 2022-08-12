@@ -179,7 +179,7 @@
             </el-col>
         </el-row>
             <el-row :gutter="20" class="el-row-box">
-                <el-col :span="3">机构入驻</el-col>
+                <el-col :span="3">热点咨询</el-col>
                 <el-col :span="18">
                     <el-row :gutter="20">
                         <el-form-item>
@@ -222,7 +222,7 @@
             </el-row>
 
             <el-row :gutter="20" class="el-row-box">
-                <el-col :span="3">热门咨询</el-col>
+                <el-col :span="3">机构入驻</el-col>
                 <el-col :span="18">
                     <el-row :gutter="20">
                         <el-form-item>

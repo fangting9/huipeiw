@@ -287,7 +287,7 @@
         },
         computed:{
             getH(){
-                return document.documentElement.clientWidth/434 * 222 + 'px';
+                return document.documentElement.clientWidth/375 * 209 + 'px';
             }
         },
         methods:{

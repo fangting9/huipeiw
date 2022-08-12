@@ -43,11 +43,11 @@
                 <div v-for="(item,i) in this.form.hotTopic.detail" :key="i" style="text-align: left;">
                     <el-row :gutter="10">
                         <el-col :span="8" :offset="1" style="padding-left: 16px">
-                            <img @click="signUpDialogVisible=true" class="courseImage" :src="item.picUrl">
+                            <img @click="toCourseDetail(item.courseId)" class="courseImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
                                 <el-row :gutter="10" >
-                                    <span @click="signUpDialogVisible=true" class="courseName">{{item.courseName}}</span>
+                                    <span @click="toCourseDetail(item.courseId)" class="courseName">{{item.courseName}}</span>
                                 </el-row>
                                 <el-row :gutter="10">
                                     <span class="courseDesc" style="margin-top: 1%; margin-bottom: 2%">{{item.desc}}</span>
@@ -80,21 +80,21 @@
                 <div v-for="(item,i) in this.form.examContest.detail" :key="i">
                     <el-row :gutter="10">
                         <el-col :span="8" :offset="1" style="padding-left: 16px">
-                            <img @click="yyDialogVisible=true" class="courseImage" :src="item.picUrl">
+                            <img @click="toCourseDetail(item.courseId)" class="courseImage" :src="item.picUrl">
                         </el-col>
                         <el-col :span="14">
                             <el-row :gutter="10">
-                                <span @click="yyDialogVisible=true" class="examContestName" style="margin-top: 1%">{{item.desc}}</span>
+                                <span @click="toCourseDetail(item.courseId)" class="examContestName" style="margin-top: 1%">{{item.desc}}</span>
                             </el-row>
                             <el-row :gutter="10">
-                                <span  style="margin-top: 6%; margin-bottom: 3%; font-size: 13px" >{{item.price}}人报名</span>
+                                <span  style="margin-top: 4%; margin-bottom: 2%; font-size: 13px" >{{item.price}}人报名</span>
                             </el-row>
                             <el-row :gutter="10">
-                                <el-col :span="12">
+                                <el-col :span="17">
                                     <span class="courseNum">{{item.status}}</span>
                                 </el-col>
-                                <el-col :span="12" style="padding-right: 16px">
-                                    <el-button @click="chatVisible=true" class="signUpButton" style="padding-right: 16px" round>咨询</el-button>
+                                <el-col :span="6">
+                                    <el-button @click="chatVisible=true" class="signUpButton" style="text-align: left; margin-left: 0" round>咨询</el-button>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -123,28 +123,52 @@
         </el-row>
 
         <el-row :gutter="20">
-            <div style="width: 100%; text-align: left;" v-if="this.form.organization.title">
+            <div style="width: 100%; text-align: left;" v-if="this.newForm.organization && this.newForm.organization.title">
+                <el-row :gutter="10">
+                    <el-col :span="10" :offset="1"  style="padding-left: 16px">
+                        <p class="title">{{this.newForm.organization.title}}</p>
+                    </el-col>
+                </el-row>
+                <div v-for="(item,i) in this.newForm.organization.detail" :key="i">
+                    <el-row :gutter="10">
+                        <el-col :span="13" :offset="2" style="padding-left: 6px">
+                            <el-row :gutter="10" style="height: 66%">
+                                <span  class="examContestName" style="margin-top: 1%">{{item.content}}</span>
+                            </el-row>
+                            <el-row :gutter="10">
+                                <el-col :span="16">
+                                    <span class="courseNum">{{item.name}}</span>
+                                </el-col>
+                            </el-row>
+                        </el-col>
+                        <el-col :span="7"  >
+                            <img  class="courseImage" :src="item.picUrl">
+                        </el-col>
+                    </el-row>
+                    <el-divider class="divider"/>
+                </div>
             </div>
         </el-row>
 
         <el-row :gutter="20">
-            <div style="width: 100%; text-align: left;" v-if="this.form.hotConsult.title">
+            <div style="width: 100%; text-align: left;" v-if="this.newForm.hotConsult && this.newForm.hotConsult.title">
                 <el-row :gutter="10" >
                     <el-col :span="10" :offset="1" style="padding-left: 16px">
-                        <p class="title">{{this.form.hotConsult.title}}</p>
+                        <p class="title">{{this.newForm.hotConsult.title}}</p>
                     </el-col>
                 </el-row>
                 <el-row :gutter="10">
-                    <el-col :span="12" style="padding-bottom: 16px">
-                        <img style="width: 100%; height: 100%;" :src="this.form.hotConsult.picUrl1.url">
+                    <el-col :span="10" style="padding-bottom: 16px" :offset="2">
+                        <img style="width: 100%; height: 100%;" :src="this.newForm.hotConsult.picUrl1.url">
                     </el-col>
-                    <el-col :span="12" style="padding-bottom: 16px">
-                        <img style="width: 100%; height: 100%;" :src="this.form.hotConsult.picUrl2.url">
+
+                    <el-col :span="10" style="padding-bottom: 16px">
+                        <img style="width: 100%; height: 100%;" :src="this.newForm.hotConsult.picUrl2.url">
                     </el-col>
                 </el-row>
                 <el-row :gutter="10">
-                    <el-col :span="12" style="text-align: center">
-                        <img style="width: 90%;" :src="this.form.hotConsult.picUrl3.url">
+                    <el-col :span="20" style="text-align: center" :offset="2">
+                        <img style="width: 100%;" :src="this.newForm.hotConsult.picUrl3.url">
                     </el-col>
                 </el-row>
             </div>
@@ -264,6 +288,8 @@
                         phone: '',
                         picUrls: [],
                     },
+                },
+                newForm:{
                     organization:{
                         title: '',
                         detail:[
@@ -280,7 +306,6 @@
                         picUrl2: {url:''},
                         picUrl3: {url:''},
                     }
-
                 }
             }
         },
@@ -290,7 +315,7 @@
         },
         computed:{
             getH(){
-                return document.documentElement.clientWidth/434 * 222 + 'px';
+                return document.documentElement.clientWidth/375 * 209 + 'px';
             }
         },
         methods:{
@@ -301,10 +326,19 @@
                 axios.get("/admin/home/detail").then((response) => {
                     if (response.data){
                         this.form = response.data
+                        if (response.data.organization){
+                            this.newForm.organization = this.stringToJson(response.data.organization)
+                        }
+                        if (response.data.hotConsult){
+                            this.newForm.hotConsult = this.stringToJson(response.data.hotConsult)
+                        }
                     }
                 }).catch(()=>{
                     ElMessage.error("请重新加载");
                 })
+            },
+            stringToJson(val){
+                return val ? JSON.parse(val) : val
             },
             toGo(code){
                 this.toCourseList(code)
@@ -320,6 +354,9 @@
                     router.push('/textual');
                 }*/
 
+            },
+            toCourseDetail(courseId){
+                router.push({path:`/course/${courseId}`})
             },
             contactCopy(){
                 let cInput = document.createElement("input");
