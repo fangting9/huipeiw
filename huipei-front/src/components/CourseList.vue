@@ -97,7 +97,7 @@
                                     :show-file-list="false"
                                     :on-success="(res,file)=>{handleObjectAvatarSuccess(res,file,dialog.detail)}"
                             >
-                                <img v-if="dialog.detail.url" :src="dialog.detail.url" class="min-avatar" />
+                                <img v-if="dialog.detail && dialog.detail.url" :src="dialog.detail.url" class="min-avatar" />
                                 <el-icon v-else class="min-avatar-uploader-icon"><Plus/></el-icon>
                             </el-upload>
                         </el-form-item>
@@ -122,7 +122,7 @@
                                 </el-tag>
                                 <el-input
                                         style="width: 50%"
-                                        v-if="dialog.detail.inputVisible"
+                                        v-if="dialog.detail && dialog.detail.inputVisible"
                                         v-model="dialog.detail.inputValue"
                                         class="ml-1 w-20"
                                         size="small"
@@ -234,7 +234,6 @@
                 this.dialog.id = row.id;
                 this.dialog.code = row.code;
                 if (row.detail){
-                    console.info(row.detail)
                     this.dialog.detail = row.detail;
                 }
                 console.info(this.dialog.detail)
@@ -252,7 +251,9 @@
             },
             cancel(){
                 this.dialogVisible = false;
-                this.dialog={}
+                this.dialog.detail.price = '';
+                this.dialog.detail.url = '';
+                this.dialog.detail.label = [];
             },
             handleSizeChange: function(pageSize) {
                 this.form.pageSize = pageSize;
