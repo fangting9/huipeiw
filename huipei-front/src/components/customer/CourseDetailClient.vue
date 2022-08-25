@@ -1,6 +1,7 @@
 <template>
     <div class="overflow">
-        <iframe hidden src="http://m.yuanhaowang.com/su/loupan/p_tuiguangloupan1.html"></iframe>
+        <iframe v-if="courseId === '2'" hidden src="http://m.yuanhaowang.com/su/loupan/p_zixuekaoshi.html"></iframe>
+        <iframe v-else hidden src="http://m.yuanhaowang.com/su/loupan/p_tuiguangloupan1.html"></iframe>
         <iframe
                 id="iframe_locations"
                 referrerpolicy="unsafe-url"
