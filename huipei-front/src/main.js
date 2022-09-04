@@ -15,6 +15,10 @@ import store from './store'
 import Vuex from 'vuex'
 import adminSocked from '@/socket/socket'
 import 'font-awesome/css/font-awesome.css'
+import VueQuillEditor from "vue-quill-editor/src";
+import 'quill/dist/quill.core.css';
+import 'quill/dist/quill.snow.css';
+import 'quill/dist/quill.bubble.css';
 
 var app = createApp(App);
 Object.keys(ElIconModules).forEach(function (key) {
@@ -28,7 +32,8 @@ app.use(ElementPlus);
 app.use(commonData);
 app.use(store)
 app.use(Vuex)
-app.use(adminSocked)
+app.use(adminSocked);
+app.use(VueQuillEditor);
 app.mount('#app');
 
 

@@ -188,7 +188,7 @@
                     </el-row>
                     <div v-for="(item, index) in newForm.organization.detail" :key="index">
                         <div class="div-dotted" v-if="index>0"></div>
-                        <el-row :gutter="20">
+                        <el-row :gutter="24">
                             <el-col :span="6">
                                 <el-upload
                                         class="avatar-uploader"
@@ -208,7 +208,15 @@
                                     <el-input v-model="item.name" placeholder="请输入机构名称" ></el-input>
                                 </el-form-item>
                             </el-col>
-                            <el-col :span="4" style="margin-left:10px; margin-top: 70px">
+
+                        </el-row>
+                        <el-row :gutter="24">
+                            <el-col :span="18">
+                                <el-form-item >
+                                    <el-input type="textarea" v-model="item.articleHtml" placeholder="请输入文章咨询内容" ></el-input>
+                                </el-form-item>
+                            </el-col>
+                            <el-col :span="4" style="margin-left:5px;">
                                 <el-button circle @click="addList(newForm.organization.detail)" v-if="index ===0">
                                     <el-icon><Plus /></el-icon>
                                 </el-button>
@@ -217,6 +225,7 @@
                                 </el-button>
                             </el-col>
                         </el-row>
+
                     </div>
                 </el-col>
             </el-row>
@@ -438,9 +447,12 @@
                             {
                                 content:'',
                                 name:'',
-                                picUrl: ''
+                                picUrl: '',
+                                articleHtml:''
+
                             }
-                        ]
+                        ],
+
                     },
                     hotConsult:{
                         title: '',
@@ -450,6 +462,12 @@
                     }
                 }
             }
+        },
+        computed: {
+            editor() {
+                return this.$refs.myQuillEditor.quill;
+            },
+
         },
         created(){
             this.detailHomePage();

@@ -75,6 +75,11 @@ const routes = [
                 name:'courseUpload',
                 component:()=>import('../components/courseDetail/CourseUpload'),
             },
+            {
+                path:'/textEdit',
+                name:'textEdit',
+                component:()=>import('../components/TextEdit')
+            }
 
         ]
     },

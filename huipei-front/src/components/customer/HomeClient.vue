@@ -142,7 +142,7 @@
                             </el-row>
                         </el-col>
                         <el-col :span="7"  >
-                            <img  class="courseImage" :src="item.picUrl">
+                            <img  class="courseImage" :src="item.picUrl" @click="articleOpen(item.articleHtml)">
                         </el-col>
                     </el-row>
                     <el-divider class="divider"/>
@@ -223,6 +223,13 @@
                 <Chat @close_chat="close_chat" v-if="chatVisible" :containDisplay="true"></Chat>
             </el-drawer>
         </div>
+        <div class="drawer-div">
+            <el-drawer   v-model="articleVisible" direction="btt" size="100%" >
+                <div style="width: 95%; margin-left: 2.5%">
+                    <div v-html="articleContent" class="ql-editor" style="width:100%;"></div>
+                </div>
+            </el-drawer>
+        </div>
     </div>
 </template>
 
@@ -243,6 +250,8 @@
         },
         data() {
             return {
+                articleVisible:false,
+                articleContent:"",
                 signUpDialogVisible:false,
                 yyDialogVisible:false,
                 chatVisible:false,
@@ -384,6 +393,14 @@
             },
             close_chat(value){
                 this.chatVisible = value;
+            },
+
+            articleOpen(text){
+                if (text){
+                    this.articleContent = text;
+                    this.articleVisible = true;
+                }
+
             }
 
 
@@ -419,6 +436,9 @@
     }
     /deep/.el-carousel__container{
         height: 100%;
+    }
+    .ql-editor.img{
+        width: 90%;
     }
 
 </style>

@@ -27,6 +27,10 @@
                         <el-icon><reading /></el-icon>
                         <span>详情页区域上传</span>
                     </el-menu-item>
+                    <el-menu-item index="/textEdit">
+                        <el-icon><reading /></el-icon>
+                        <span>文本编辑器</span>
+                    </el-menu-item>
                 </el-menu>
             </el-aside>
             <el-container>
