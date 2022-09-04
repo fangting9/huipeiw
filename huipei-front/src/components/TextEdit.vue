@@ -18,9 +18,9 @@
         <h3 style="color: #456ced">复制以下文本</h3>
         {{articleHtml}}
     </div>
-    <h3 style="color: #456ced">咨询文章内容展示</h3>
+    <!--<h3 style="color: #456ced">咨询文章内容展示</h3>
     <div v-html="articleHtml" class="ql-editor">
-    </div>
+    </div>-->
 </div>
 
 </template>
