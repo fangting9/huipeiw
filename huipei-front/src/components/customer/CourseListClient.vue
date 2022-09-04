@@ -94,7 +94,7 @@
                         </el-row>
                         <el-row :gutter="10">
                             <el-col :span="12">
-                                <span class="price" >¥{{item.detail.price}}</span>
+                                <span class="price" >{{item.detail.price}}</span>
                             </el-col>
                             <el-col :span="12">
                                 <el-button @click="detail(item)" class="signUpButton"  round>查看详情</el-button>

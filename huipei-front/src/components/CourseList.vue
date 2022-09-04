@@ -104,8 +104,8 @@
                     </el-col>
                     <el-col :span="16" :offset="1">
                         <el-row :gutter="20" >
-                            <el-form-item label="&#12288;&ensp;¥">
-                                <el-input style="width: 60%"  type="number" v-model="dialog.detail.price" placeholder="请输入价格"></el-input>
+                            <el-form-item label="&#12288;&ensp;">
+                                <el-input style="width: 60%"  v-model="dialog.detail.price" placeholder="请输入价格"></el-input>
                             </el-form-item>
                         </el-row>
                         <el-row :gutter="20">
