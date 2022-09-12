@@ -69,7 +69,7 @@
    import router from "@/router";
    import axios from "axios"
    import { ElMessage, } from 'element-plus'
-   import commonData from "@/data/commonData";
+  // import commonData from "@/data/commonData";
     export default {
         name: "HomePage",
         components:{
@@ -81,8 +81,8 @@
             }
         },
         created(){
-            this.getAdminSid();
-            this.localSocket();
+            //this.getAdminSid();
+            //this.localSocket();
         },
         activated(){
 

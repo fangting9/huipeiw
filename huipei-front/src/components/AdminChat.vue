@@ -72,11 +72,11 @@
             }
         },
         created(){
-            this.intSend()
-            this.$adminSocked.ws.onmessage=this.onmessage;
+          // this.intSend()
+            //this.$adminSocked.ws.onmessage=this.onmessage;
         },
         activated(){
-            this.intSend();
+          //  this.intSend();
         },
 
         methods:{

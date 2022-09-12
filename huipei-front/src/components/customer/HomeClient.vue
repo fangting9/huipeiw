@@ -57,7 +57,7 @@
                                         <span style="margin-left: -5px;" class="courseNum">{{item.applyNum}}人报名</span>
                                     </el-col>
                                     <el-col :span="12" style="padding-right: 16px">
-                                        <el-button @click="chatVisible=true" class="signUpButton" round>咨询</el-button>
+                                        <el-button onclick="doyoo.util.openChat('g=61136');return false;" class="signUpButton" round>咨询</el-button>
                                     </el-col>
                                 </el-row>
                         </el-col>
@@ -74,7 +74,7 @@
                         <p class="title">{{this.form.examContest.title}}</p>
                     </el-col>
                     <el-col :span="12" style="padding-right: 16px">
-                        <p class="text_right more" @click="chatVisible=true">查看详情<el-icon><ArrowRight /></el-icon></p>
+                        <p class="text_right more" onclick="doyoo.util.openChat('g=61136');return false;">查看详情<el-icon><ArrowRight /></el-icon></p>
                     </el-col>
                 </el-row>
                 <div v-for="(item,i) in this.form.examContest.detail" :key="i">
@@ -94,7 +94,7 @@
                                     <span class="courseNum">{{item.status}}</span>
                                 </el-col>
                                 <el-col :span="6">
-                                    <el-button @click="chatVisible=true" class="signUpButton" style="text-align: left; margin-left: 0" round>咨询</el-button>
+                                    <el-button onclick="doyoo.util.openChat('g=61136');return false;" class="signUpButton" style="text-align: left; margin-left: 0" round>咨询</el-button>
                                 </el-col>
                             </el-row>
                         </el-col>
@@ -159,11 +159,11 @@
                 </el-row>
                 <el-row :gutter="10">
                     <el-col :span="10" style="padding-bottom: 16px" :offset="2">
-                        <img style="width: 100%; height: 100%;" :src="this.newForm.hotConsult.picUrl1.url">
+                        <img style="width: 100%; height: 100%;" :src="this.newForm.hotConsult.picUrl1.url" @click="orgInfoVisible = true">
                     </el-col>
 
                     <el-col :span="10" style="padding-bottom: 16px">
-                        <img style="width: 100%; height: 100%;" :src="this.newForm.hotConsult.picUrl2.url">
+                        <img style="width: 100%; height: 100%;" :src="this.newForm.hotConsult.picUrl2.url" @click="agencyInfoVisble = true">
                     </el-col>
                 </el-row>
                 <el-row :gutter="10">
@@ -230,6 +230,65 @@
                 </div>
             </el-drawer>
         </div>
+
+        <div class="drawer-div">
+            <el-drawer   v-model="orgInfoVisible" direction="ltr" size="100%" :show-close="false">
+                <div style="width: 95%; margin-left: 2.5%">
+                    <el-form label-width="30%" label-position="top" size="large">
+                        <el-form-item label="品牌入驻内容:">
+                            <el-input v-model="orgInfo.content" />
+                        </el-form-item>
+                        <el-form-item label="机构名称:">
+                            <el-input v-model="orgInfo.orgName" />
+                        </el-form-item>
+                        <el-form-item label="成立时间:">
+                            <el-input v-model="orgInfo.date" />
+                        </el-form-item>
+                        <el-form-item label="联系人:">
+                            <el-input v-model="orgInfo.contactName" />
+                        </el-form-item>
+                        <el-form-item label="联系电话:">
+                            <el-input v-model="orgInfo.phone" />
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button class="button_right" type="primary" @click="saveOrgInfo">确认</el-button>
+                            <el-button class="button_right" @click="orgInfoVisible = false">取消</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </el-drawer>
+        </div>
+
+        <div class="drawer-div">
+            <el-drawer  v-model="agencyInfoVisble" direction="ltr" size="100%" :show-close="false">
+                <div style="width: 95%; margin-left: 2.5%">
+                    <el-form label-width="30%" label-position="top" size="large">
+                        <el-form-item label="代理加盟内容:">
+                            <el-input v-model="agencyInfo.content" />
+                        </el-form-item>
+                        <el-form-item label="代理区域:">
+                            <el-input v-model="agencyInfo.area" />
+                        </el-form-item>
+                        <el-form-item label="员工人数:">
+                            <el-input v-model="agencyInfo.number" />
+                        </el-form-item>
+                        <el-form-item label="成立时间:">
+                            <el-input v-model="agencyInfo.date" />
+                        </el-form-item>
+                        <el-form-item label="联系人:">
+                            <el-input v-model="agencyInfo.contactName" />
+                        </el-form-item>
+                        <el-form-item label="联系电话:">
+                            <el-input v-model="agencyInfo.phone" />
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button class="button_right" type="primary" @click="saveAgencyInfo">确认</el-button>
+                            <el-button class="button_right" @click="agencyInfoVisble = false">取消</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
+            </el-drawer>
+        </div>
     </div>
 </template>
 
@@ -250,6 +309,8 @@
         },
         data() {
             return {
+                orgInfoVisible:false,
+                agencyInfoVisble:false,
                 articleVisible:false,
                 articleContent:"",
                 signUpDialogVisible:false,
@@ -259,6 +320,21 @@
                     phone: '',
                     name:'',
                     code:''
+                },
+                orgInfo:{
+                    content:"",
+                    orgName:"",
+                    date:"",
+                    contactName:"",
+                    phone:"",
+                },
+                agencyInfo:{
+                    content:"",
+                    area:"",
+                    number:'',
+                    date:"",
+                    contactName:"",
+                    phone:"",
                 },
                 form: {
                     rollingPicUrl: [],
@@ -328,6 +404,25 @@
             }
         },
         methods:{
+            saveAgencyInfo(){
+                axios.post("/admin/info/saveAgencyInfo", this.agencyInfo);
+                this.agencyInfoVisble = false;
+                this.agencyInfo.content = "";
+                this.agencyInfo.area = "";
+                this.agencyInfo.number = "";
+                this.agencyInfo.date = "";
+                this.agencyInfo.contactName = "";
+                this.agencyInfo.phone = "";
+            },
+            saveOrgInfo(){
+                axios.post("/admin/info/saveOrgInfo", this.orgInfo);
+                this.orgInfoVisible = false;
+                this.orgInfo.content = "";
+                this.orgInfo.orgName = "";
+                this.orgInfo.date = "";
+                this.orgInfo.contactName = "";
+                this.orgInfo.phone = "";
+            },
             toCourseList(code){
                 router.push({path:`/ccourseList/${code}`})
             },
@@ -439,6 +534,12 @@
     }
     .ql-editor.img{
         width: 90%;
+
+    }
+
+    .button_right{
+        width: 35%;
+        margin-left: 10%;
     }
 
 </style>

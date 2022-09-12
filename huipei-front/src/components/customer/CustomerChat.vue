@@ -72,7 +72,7 @@ export default {
   },
 
     created() {
-        this.wsInit()
+        //this.wsInit()
     },
     methods:{
         close_chat(){
